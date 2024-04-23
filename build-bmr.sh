@@ -12,6 +12,7 @@ usage() {
     echo
     echo "  --clean"
     echo "  --clean-all"
+    echo "  --clean-all-world"
     echo
     echo "  -b, --bare-metal-router"
     echo "  -c, --core-image-minimal"
@@ -31,10 +32,18 @@ while [[ $# -gt 0 ]]; do
             ;;
         --clean)
             # Add code for handling --clean option here
+            ## bitbake -c cleanall reciep
             shift
             ;;
         --clean-all)
             # Add code for handling --clean-all option here
+            # bitbake -c cleanall core-image-minimal
+            shift
+            ;;
+        --clean-all-world)
+            # bitbake world -c cleanall --continue
+            # The --continue will ignore any dependency errors while cleaning. 
+            # Continue as much as possible after an error.
             shift
             ;;
         -h|--help)

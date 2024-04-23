@@ -3,7 +3,7 @@ build*/
 tmp*/
 deploy*/
 poky/
-downloads/
+downloads
 
 # Ignore editor/IDE files
 *.swp
