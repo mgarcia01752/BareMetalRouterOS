@@ -3,30 +3,48 @@
 # Source the common script
 source lib/common.sh
 
-# Default image to build
-IMAGE_TO_BUILD=${BMR_IMAGE_BB_REF}
-
 # Function to display usage
 usage() {
-    echo "Usage: $0 [-m]"
-    echo "  -m  Build core-image-minimal"
-    echo "  Will build ${BMR_BUILD_DIR_NAME} by default"
+    echo "Usage: $0 [options]"
+    echo "Options:"
+    echo
+    echo "  --clean"
+    echo "  --clean-all"
+    echo
+    echo "  -b, --bare-metal-router"
+    echo "  -c, --core-image-minimal"
     exit 1
 }
 
-# Parse command-line options
-while getopts ":m" opt; do
-    case ${opt} in
-        m)
-            IMAGE_TO_BUILD="core-image-minimal"
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -b|--bare-metal-router)
+            IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF:-(default)}"
+            shift
             ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
-            usage
+        -c|--core-image-minimal)
+            IMAGE_TO_BUILD="${POKY_CORE_IMG_MIN}"
+            shift
+            ;;
+        --clean)
+            # Add code for handling --clean option here
+            shift
+            ;;
+        --clean-all)
+            # Add code for handling --clean-all option here
+            shift
+            ;;
+        -h|--help)
+            display_usage
+            ;;
+        *)
+            echo "Unknown option: $1"
+            display_usage
             ;;
     esac
 done
-shift $((OPTIND -1))
+
 
 # Display banner
 display_banner "Building Bare Metal Router"
@@ -43,7 +61,8 @@ check_directory "$POKY_DIR" || {
 }
 
 # Change to POKY_DIR and source environment
-cd "$POKY_DIR" || exit
+cd "$POKY_DIR" || {display_banner "BUILD FAILED"; exit}
+
 source oe-init-build-env ${BMR_BUILD_DIR_NAME}
 
 # Build selected image if specified

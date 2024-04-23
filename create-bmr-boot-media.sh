@@ -3,66 +3,85 @@
 # Source the common script
 source lib/common.sh
 
-# Display banner
-display_banner "Create Bare Metal Router Boot Media"
+ROOTFS_IMAGE="${PWD}/poky/build-bmr/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.ext4"
 
-# Check if user is root
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Please run this script as root or using sudo."
+wait_seconds=5
+
+# Function to display script usage
+usage() {
+    echo "Usage: $0 -i <rootfs_image> -d <usb_device>"
+    echo "Options:"
+    echo "  -i <rootfs_image>   Path to the root filesystem image (e.g., core-image-minimal-qemux86-64.rootfs.ext4)"
+    echo "  -d <usb_device>     USB device to write the image to (e.g., /dev/sdX)"
+    exit 1
+}
+
+# Check if running as root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run with sudo or as root" 
     exit 1
 fi
 
-# Function to create bootable USB
-create_bootable_usb() {
-    local usb_device="$1"
-    local poky_image_path="$2"
+# Parse command-line options
+while getopts "i:d:" opt; do
+    case $opt in
+        d) USB_DEVICE=$OPTARG ;;
+        *) usage ;;
+    esac
+done
 
-    # Check if the USB device exists
-    if [ ! -b "$usb_device" ]; then
-        echo "USB device $usb_device not found."
-        exit 1
-    fi
-
-    display_banner "Creating bootable USB..."
-    
-    # Unmount USB if mounted
-    umount "$usb_device"* &>/dev/null
-
-    # Wipe USB
-    display_banner "Wiping USB..."
-    wipefs -a "$usb_device" &>/dev/null
-
-    # Format USB to FAT32
-    display_banner "Formatting USB to FAT32..."
-    mkfs.vfat -F 32 -n "ROUTER_BOOT" "$usb_device" &>/dev/null
-
-    # Check if the Poky image exists
-    if [ ! -f "$poky_image_path" ]; then
-        echo "Poky image not found at: $poky_image_path"
-        exit 1
-    fi
-
-    # dd Poky Image to USB
-    display_banner "Copying Poky image to USB..."
-    dd if="$poky_image_path" of="$usb_device" bs=4M conv=fsync status=progress
-
-    display_banner "Bootable USB creation complete."
-}
-
-# Usage function
-usage() {
-    echo "Usage: $0 <usb_device> <poky_image_path>"
-    echo "Example: $0 /dev/sdb ~/Downloads/poky-image.iso"
-    exit 1
-}
-
-# Check arguments
-if [ "$#" -ne 2 ]; then
+# Verify required options are provided
+if [ -z "$ROOTFS_IMAGE" ] || [ -z "$USB_DEVICE" ]; then
     usage
 fi
 
-usb_device="$1"
-poky_image_path="$BMR_x86_64_IMAGE_PATH"
+# Unmount USB drive if it's already mounted
+umount "$USB_DEVICE"*
 
-# Call the function to create bootable USB
-create_bootable_usb "$usb_device" "$poky_image_path"
+sleep $wait_seconds
+
+# Format USB drive
+echo "Formatting USB drive..."
+mkfs.ext4 -F "$USB_DEVICE"
+
+sleep $wait_seconds
+
+# Write image to USB drive
+echo "Writing image to USB drive..."
+dd if="$ROOTFS_IMAGE" of="$USB_DEVICE" bs=4M status=progress
+
+sleep $wait_seconds
+
+# Sync and eject USB drive
+sync
+echo "Image written to USB drive successfully."
+
+sleep $wait_seconds
+
+# Partition and setup GRUB
+echo "Setting up GRUB..."
+parted -s "$USB_DEVICE" mklabel msdos
+parted -s "$USB_DEVICE" mkpart primary ext4 1MiB 100%
+parted -s "$USB_DEVICE" set 1 boot on
+
+sleep $wait_seconds
+
+mkfs.ext4 "${USB_DEVICE}1"
+
+sleep $wait_seconds
+
+mount "${USB_DEVICE}1" /mnt
+
+sleep $wait_seconds
+
+mkdir -p /mnt/boot/grub
+
+sleep $wait_seconds
+
+grub-install --target=i386-pc --root-directory=/mnt --boot-directory=/mnt/boot --recheck --no-floppy "$USB_DEVICE"
+cp /boot/grub/grub.cfg /mnt/boot/grub/
+
+sleep $wait_seconds
+
+umount /mnt
+echo "GRUB installed. USB drive is now bootable."

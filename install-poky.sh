@@ -39,7 +39,7 @@ display_banner "Setting up Yocto Directories"
 if check_directory "${POKY_DIR}"; then
   echo "Poky directory already exists."
 else
-  echo "Cloning Yocto Poky repository..."
+  echo "Cloning Yocto Poky repository (${YOCTO_CODE_NAME})..."
   git clone --single-branch --branch ${YOCTO_CODE_NAME} https://git.yoctoproject.org/git/poky "${POKY_DIR}" || handle_error "Failed to clone Poky repository."
   cd "${POKY_DIR}"
   git pull || handle_error "Failed to pull updates from Poky repository."
@@ -105,13 +105,15 @@ echo "Adding meta-intel"
 bitbake-layers add-layer ../meta-bare-metal-router
 echo "Adding meta-bare-metal-router"
 
-display_banner "Updating local.conf"
+# display_banner "Updating local.conf"
 cat <<EOF >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
 PARALLEL_MAKE = "-j 8"
-DISTRO_FEATURES_append = " systemd"
 IMAGE_FEATURES += "tools-sdk"
 IMAGE_FSTYPES += "iso"
 EOF
+
+echo "Create local downloads directory for multiple builds:"
+mkdir -p downloads || handle_warning "Unable to create ${PWD}/downloads directory"
 
 check_and_create_dir "${BUILD_DIR}/downloads"
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"

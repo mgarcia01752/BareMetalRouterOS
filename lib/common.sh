@@ -1,11 +1,16 @@
 #!/usr/bin/bash
 
+STATUS_OK=0
+STATUS_NOK=1
+
 BMR_BUILD_DIR_NAME="build-bmr"
 BMR_IMAGE_BB_REF="bare-metal-router"
+POKY_CORE_IMG_MIN="core-image-minimal"
 
 MACHINE_ARCH_x86_64="qemux86-64"
 
 YOCTO_CODE_NAME="scarthgap"
+YOCTO_CODE_NAME="dunfell"
 POKY_DIR_NAME="poky"
 POKY_BUILD_PATH=${POKY_DIR_NAME}/${build}
 BMR_META_LAYERS="yocto-meta-layers"
@@ -24,11 +29,11 @@ display_banner() {
 check_os() {
   case "$(lsb_release -si) $(lsb_release -sr)" in
     "Ubuntu 20.04" | "Ubuntu 22.04" | "Debian GNU/Linux 11" | "Debian GNU/Linux 12")
-      return 0 ;; # Supported OS
+      return ${STATUS_OK} ;;
     "Fedora 38" | "OpenSUSE Leap 15.4" | "AlmaLinux 8" | "AlmaLinux 9" | "Rocky 9")
-      return 0 ;; # Supported OS
+      return${STATUS_OK};;
     *)
-      return 1 ;; # Unsupported OS
+      return${STATUS_NOK};;
   esac
 }
 
@@ -46,9 +51,9 @@ handle_warning() {
 # Function to check if a directory exists
 check_directory() {
   if [ -d "$1" ]; then
-    return 0  # Directory exists
+    return 0
   else
-    return 1  # Directory does not exist
+    return 1
   fi
 }
 
