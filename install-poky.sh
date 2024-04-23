@@ -69,7 +69,6 @@ cd ${POKY_DIR}
 echo "External layers set up successfully."
 echo
 
-# Installing meta-bare-metal-router layer
 display_banner "Installing meta-bare-metal-router Layer"
 BMR_INSTALL_SRC_DIR=${BUILD_DIR}/yocto-meta-layers
 if [ -d "${BMR_INSTALL_SRC_DIR}" ]; then
@@ -80,9 +79,6 @@ else
   handle_error "Path to meta-bare-metal-router layer is invalid."
 fi
 
-################################################################
-# Source the environment setup script and enter build directory
-################################################################
 display_banner "Setting Up Yocto Build Environment"
 cd ${POKY_DIR}
 source "${POKY_DIR}/oe-init-build-env" "${BMR_BUILD_DIR_NAME}"
@@ -96,17 +92,13 @@ echo "Adding meta-intel"
 bitbake-layers add-layer ../meta-bare-metal-router
 echo "Adding meta-bare-metal-router"
 
-# display_banner "Updating local.conf"
+echo "Updating local.conf"
 cat <<EOF >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
 PARALLEL_MAKE = "-j 8"
 IMAGE_FEATURES += "tools-sdk"
 IMAGE_FSTYPES += "iso"
 EOF
 
-echo "Create local downloads directory for multiple builds:"
-mkdir -p downloads || handle_warning "Unable to create ${PWD}/downloads directory"
-
-check_and_create_dir "${BUILD_DIR}/downloads"
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
 
 display_banner "INSTALLATION COMPLETE"
