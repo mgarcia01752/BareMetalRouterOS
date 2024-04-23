@@ -1,0 +1,32 @@
+# Ignore Yocto build artifacts
+build*/
+tmp*/
+deploy*/
+poky/
+downloads/
+
+# Ignore editor/IDE files
+*.swp
+*.swo
+*.swn
+*.bak
+*~
+.vscode/
+.idea/
+.code-workspace
+
+# Ignore system files
+*.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.pid
+*.lock
+*.tmp
+*.swp
+*.out
+
+# Ignore package manager directories
+node_modules/
+bower_components/

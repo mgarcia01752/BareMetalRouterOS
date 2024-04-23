@@ -1,0 +1,39 @@
+# Modifying Bare Metal Router Recipes
+
+To customize the Bare Metal Router (BMR) recipes and create your image, follow these steps:
+
+## Creating Image Recipe
+
+### References:
+- [YOCTO Image Recipes](https://docs.yoctoproject.org/dev/dev-manual/customizing-images.html)
+- [How To Create a Recipe](https://www.youtube.com/watch?v=YSITCPhk_qU)
+- [BB Append a Recipe](https://www.youtube.com/watch?v=IxXSABanxEQ)
+- [DevTool](https://www.youtube.com/watch?v=HfbwRfurNfM)
+
+## bitbake-layers show-recipes
+
+Use `bitbake-layers` to display available BMR recipes:
+
+```bash
+cd poky
+source oe-init-build-env build-bmr
+bitbake-layers show-recipes "bare-metal-router*"
+```
+
+- **`cd poky`**: Navigate to your Yocto Project's main directory.
+  
+- **`source oe-init-build-env build-bmr`**: Initialize the build environment for BMR (if not already done).
+  
+- **`bitbake-layers show-recipes "bare-metal-router*"`**: Displays all available recipes related to Bare Metal Router, allowing you to identify and work with specific recipes.
+
+## Additional Notes
+
+- **Creating Image Recipe**: Refer to the Yocto Project documentation and video tutorials linked above for guidance on creating custom recipes and modifying existing ones.
+  
+- **DevTool**: The DevTool is a powerful utility for recipe development and customization. Refer to the linked video for an overview of its capabilities.
+  
+- **Recipe Modification**: Use BB Appends to modify existing recipes without altering the original recipe files. This approach ensures easier maintenance and updates.
+
+## Next Steps
+
+After identifying the desired recipes and understanding how to modify them, you can proceed to customize the Bare Metal Router image according to your requirements. Be sure to follow best practices and test your changes thoroughly.
