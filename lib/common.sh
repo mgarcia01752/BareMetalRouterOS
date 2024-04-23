@@ -10,7 +10,8 @@ POKY_CORE_IMG_MIN="core-image-minimal"
 MACHINE_ARCH_x86_64="qemux86-64"
 
 YOCTO_CODE_NAME="scarthgap"
-YOCTO_CODE_NAME="dunfell"
+#YOCTO_CODE_NAME="dunfell"
+
 POKY_DIR_NAME="poky"
 POKY_BUILD_PATH=${POKY_DIR_NAME}/${build}
 BMR_META_LAYERS="yocto-meta-layers"

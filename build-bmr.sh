@@ -3,6 +3,8 @@
 # Source the common script
 source lib/common.sh
 
+IMAGE_TO_BUILD=${BMR_IMAGE_BB_REF}
+
 # Function to display usage
 usage() {
     echo "Usage: $0 [options]"
@@ -20,7 +22,7 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -b|--bare-metal-router)
-            IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF:-(default)}"
+            IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF}:-(default)"
             shift
             ;;
         -c|--core-image-minimal)

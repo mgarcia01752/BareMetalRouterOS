@@ -80,15 +80,6 @@ else
   handle_error "Path to meta-bare-metal-router layer is invalid."
 fi
 
-# Modify bblayers.conf template
-display_banner "Modifying bblayers.conf Template"
-BBLAYERS_CONF="${POKY_DIR}/meta-poky/conf/templates/default/bblayers.conf.sample"
-
-# Remove existing bblayers.conf template if it exists
-if [ -f "${BBLAYERS_CONF}" ]; then
-  rm "${BBLAYERS_CONF}" || handle_error "Failed to remove existing bblayers.conf template."
-fi
-
 ################################################################
 # Source the environment setup script and enter build directory
 ################################################################
