@@ -36,12 +36,12 @@ Use the build script to create the initial BMR image:
 ./build-bmr.sh
 ```
 
-### 4. Test Bare Metal Router
+### 4. Run Bare Metal Router
 
 Verify the functionality of the BMR image using QEMU:
 
 ```bash
-./test-bmr.sh
+./run-bmr.sh
 ```
 
 ### 5. Create Boot Media
