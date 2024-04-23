@@ -83,14 +83,11 @@ if [[ -n "$IMAGE_TO_BUILD" ]]; then
 fi
 
 if check_directory "${BASE_DIR}/downloads"; then
+    echo "Adding ${BASE_DIR}/downloads to reduce time for future build"
+    echo "!!!!DO NOT REMOVE!!!! -> ${BASE_DIR}/downloads"
     mkdir -p "${BASE_DIR}/downloads"
-    cp -r "${POKY_BUILD_PATH}/downloads/"* "${BASE_DIR}/downloads"
+    cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads" || handle_warning  "Unable to copy download files from ${POKY_BUILD_PATH}/downloads"
 fi
-
-
-# Copy build downloads to base directory for quicker re-build
-# mkdir -p "${BASE_DIR}/downloads" "${POKY_BUILD_PATH}/downloads"
-# cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads"
 
 # Display completion message
 display_banner "BUILD COMPLETE"
