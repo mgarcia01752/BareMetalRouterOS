@@ -52,9 +52,9 @@ handle_warning() {
 # Function to check if a directory exists
 check_directory() {
   if [ -d "$1" ]; then
-    return 0
+    return ${STATUS_OK}
   else
-    return 1
+    return ${STATUS_NOK}
   fi
 }
 

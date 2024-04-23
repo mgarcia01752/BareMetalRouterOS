@@ -14,7 +14,7 @@ usage() {
     echo "  --clean-all"
     echo "  --clean-all-world"
     echo
-    echo "  -b, --bare-metal-router"
+    echo "  [-b], [--bare-metal-router] (default)"
     echo "  -c, --core-image-minimal"
     exit 1
 }
@@ -23,7 +23,7 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -b|--bare-metal-router)
-            IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF}:-(default)"
+            IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF}"
             shift
             ;;
         -c|--core-image-minimal)
@@ -82,9 +82,15 @@ if [[ -n "$IMAGE_TO_BUILD" ]]; then
     bitbake -k $IMAGE_TO_BUILD
 fi
 
+if check_directory "${BASE_DIR}/downloads"; then
+    mkdir -p "${BASE_DIR}/downloads"
+    cp -r "${POKY_BUILD_PATH}/downloads/"* "${BASE_DIR}/downloads"
+fi
+
+
 # Copy build downloads to base directory for quicker re-build
 # mkdir -p "${BASE_DIR}/downloads" "${POKY_BUILD_PATH}/downloads"
-# cp -r "${POKY_BUILD_PATH}/downloads/"* "${BASE_DIR}/downloads"
+# cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads"
 
 # Display completion message
 display_banner "BUILD COMPLETE"
