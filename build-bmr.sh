@@ -36,16 +36,19 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --clean)
+            CLEAN=true
             # Add code for handling --clean option here
             ## bitbake -c cleanall reciep
             shift
             ;;
         --clean-all)
+            CLEANALL=true
             # Add code for handling --clean-all option here
             # bitbake -c cleanall core-image-minimal
             shift
             ;;
         --clean-all-world)
+            CLEANALL_WORLD=true
             # bitbake world -c cleanall --continue
             # The --continue will ignore any dependency errors while cleaning. 
             # Continue as much as possible after an error.
@@ -81,6 +84,12 @@ check_directory "$POKY_DIR" || {
 cd "$POKY_DIR" || {display_banner "BUILD FAILED"; exit}
 
 source oe-init-build-env ${BMR_BUILD_DIR_NAME}
+
+if [ "${CLEANALL_WORLD}" = true ]; then
+    bitbake world -c cleanall --continue ||  {display_banner "BUILD FAILED (clean all world)"; exit 1}
+    display_banner "CLEAN COMPLETE"
+    exit
+fi
 
 # Build selected image if specified
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
