@@ -4,6 +4,7 @@
 source lib/common.sh
 
 IMAGE_TO_BUILD=${BMR_IMAGE_BB_REF}
+BASE_DIR=${PWD}
 
 # Function to display usage
 usage() {
@@ -17,6 +18,10 @@ usage() {
     echo "  [-b], [--bare-metal-router] (default)"
     echo "  -c, --core-image-minimal"
     exit 1
+}
+
+update_last_build_recipe() {
+  echo -e $1 >> "${BASE_DIR}/.last_build_recipe"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -71,6 +76,7 @@ check_directory "$POKY_DIR" || {
     exit 1
 }
 
+
 # Change to POKY_DIR and source environment
 cd "$POKY_DIR" || {display_banner "BUILD FAILED"; exit}
 
@@ -79,14 +85,15 @@ source oe-init-build-env ${BMR_BUILD_DIR_NAME}
 # Build selected image if specified
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Bare Metal Router Build: $IMAGE_TO_BUILD"
-    bitbake -k $IMAGE_TO_BUILD
+    bitbake -k $IMAGE_TO_BUILD ||  {display_banner "BUILD FAILED"; exit}
+    update_last_build_recipe ${IMAGE_TO_BUILD}
 fi
 
 if check_directory "${BASE_DIR}/downloads"; then
     echo "Adding ${BASE_DIR}/downloads to reduce time for future build"
     echo "!!!!DO NOT REMOVE!!!! -> ${BASE_DIR}/downloads"
-    mkdir -p "${BASE_DIR}/downloads"
-    cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads" || handle_warning  "Unable to copy download files from ${POKY_BUILD_PATH}/downloads"
+    # mkdir -p "${BASE_DIR}/downloads"
+    # cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads" || handle_warning  "Unable to copy download files from ${POKY_BUILD_PATH}/downloads"
 fi
 
 # Display completion message

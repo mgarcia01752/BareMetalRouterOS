@@ -18,17 +18,16 @@ Dependencies
 Patches
 =======
 
-Please submit any patches against the meta-bare-metal-router layer to the xxxx mailing list (xxxx@zzzz.org)
+Please submit any patches against the meta-bare-metal-router layer to the xxxx mailing list (<xxxx@zzzz.org>)
 and cc: the maintainer:
 
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
+Maintainer: Maurice Garcia <mgarcia01752@outlook.com.com>
 
 Table of Contents
 =================
 
   I. Adding the meta-bare-metal-router layer to your build
  II. Misc
-
 
 I. Adding the meta-bare-metal-router layer to your build
 =================================================

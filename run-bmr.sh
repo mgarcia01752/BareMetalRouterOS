@@ -1,12 +1,18 @@
 #!/usr/bin/bash
 
+source lib/common.sh
+
+START_DIR=${PWD}
+
 # Check if running as root
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run with sudo or as root" 
     exit 1
 fi
 
-source lib/common.sh
+get_last_build_recipe() {
+  echo $(tail -n 1 ${START_DIR}/.last_build_recipe)
+}
 
 BUILD_DIR=${PWD}
 POKY_DIR="${BUILD_DIR}/${POKY_DIR_NAME}"
@@ -24,4 +30,7 @@ display_banner "Starting QEMU for Build: ${BMR_BUILD_DIR_NAME}"
 
 source oe-init-build-env ${BMR_BUILD_DIR_NAME}
 
-${POKY_DIR}/scripts/runqemu nographic tmp/deploy/images/qemux86-64
+build_recipe=$(get_last_build_recipe)
+
+${POKY_DIR}/scripts/runqemu nographic "tmp/deploy/images/qemux86-64/${build_recipe}-qemux86-64.rootfs.qemuboot.conf"
+

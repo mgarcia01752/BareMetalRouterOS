@@ -14,7 +14,7 @@ The Bare Metal Router (BMR) is a pure Linux router designed for x86-64 architect
 
 ### 1. Setup Yocto Build Environment
 
-Before building BMR, ensure you have the Yocto build environment set up:
+Before building BMR, ensure you have the Ubuntu Yocto build environment set up:
 
 ```bash
 ./setup-yocto-env.sh
@@ -22,7 +22,7 @@ Before building BMR, ensure you have the Yocto build environment set up:
 
 ### 2. Download and Install Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
 
-To download and install Poky for BMR:
+To download and install Poky (Scarthgap) for BMR:
 
 ```bash
 ./install-poky.sh

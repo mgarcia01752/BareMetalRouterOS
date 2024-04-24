@@ -1,9 +1,13 @@
+# BRM artifacts
+.gitignore
+.last_build_recipe
+
 # Ignore Yocto build artifacts
 build*/
 tmp*/
 deploy*/
 poky/
-downloads
+downloads/
 
 # Ignore editor/IDE files
 *.swp
@@ -13,7 +17,7 @@ downloads
 *~
 .vscode/
 .idea/
-.code-workspace
+*.code-workspace
 
 # Ignore system files
 *.DS_Store
