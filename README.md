@@ -1,10 +1,10 @@
-# Bare Metal Router (BMR)
+# BareMetalRouterOS (BMROS)
 
-The Bare Metal Router (BMR) is a pure Linux router designed for x86-64 architecture, offering a robust networking solution. Utilizing the power of the Yocto Project and the [RouterShell](https://github.com/mgarcia01752/RouterShell) command-line interface (CLI), BMR provides a customizable and efficient routing platform.
+The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 architecture, offering a robust networking solution. Utilizing the power of the Yocto Project and the [RouterShell](https://github.com/mgarcia01752/RouterShell) command-line interface (CLI), BMR provides a customizable and efficient routing platform.
 
 ## Features
 
-- **Linux Router**: BMR is optimized for x86 architecture, harnessing the reliability and flexibility of Linux for networking tasks.
+- **Linux Router**: BMR is optimized for x86 architecture, harnessing Linux's reliability and flexibility for networking tasks.
   
 - **[RouterShell CLI](https://github.com/mgarcia01752/RouterShell)**: An interactive command-line interface inspired by IOS, RouterShell provides an intuitive and familiar configuration experience for network administrators.
 
@@ -36,7 +36,7 @@ Use the build script to create the initial BMR image:
 ./build-bmr.sh
 ```
 
-### 4. Run Bare Metal Router
+### 4. Run Bare Metal Router OS
 
 Verify the functionality of the BMR image using QEMU:
 
