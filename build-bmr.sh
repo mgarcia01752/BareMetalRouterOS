@@ -94,7 +94,7 @@ fi
 # Build selected image if specified
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Bare Metal Router Build: $IMAGE_TO_BUILD"
-    bitbake -k $IMAGE_TO_BUILD ||  {display_banner "BUILD FAILED"; exit}
+    bitbake -k $IMAGE_TO_BUILD
     update_last_build_recipe ${IMAGE_TO_BUILD}
 fi
 
