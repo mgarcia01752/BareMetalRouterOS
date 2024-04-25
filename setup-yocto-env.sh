@@ -43,3 +43,7 @@ sudo apt install -y gawk wget git diffstat unzip texinfo \
                     mesa-common-dev zstd liblz4-tool file locales libacl1 || handle_warning "Failed to install packages."
 echo "Required packages installed successfully."
 echo
+
+# https://panamint.kcir.pwr.edu.pl/~jkozlowi/golemos/step-by-step-guide-extended/python-packages.html
+display_banner "Installing Required Python Packages"
+pip install pipoe
