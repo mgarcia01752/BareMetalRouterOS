@@ -6,8 +6,8 @@
 build*/
 tmp*/
 deploy*/
-poky
-downloads
+poky/
+downloads/
 
 # Ignore editor/IDE files
 *.swp
