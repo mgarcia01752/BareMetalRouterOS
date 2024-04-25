@@ -6,9 +6,18 @@ To customize the Bare Metal Router (BMR) recipes and create your image, follow t
 
 ### References:
 - [YOCTO Image Recipes](https://docs.yoctoproject.org/dev/dev-manual/customizing-images.html)
-- [How To Create a Recipe](https://www.youtube.com/watch?v=YSITCPhk_qU)
+- [How To Create a Recipe](https://www.youtube.com/watch?v=Apfwyf_yEzI)
+- [How To Create a Recipe for a Python Application](https://stackoverflow.com/questions/50436413/write-a-recipe-in-yocto-for-a-python-application)
 - [BB Append a Recipe](https://www.youtube.com/watch?v=IxXSABanxEQ)
 - [DevTool](https://www.youtube.com/watch?v=HfbwRfurNfM)
+
+## Create a receipe using devtool
+
+cd poky
+source oe-init-build-env
+devtool add router-shell https://github.com/mgarcia01752/RouterShell.git --srcbranch=main
+
+
 
 ## bitbake-layers show-recipes
 
