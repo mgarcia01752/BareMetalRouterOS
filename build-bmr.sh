@@ -66,6 +66,7 @@ done
 
 
 # Display banner
+start_time=$(get_epoch_timestamp)
 display_banner "Building Bare Metal Router"
 
 BASE_DIR=${PWD}
@@ -105,5 +106,8 @@ if check_directory "${BASE_DIR}/downloads"; then
     # cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads" || handle_warning  "Unable to copy download files from ${POKY_BUILD_PATH}/downloads"
 fi
 
-# Display completion message
-display_banner "BUILD COMPLETE"
+# Calculate elapsed time in seconds
+elapsed_time=$(( $(get_epoch_timestamp) - start_time ))
+
+# Display completion message with elapsed time
+display_banner "BUILD COMPLETE - Build Elapse Time: $elapsed_time seconds"

@@ -67,7 +67,7 @@ check_and_create_dir() {
 }
 
 get_epoch_timestamp() {
-  return `date +%s`
+  echo $(date +%s)
 }
 
 update_last_build_recipe() {
