@@ -54,29 +54,48 @@ fi
 
 # Check if external layers directory already exists
 EXTERNAL_LAYERS_DIR="${POKY_DIR}/sources"
-META_INTEL_DIR="${EXTERNAL_LAYERS_DIR}/meta-intel"
+META_INTEL_DIR="${EXTERNAL_LAYERS_DIR}/${BB_LAYER_INTEL}"
 
-if check_directory "${EXTERNAL_LAYERS_DIR}"; then
+if check_directory "${META_INTEL_DIR}"; then
   echo "External layers directory already exists."
 else
-  display_banner "Cloning meta-intel layer"
+  display_banner "Cloning ${BB_LAYER_INTEL} layer"
   mkdir -p "${EXTERNAL_LAYERS_DIR}" || handle_error "Failed to create external layers directory."
   cd "${EXTERNAL_LAYERS_DIR}"
   git clone --single-branch --branch ${YOCTO_CODE_NAME} git://git.yoctoproject.org/meta-intel "${META_INTEL_DIR}" || handle_error "Failed to clone meta-intel layer."
   cp -r ${META_INTEL_DIR}  ${POKY_DIR}
 fi
 cd ${POKY_DIR}
-echo "External layers set up successfully."
+echo "${BB_LAYER_INTEL} layer set up successfully."
 echo
 
-display_banner "Installing meta-bare-metal-router Layer"
+META_OPEN_EMBEDDED_DIR="${EXTERNAL_LAYERS_DIR}/meta-openembedded"
+
+if check_directory "${META_OPEN_EMBEDDED_DIR}"; then
+  echo "External layers directory (${META_OPEN_EMBEDDED_DIR}) already exists."
+else
+  display_banner "Cloning meta-openembedded"
+  mkdir -p "${EXTERNAL_LAYERS_DIR}" || handle_error "Failed to create external layers directory."
+  cd "${EXTERNAL_LAYERS_DIR}"
+  git clone git://git.openembedded.org/meta-openembedded -b master  || handle_error "Failed to clone meta-openembedded layer."
+  cd meta-openembedded
+  cp -r ${BB_LAYER_OPEN_EMBEDDED}  ${POKY_DIR}
+  cp -r ${BB_LAYER_PYTHON}  ${POKY_DIR}
+fi
+
+cd ${POKY_DIR}
+echo "${BB_LAYER_OPEN_EMBEDDED} layer set up successfully."
+echo "${BB_LAYER_PYTHON} layer set up successfully."
+echo
+
+display_banner "Installing ${BB_LAYER_BARE_METAL_ROUTER} Layer"
 BMR_INSTALL_SRC_DIR=${BUILD_DIR}/yocto-meta-layers
 if [ -d "${BMR_INSTALL_SRC_DIR}" ]; then
-  cp -r "${BMR_INSTALL_SRC_DIR}/meta-bare-metal-router" "${POKY_DIR}" || handle_error "Failed to copy meta-bare-metal-router layer."
-  echo "meta-bare-metal-router layer installed successfully."
+  cp -r "${BMR_INSTALL_SRC_DIR}/${BB_LAYER_BARE_METAL_ROUTER}" "${POKY_DIR}" || handle_error "Failed to copy ${BB_LAYER_BARE_METAL_ROUTER} layer."
+  echo "${BB_LAYER_BARE_METAL_ROUTER} layer installed successfully."
 else
-  echo "cp -r ${BMR_INSTALL_SRC_DIR}/meta-bare-metal-router ${POKY_DIR}"
-  handle_error "Path to meta-bare-metal-router layer is invalid."
+  echo "cp -r ${BMR_INSTALL_SRC_DIR}/${BB_LAYER_BARE_METAL_ROUTER} ${POKY_DIR}"
+  handle_error "Path to ${BB_LAYER_BARE_METAL_ROUTER} layer is invalid."
 fi
 
 display_banner "Setting Up Yocto Build Environment"
@@ -86,17 +105,23 @@ echo "Yocto build environment set up successfully."
 echo
 
 display_banner "Adding Required Layers"
-bitbake-layers add-layer ../meta-intel
-echo "Adding meta-intel"
+bitbake-layers add-layer ../${BB_LAYER_INTEL}
+echo "Adding ${BB_LAYER_INTEL}"
 
-bitbake-layers add-layer ../meta-bare-metal-router
-echo "Adding meta-bare-metal-router"
+bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}
+echo "Adding ${BB_LAYER_OPEN_EMBEDDED}"
+
+bitbake-layers add-layer ../${BB_LAYER_PYTHON}
+echo "Adding ${BB_LAYER_PYTHON}"
+
+bitbake-layers add-layer ../${BB_LAYER_BARE_METAL_ROUTER}
+echo "Adding ${BB_LAYER_BARE_METAL_ROUTER}"
 
 echo "Updating local.conf"
 cat <<EOF >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
 PARALLEL_MAKE = "-j 8"
-IMAGE_FEATURES += "tools-sdk"
-IMAGE_FSTYPES += "iso"
+# IMAGE_FEATURES += "tools-sdk"
+# IMAGE_FSTYPES += "iso"
 EOF
 
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"

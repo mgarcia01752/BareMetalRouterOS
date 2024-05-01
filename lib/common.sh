@@ -10,7 +10,6 @@ POKY_CORE_IMG_MIN="core-image-minimal"
 MACHINE_ARCH_x86_64="qemux86-64"
 
 YOCTO_CODE_NAME="scarthgap"
-#YOCTO_CODE_NAME="dunfell"
 
 POKY_DIR_NAME="poky"
 POKY_BUILD_PATH=${POKY_DIR_NAME}/${build}
@@ -18,6 +17,11 @@ BMR_META_LAYERS="yocto-meta-layers"
 
 BMR_x86_64_IMAGE_PATH=${POKY_BUILD_PATH}/tmp/deploy/images/${MACHINE_ARCH_x86_64}
 BMR_x86_64_IMAGE_FILENAME="${BMR_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.rootfs.ext4"
+
+BB_LAYER_OPEN_EMBEDDED="meta-oe"
+BB_LAYER_INTEL="meta-intel"
+BB_LAYER_PYTHON="meta-python"
+BB_LAYER_BARE_METAL_ROUTER="meta-bare-metal-router"
 
 display_banner() {
   echo "-------------------------------------------------------"
