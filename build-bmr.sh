@@ -14,6 +14,7 @@ usage() {
     echo "  --clean"
     echo "  --clean-all"
     echo "  --clean-all-world"
+    echo "  --update-bare-metal-layer"
     echo
     echo "  [-b], [--bare-metal-router] (default)"
     echo "  -c, --core-image-minimal"

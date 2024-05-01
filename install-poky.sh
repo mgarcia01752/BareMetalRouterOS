@@ -120,8 +120,10 @@ echo "Adding ${BB_LAYER_BARE_METAL_ROUTER}"
 echo "Updating local.conf"
 cat <<EOF >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
 PARALLEL_MAKE = "-j 8"
-# IMAGE_FEATURES += "tools-sdk"
-# IMAGE_FSTYPES += "iso"
+DISTRO_FEATURES:append = " systemd usrmerge"
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 EOF
 
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"
