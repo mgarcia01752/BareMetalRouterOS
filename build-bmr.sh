@@ -55,12 +55,18 @@ while [[ $# -gt 0 ]]; do
             # Continue as much as possible after an error.
             shift
             ;;
+        --update-bare-metal-layer)
+            `./update-layers.sh`
+            shift
+            ;;
         -h|--help)
             display_usage
+            exit
             ;;
         *)
             echo "Unknown option: $1"
             display_usage
+            exit
             ;;
     esac
 done

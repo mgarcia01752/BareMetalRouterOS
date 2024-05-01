@@ -30,7 +30,7 @@ do_install() {
     install -d ${D}${sysconfdir}/routershell
     install -m 0766 ${S}/start.sh ${D}${sysconfdir}/routershell/routershell_start.sh
 
-    install -d ${D}${sysconfdir}/routershell/lib
+    install -d ${D}${sysconfdir}/routershell/config
     cp -r ${S}/config/* ${D}${sysconfdir}/routershell/config
 
     install -d ${D}${sysconfdir}/routershell/lib
