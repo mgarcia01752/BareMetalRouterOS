@@ -74,13 +74,11 @@ META_OPEN_EMBEDDED_DIR="${EXTERNAL_LAYERS_DIR}/meta-openembedded"
 if check_directory "${META_OPEN_EMBEDDED_DIR}"; then
   echo "External layers directory (${META_OPEN_EMBEDDED_DIR}) already exists."
 else
-  display_banner "Cloning meta-openembedded"
+  display_banner "Cloning ${BB_LAYER_OPEN_EMBEDDED}"
   mkdir -p "${EXTERNAL_LAYERS_DIR}" || handle_error "Failed to create external layers directory."
   cd "${EXTERNAL_LAYERS_DIR}"
-  git clone git://git.openembedded.org/meta-openembedded -b master  || handle_error "Failed to clone meta-openembedded layer."
-  cd meta-openembedded
+  git clone git://git.openembedded.org/${BB_LAYER_OPEN_EMBEDDED} -b ${YOCTO_CODE_NAME}  || handle_error "Failed to clone ${BB_LAYER_OPEN_EMBEDDED} layer."
   cp -r ${BB_LAYER_OPEN_EMBEDDED}  ${POKY_DIR}
-  cp -r ${BB_LAYER_PYTHON}  ${POKY_DIR}
 fi
 
 cd ${POKY_DIR}
