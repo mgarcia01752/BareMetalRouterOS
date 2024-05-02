@@ -98,7 +98,7 @@ fi
 
 display_banner "Setting Up Yocto Build Environment"
 cd ${POKY_DIR}
-source "${POKY_DIR}/oe-init-build-env" "${BMR_BUILD_DIR_NAME}"
+source oe-init-build-env ${BMR_BUILD_DIR_NAME} || handle_error "Failed to create build directory: ${BMR_BUILD_DIR_NAME}"
 echo "Yocto build environment set up successfully."
 echo
 
