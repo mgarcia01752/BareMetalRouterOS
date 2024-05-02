@@ -20,10 +20,10 @@ BMR_x86_64_IMAGE_FILENAME="${BMR_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.rootfs.ext
 
 BB_LAYER_OPEN_EMBEDDED="meta-openembedded"
 BB_LAYER_OPEN_EMBEDDED_OE="meta-oe"
-BB_LAYER_INTEL="meta-intel"
 BB_LAYER_OPEN_EMBEDDED_PYTHON="meta-python"
 BB_LAYER_OPEN_EMBEDDED_NETWORKING="meta-networking"
 
+BB_LAYER_INTEL="meta-intel"
 BB_LAYER_BARE_METAL_ROUTER="meta-bare-metal-router"
 
 display_banner() {
