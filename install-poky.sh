@@ -105,14 +105,18 @@ echo "Yocto build environment set up successfully."
 echo
 
 display_banner "Adding Required Layers"
+
+bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_OE}
+echo "Adding ${BB_LAYER_OPEN_EMBEDDED_OE}"
+
+bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_PYTHON}
+echo "Adding ${BB_LAYER_OPEN_EMBEDDED_PYTHON}"
+
+bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_NETWORKING}
+echo "Adding ${BB_LAYER_OPEN_EMBEDDED_NETWORKING}"
+
 bitbake-layers add-layer ../${BB_LAYER_INTEL}
 echo "Adding ${BB_LAYER_INTEL}"
-
-bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}
-echo "Adding ${BB_LAYER_OPEN_EMBEDDED}"
-
-bitbake-layers add-layer ../${BB_LAYER_PYTHON}
-echo "Adding ${BB_LAYER_PYTHON}"
 
 bitbake-layers add-layer ../${BB_LAYER_BARE_METAL_ROUTER}
 echo "Adding ${BB_LAYER_BARE_METAL_ROUTER}"

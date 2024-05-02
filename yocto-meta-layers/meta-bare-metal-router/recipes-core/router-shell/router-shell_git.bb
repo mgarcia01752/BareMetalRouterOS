@@ -17,7 +17,8 @@ DEPENDS += "python3                 \
             python3-beautifulsoup4  \
             python3-jc  "
     
-DEPENDS += " readline iproute2 iw bash iptables net-tools sudo util-linux openssh openssl usbutils usbinit pciutils"
+DEPENDS += " readline iproute2 iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils"
+DEPENDS += " hostapd ethtool bridge-utils dnsmasq"
 
 RDEPENDS:${PN} += "bash"
 
