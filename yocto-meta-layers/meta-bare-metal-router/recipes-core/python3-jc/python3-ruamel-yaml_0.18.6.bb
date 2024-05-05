@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "8b27e6a217e786c6fbe5634d8f3f11bc63e0f80f6a5890f28863d9c45a
 
 S = "${WORKDIR}/ruamel.yaml-0.18.6"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "da46cec9fd2de5be3a8a784f434e4c4ab670b4ff54d605c4c2717e9d49
 
 S = "${WORKDIR}/pygments-2.17.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

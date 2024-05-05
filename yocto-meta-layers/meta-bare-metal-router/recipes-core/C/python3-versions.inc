@@ -1,1 +1,0 @@
-PREFERRED_VERSION_python3-tabulate = "0.9.0"

@@ -4,20 +4,19 @@ DESCRIPTION = "RouterShell is an open-source IOS-like CLI distribution in Python
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=yocto-bmr"
+SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.0"
 
-PV = "1.0+git"
-SRCREV = "908c6d330d7ab53b06bcee40f2078166b7fba622"
+PV = "1.0+git${SRCPV}"
+SRCREV = "df66aaf48752b2b04b01340a82a14f3d2b2561c1"
 
 DEPENDS += "python3                 \
-            python3-cmd2            \
+            python3-pygments        \
             python3-tabulate        \
             python3-prettytable     \
-            python3-argcomplete     \
             python3-beautifulsoup4  \
             python3-jc  "
     
-DEPENDS += " readline iproute2 iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils"
+DEPENDS += " iproute2 iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils"
 DEPENDS += " hostapd ethtool bridge-utils dnsmasq"
 
 RDEPENDS:${PN} += "bash"

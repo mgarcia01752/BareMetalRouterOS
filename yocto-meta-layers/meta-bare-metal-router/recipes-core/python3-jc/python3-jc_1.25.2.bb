@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "97ada193495f79550f06fe0cbfb119ff470bcca57c1cc593a5cdb00087
 
 S = "${WORKDIR}/jc-1.25.2"
 
-RDEPENDS_${PN} = "python3-ruamel-yaml python3-xmltodict python3-pygments"
+RDEPENDS:${PN} = "python3-ruamel-yaml python3-xmltodict python3-pygments"
 
 inherit setuptools3
