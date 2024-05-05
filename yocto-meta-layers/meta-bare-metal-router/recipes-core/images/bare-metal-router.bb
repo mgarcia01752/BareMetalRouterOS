@@ -4,20 +4,8 @@ LICENSE = "MIT"
 
 require recipes-core/images/core-image-minimal.bb
 
-INIT_MANAGER = "systemd"
-
-IMAGE_INSTALL:append = "python3                 \
-                        python3-tabulate        \
-                        python3-pygments        \
-                        python3-prettytable     \
-                        python3-beautifulsoup4  \
-                        python3-jc"
-
-IMAGE_INSTALL:append = " iproute2 iw bash iptables net-tools sudo util-linux"
-IMAGE_INSTALL:append = " openssh openssl"
-IMAGE_INSTALL:append = " usbutils usbinit"
-IMAGE_INSTALL:append = " pciutils"
-IMAGE_INSTALL:append = " router-shell"
-
-
-
+IMAGE_INSTALL:append = " \
+    router-shell \
+    python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc \
+    iproute2 iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool bridge-utils dnsmasq \
+"
