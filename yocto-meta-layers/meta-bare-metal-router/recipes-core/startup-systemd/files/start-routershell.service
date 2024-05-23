@@ -1,0 +1,12 @@
+[Unit]
+Description=Routershell Python CLI Service
+After=getty.target
+
+[Service]
+Type=simple
+ExecStart=/etc/routershell/start.sh
+Restart=always
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target

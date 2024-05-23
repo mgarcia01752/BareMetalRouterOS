@@ -3,9 +3,10 @@ DESCRIPTION = "RouterShell is an open-source IOS-like CLI distribution in Python
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.0"
-PV = "0.1.0+git${SRCPV}"
-SRCREV = "df66aaf48752b2b04b01340a82a14f3d2b2561c1"
+PV = "0.1.2+git${SRCPV}"
+SRCREV = "06ce7536e995d08226937fb501bf97cb70317899"
+
+SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.2;rev=${SRCREV}"
 
 DEPENDS += " \
     python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc \
@@ -21,7 +22,7 @@ FILES:${PN} += "${sysconfdir}/routershell"
 do_install() {
 
     install -d ${D}${sysconfdir}/routershell
-    install -m 0766 ${S}/start.sh ${D}${sysconfdir}/routershell/routershell_start.sh
+    install -m 0766 ${S}/start.sh ${D}${sysconfdir}/routershell/start.sh
 
     install -d ${D}${sysconfdir}/routershell/config
     cp -r ${S}/config/* ${D}${sysconfdir}/routershell/config
