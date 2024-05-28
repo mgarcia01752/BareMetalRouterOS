@@ -4,13 +4,13 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 PV = "0.1.3+git${SRCPV}"
-SRCREV = "c6ff3f36d277d6920cbb5b4046550c533f800867"
+SRCREV = "4f70c0fe65a4893cdb54bd47e0b42c69a1db18eb"
 
 SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.3;rev=${SRCREV}"
 
 DEPENDS += " \
     python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc \
-    iproute2 iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool bridge-utils dnsmasq \
+    iproute2 lshw iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool bridge-utils dnsmasq \
 "
 
 RDEPENDS:${PN} += "bash"
