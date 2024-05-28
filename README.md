@@ -49,7 +49,7 @@ Verify the functionality of the BMR image using QEMU:
 Prepare bootable media for BMR:
 
 ```bash
-./create-bmr-boot-media.sh
+sudo ./create-bmr-boot-media.sh
 ```
 
 ## Documentation
