@@ -2,7 +2,10 @@
 
 The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 architecture, offering a robust networking solution. Utilizing the power of the Yocto Project and the [RouterShell](https://github.com/mgarcia01752/RouterShell) command-line interface (CLI), BMR provides a customizable and efficient routing platform.
 
-Tested on Ubuntu 22.04
+## Supported Build OS
+
+ - Ubuntu 20.04
+ - Ubuntu 22.04
 
 ## Features
 
@@ -43,7 +46,7 @@ Use the build script to create the initial BMR image:
 Verify the functionality of the BMR image using QEMU:
 
 ```bash
-./run-bmr.sh
+sudo ./run-bmr.sh
 ```
 
 ### 5. Create Boot Media
@@ -51,7 +54,7 @@ Verify the functionality of the BMR image using QEMU:
 Prepare bootable media for BMR:
 
 ```bash
-sudo ./create-bmr-boot-media.sh
+./create-bmr-boot-media.sh
 ```
 
 ## Documentation
