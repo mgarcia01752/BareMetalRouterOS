@@ -2,6 +2,8 @@
 
 The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 architecture, offering a robust networking solution. Utilizing the power of the Yocto Project and the [RouterShell](https://github.com/mgarcia01752/RouterShell) command-line interface (CLI), BMR provides a customizable and efficient routing platform.
 
+Tested on Ubuntu 22.04
+
 ## Features
 
 - **Linux Router**: BMR is optimized for x86 architecture, harnessing Linux's reliability and flexibility for networking tasks.
