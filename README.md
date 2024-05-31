@@ -57,6 +57,12 @@ Prepare bootable media for BMR:
 ./create-bmr-media.sh -d /dev/sdX
 ```
 
+### 6. Customize Kernel
+
+```bash
+./start-menuconfig.sh
+```
+
 ## Documentation
 
 Detailed instructions and information are available in the [docs](doc/index.md) directory.

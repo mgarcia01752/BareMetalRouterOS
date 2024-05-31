@@ -34,7 +34,7 @@ format_device() {
     echo "Formatting the device $1..."
     sudo parted "$1" --script mklabel gpt
     sudo parted "$1" --script mkpart primary ext4 1MiB 100%
-    sleep 2  # Give the system some time to recognize the new partition
+    sleep 2
     sudo mkfs.ext4 -F "${1}1"
 }
 
