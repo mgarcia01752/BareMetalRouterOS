@@ -35,13 +35,10 @@ display_banner() {
   echo
 }
 
-# Function to check if OS is supported
-check_os() {
+check_build_os() {
   case "$(lsb_release -si) $(lsb_release -sr)" in
-    "Ubuntu 20.04" | "Ubuntu 22.04" | "Debian GNU/Linux 11" | "Debian GNU/Linux 12")
+    "Ubuntu 20.04" | "Ubuntu 22.04")
       return ${STATUS_OK} ;;
-    "Fedora 38" | "OpenSUSE Leap 15.4" | "AlmaLinux 8" | "AlmaLinux 9" | "Rocky 9")
-      return${STATUS_OK};;
     *)
       return${STATUS_NOK};;
   esac
