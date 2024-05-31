@@ -30,9 +30,6 @@ do_install() {
     install -d ${D}${sysconfdir}/routershell/lib
     cp -r ${S}/lib/* ${D}${sysconfdir}/routershell/lib
 
-    # install -d ${D}${sysconfdir}/routershell/lib/cli
-    # cp -r ${S}/lib/cli/* ${D}${sysconfdir}/routershell/lib/cli
-
     install -d ${D}${sysconfdir}/routershell/lib/common
     cp -r ${S}/lib/common/* ${D}${sysconfdir}/routershell/lib/common
 

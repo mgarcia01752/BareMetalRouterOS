@@ -12,8 +12,8 @@ The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 arch
 
 ## Supported Build OS
 
- - Ubuntu 20.04
- - Ubuntu 22.04
+- Ubuntu 20.04
+- Ubuntu 22.04
 
 ## Getting Started
 
