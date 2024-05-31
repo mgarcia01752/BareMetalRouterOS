@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 source lib/common.sh
 
@@ -32,5 +32,17 @@ source oe-init-build-env ${BMR_BUILD_DIR_NAME}
 
 build_recipe=$(get_last_build_recipe)
 
-${POKY_DIR}/scripts/runqemu nographic "tmp/deploy/images/qemux86-64/${build_recipe}-qemux86-64.rootfs.qemuboot.conf"
+# Define the network interfaces
+NETDEV_OPTS="-netdev user,id=net0 -device e1000,netdev=net0,mac=52:54:00:12:34:56 \
+             -netdev user,id=net1 -device e1000,netdev=net1,mac=52:54:00:12:34:57"
 
+# Path to the QEMU binary
+QEMU_BINARY="${POKY_DIR}/scripts/qemu-system-x86_64"
+
+# Path to the kernel image and root filesystem
+KERNEL_IMAGE="${POKY_DIR}/tmp/deploy/images/qemux86-64/bzImage"
+ROOTFS_IMAGE="${POKY_DIR}/tmp/deploy/images/qemux86-64/${build_recipe}-qemux86-64.ext4"
+
+# Run QEMU with additional network interfaces
+$QEMU_BINARY -kernel $KERNEL_IMAGE -append "root=/dev/sda rw console=ttyS0" \
+    -hda $ROOTFS_IMAGE -nographic $NETDEV_OPTS

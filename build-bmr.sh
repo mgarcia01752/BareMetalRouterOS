@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Source the common script
 source lib/common.sh
@@ -109,8 +109,6 @@ fi
 if check_directory "${BASE_DIR}/downloads"; then
     echo "Adding ${BASE_DIR}/downloads to reduce time for future build"
     echo "!!!!DO NOT REMOVE!!!! -> ${BASE_DIR}/downloads"
-    # mkdir -p "${BASE_DIR}/downloads"
-    # cp -r "${POKY_BUILD_PATH}/downloads/*" "${BASE_DIR}/downloads" || handle_warning  "Unable to copy download files from ${POKY_BUILD_PATH}/downloads"
 fi
 
 # Calculate elapsed time in seconds

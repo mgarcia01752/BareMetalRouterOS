@@ -126,6 +126,7 @@ DISTRO_FEATURES:append = " systemd usrmerge"
 DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
+IMAGE_FSTYPES += "wic wic.bmap"
 EOF
 
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMR_BUILD_DIR_NAME}/conf/local.conf"

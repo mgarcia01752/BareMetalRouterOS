@@ -54,7 +54,7 @@ sudo ./run-bmr.sh
 Prepare bootable media for BMR:
 
 ```bash
-./create-bmr-boot-media.sh
+./create-bmr-media.sh -d /dev/sdX
 ```
 
 ## Documentation
