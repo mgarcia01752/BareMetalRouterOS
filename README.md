@@ -33,12 +33,12 @@ To download and install Poky (Scarthgap) for BMR:
 ./install-poky.sh
 ```
 
-### 3. Building Bare Metal Router
+### 3. Building Bare Metal Router OS
 
 Use the build script to create the initial BMR image:
 
 ```bash
-./build-bmr.sh
+./build-bmros.sh
 ```
 
 ### 4. Test Run Bare Metal Router OS
