@@ -4,11 +4,11 @@ The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 arch
 
 ## Features
 
-- **Linux Router**: BMR is optimized for x86 architecture, harnessing Linux's reliability and flexibility for networking tasks.
+- **Linux Router**: BMROS is optimized for x86 architecture, harnessing Linux's reliability and flexibility for networking tasks.
   
 - **[RouterShell CLI](https://github.com/mgarcia01752/RouterShell)**: An interactive command-line interface inspired by IOS, RouterShell provides an intuitive and familiar configuration experience for network administrators.
 
-- **Customizable**: Leveraging the Yocto Project, users can customize BMR extensively to meet specific networking requirements.
+- **Customizable**: Leveraging the Yocto Project, users can customize BMROS extensively to meet specific networking requirements.
 
 ## Supported Build OS
 
@@ -19,15 +19,15 @@ The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 arch
 
 ### 1. Setup Yocto Build Environment
 
-Before building BMR, ensure you have the Ubuntu Yocto build environment set up:
+Before building BMROS, ensure you have the Ubuntu Yocto build environment set up:
 
 ```bash
 ./setup-yocto-env.sh
 ```
 
-### 2. Download and Install Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
+### 2. Download and Install Yocto Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
 
-To download and install Poky (Scarthgap) for BMR:
+To download and install Yocto Poky (Scarthgap) for BMROS:
 
 ```bash
 ./install-yocto-poky.sh
@@ -35,7 +35,7 @@ To download and install Poky (Scarthgap) for BMR:
 
 ### 3. Building Bare Metal Router OS
 
-Use the build script to create the initial BMR image:
+Use the build script to create the initial BMROS image:
 
 ```bash
 ./build-bmros.sh
@@ -43,7 +43,7 @@ Use the build script to create the initial BMR image:
 
 ### 4. Test Run Bare Metal Router OS
 
-Verify the functionality of the BMR image using QEMU:
+Verify the functionality of the BMROS image using QEMU:
 
 ```bash
 sudo ./test-run-bmros.sh
@@ -69,15 +69,15 @@ Detailed instructions and information are available in the [docs](doc/index.md) 
 
 ### Contents:
 
-- **[Installation Guide](doc/index.md#installation-guide)**: Step-by-step instructions for setting up BMR.
+- **[Installation Guide](doc/index.md#installation-guide)**: Step-by-step instructions for setting up BMROS.
   
-- **[Configuration](doc/index.md#configuration)**: Configuring BMR using the RouterShell CLI.
+- **[Configuration](doc/index.md#configuration)**: Configuring BMROS using the RouterShell CLI.
   
-- **[Customization](doc/index.md#customization)**: Customizing BMR through the Yocto Project.
+- **[Customization](doc/index.md#customization)**: Customizing BMROS through the Yocto Project.
 
 ## Contributing
 
-Contributions to BMR are welcome! Whether it's bug fixes, new features, or improvements to documentation, your contributions are valuable.
+Contributions to BMROS are welcome! Whether it's bug fixes, new features, or improvements to documentation, your contributions are valuable.
 
 ### How to Contribute
 
@@ -95,4 +95,4 @@ Contributions to BMR are welcome! Whether it's bug fixes, new features, or impro
 
 ## License
 
-The Bare Metal Router project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](https://github.com/yocto/bare-metal-router/blob/main/LICENSE) file for more details.
+The Bare Metal Router OS project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](https://github.com/yocto/bare-metal-router/blob/main/LICENSE) file for more details.
