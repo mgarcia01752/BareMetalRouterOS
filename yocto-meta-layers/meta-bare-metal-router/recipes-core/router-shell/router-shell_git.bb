@@ -6,7 +6,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 PV = "0.1.3+git${SRCPV}"
 SRCREV = "dad154ec35c4c1e63f9de28e50560bcc795928f5"
 
-SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.3;rev=${SRCREV}"
+SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.3;rev=${SRCREV} "
+SRC_URI += "file://router-shell.sh"
 
 DEPENDS += " \
     python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc \
@@ -22,8 +23,9 @@ FILES:${PN} += "${sysconfdir}/routershell"
 do_install() {
 
     install -d ${D}${sysconfdir}/routershell
+    install -m 0766 ${WORKDIR}/router-shell.sh ${D}${sysconfdir}/routershell/router-shell.sh
     install -m 0766 ${S}/start.sh ${D}${sysconfdir}/routershell/start.sh
-
+    
     install -d ${D}${sysconfdir}/routershell/config
     cp -r ${S}/config/* ${D}${sysconfdir}/routershell/config
 

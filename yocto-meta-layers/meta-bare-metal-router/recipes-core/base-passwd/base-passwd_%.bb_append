@@ -1,0 +1,5 @@
+# meta-bare-metal-router/recipes-core/base-passwd/base-passwd_%.bbappend
+
+do_install:append() {
+   # sed -i '/^root:/ s#/bin/sh#/etc/routershell/router-shell.sh#' ${D}${datadir}/base-passwd/passwd.master
+}
