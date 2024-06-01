@@ -6,16 +6,14 @@ IMAGE_TO_BUILD=${BMR_IMAGE_BB_REF}
 BASE_DIR=${PWD}
 
 usage() {
+    echo
     echo "Usage: $0 [options]"
     echo "Options:"
     echo
-    echo "  --clean"
-    echo "  --clean-all"
-    echo "  --clean-all-world"
-    echo "  --update-bare-metal-layer"
-    echo
-    echo "  [-b], [--bare-metal-router] (default)"
+    echo "  -b, --bare-metal-router (default)"
     echo "  -c, --core-image-minimal"
+    echo "  -u, --update-meta-bare-metal-router-layer"
+    echo
     exit 1
 }
 
@@ -34,36 +32,17 @@ while [[ $# -gt 0 ]]; do
             IMAGE_TO_BUILD="${POKY_CORE_IMG_MIN}"
             shift
             ;;
-        --clean)
-            CLEAN=true
-            # Add code for handling --clean option here
-            ## bitbake -c cleanall reciep
-            shift
-            ;;
-        --clean-all)
-            CLEANALL=true
-            # Add code for handling --clean-all option here
-            # bitbake -c cleanall core-image-minimal
-            shift
-            ;;
-        --clean-all-world)
-            CLEANALL_WORLD=true
-            # bitbake world -c cleanall --continue
-            # The --continue will ignore any dependency errors while cleaning. 
-            # Continue as much as possible after an error.
-            shift
-            ;;
-        --update-bare-metal-layer)
+        -u| --update-bare-metal-layer)
             `./update-layers.sh`
             shift
             ;;
         -h|--help)
-            display_usage
+            usage
             exit
             ;;
         *)
             echo "Unknown option: $1"
-            display_usage
+            usage
             exit
             ;;
     esac
