@@ -61,15 +61,9 @@ check_directory "$POKY_DIR" || {
     exit 1
 }
 
-cd "$POKY_DIR" || {display_banner "BUILD FAILED"; exit}
+cd "$POKY_DIR" 
 
 source oe-init-build-env ${BMR_BUILD_DIR_NAME}
-
-if [ "${CLEANALL_WORLD}" = true ]; then
-    bitbake world -c cleanall --continue ||  {display_banner "BUILD FAILED (clean all world)"; exit 1}
-    display_banner "CLEAN COMPLETE"
-    exit
-fi
 
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Bare Metal Router Build: $IMAGE_TO_BUILD"
