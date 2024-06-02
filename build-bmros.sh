@@ -10,9 +10,13 @@ usage() {
     echo "Usage: $0 [options]"
     echo "Options:"
     echo
-    echo "  -b, --bare-metal-router (default)"
-    echo "  -c, --core-image-minimal"
-    echo "  -u, --update-meta-bare-metal-router-layer"
+    echo "  -c, --core-image-minimal"    
+    echo "  -b, --bare-metal-router           (Production)"
+    echo "  -d, --bare-metal-router-debug     (Debug)"      
+    echo "  -v, --bare-metal-router-vanilla   (Non-Debug)"
+    echo      
+    echo "  -u, --update-poky-meta-bare-metal-router-layer"
+    echo "  -r, --remove-update-poky-meta-bare-metal-router-layer"
     echo
     exit 1
 }
@@ -28,18 +32,38 @@ while [[ $# -gt 0 ]]; do
             IMAGE_TO_BUILD="${BMR_IMAGE_BB_REF}"
             shift
             ;;
+
+        -v|--bare-metal-router-vanilla)
+            IMAGE_TO_BUILD="bare-metal-router-vanilla"
+            shift
+            ;;
+
+        -d|--bare-metal-router-dev)
+            IMAGE_TO_BUILD="bare-metal-router-debug"
+            shift
+            ;;            
+
         -c|--core-image-minimal)
             IMAGE_TO_BUILD="${POKY_CORE_IMG_MIN}"
             shift
             ;;
-        -u| --update-bare-metal-layer)
+
+        -u|--update-bare-metal-layer)
             `./update-layers.sh`
             shift
             ;;
+
+        -r|--remove-update-poky-meta-bare-metal-router-layer)
+            `./clean-poky.sh`
+            `./update-layers.sh`
+            shift
+            ;;
+
         -h|--help)
             usage
             exit
             ;;
+
         *)
             echo "Unknown option: $1"
             usage
@@ -49,7 +73,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 start_time=$(get_epoch_timestamp)
-display_banner "Building Bare Metal Router"
+display_banner "Building ${IMAGE_TO_BUILD}"
 
 BASE_DIR=${PWD}
 POKY_DIR="${BASE_DIR}/${POKY_DIR_NAME}"
@@ -66,7 +90,7 @@ cd "$POKY_DIR"
 source oe-init-build-env ${BMR_BUILD_DIR_NAME}
 
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
-    display_banner "Start Bare Metal Router Build: $IMAGE_TO_BUILD"
+    display_banner "Start Build: $IMAGE_TO_BUILD"
     bitbake -k $IMAGE_TO_BUILD
     update_last_build_recipe ${IMAGE_TO_BUILD}
 fi

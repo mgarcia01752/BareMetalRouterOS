@@ -7,9 +7,7 @@ read confirm
 
 if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
     rm -rf poky/meta-bare-metal-router
-    echo "'poky' directory removed."
 
 else
-    echo "Removal of 'poky' directory canceled."
-
+    echo "Removal of 'poky/meta-bare-metal-router' directory canceled."
 fi

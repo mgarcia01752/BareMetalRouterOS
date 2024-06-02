@@ -3,9 +3,7 @@ DESCRIPTION = "Bare Metal RouterOS Production Image"
 LICENSE = "MIT"
 
 require recipes-core/images/core-image-minimal.bb
-require recipes-core/login-check/login-check.bb
 
-# Additional packages to be installed in the image
 IMAGE_INSTALL:append = " \
     router-shell \
     bash \
