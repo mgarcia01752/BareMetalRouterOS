@@ -4,7 +4,11 @@ source lib/common.sh
 
 set -e
 
-WIC_IMAGE="${BMR_x86_64_TMP_DEPLOY_IMAGE_PATH}/${BMR_x86_64_WIC_IMAGE_FILENAME}"
+LAST_IMAGE_MADE=$(get_last_build_recipe)
+
+display_banner "Creating Image from receipe: ${LAST_IMAGE_MADE}"
+
+WIC_IMAGE="${BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH}/${LAST_IMAGE_MADE}-${MACHINE_ARCH_x86_64}.${ROOTFS_WIC_FILENAME_EXT}"
 
 usage() {
     echo "Usage: $0 -d <device>"
@@ -71,11 +75,11 @@ format_device "${DEVICE}"
 
 cd ${POKY_DIR_NAME}
 
-source oe-init-build-env ${BMR_BUILD_DIR_NAME}
+source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 
 check_image ${WIC_IMAGE}
 
-display_banner "Creating bootable media"
+display_banner "Creating bootable media: ${LAST_IMAGE_MADE}"
 
 bitbake bmaptool-native -c addto_recipe_sysroot
 

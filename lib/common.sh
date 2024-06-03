@@ -3,22 +3,30 @@
 STATUS_OK=0
 STATUS_NOK=1
 
-BMR_BUILD_DIR_NAME="build-bmr"
-BMR_IMAGE_BB_REF="bare-metal-router"
+BMROS_BUILD_DIR_NAME="build-bmr"
+BMROS_IMAGE_BB_REF="bare-metal-router"
+BMROS_IMAGE_VANILLA_BB_REF="bare-metal-router-vanilla"
+BMROS_IMAGE_DEBUG_BB_REF="bare-metal-router-debug"
 POKY_CORE_IMG_MIN="core-image-minimal"
+
+ROOTFS_WIC_FILENAME_EXT="rootfs.wic"
+ROOTFS_EXT4_FILENAME_EXT="rootfs.ext4"
 
 MACHINE_ARCH_x86_64="qemux86-64"
 
 YOCTO_CODE_NAME="scarthgap"
 
 POKY_DIR_NAME="poky"
-POKY_BUILD_PATH="${POKY_DIR_NAME}/${BMR_BUILD_DIR_NAME}"
-BMR_META_LAYERS="yocto-meta-layers"
+META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/poky.conf"
 
-BMR_x86_64_TMP_DEPLOY_IMAGE_PATH="tmp/deploy/images/${MACHINE_ARCH_x86_64}"
-BMR_x86_64_IMAGE_PATH="${POKY_BUILD_PATH}/${BMR_x86_64_TMP_DEPLOY_IMAGE_PATH}"
-BMR_x86_64_IMAGE_FILENAME="${BMR_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.rootfs.ext4"
-BMR_x86_64_WIC_IMAGE_FILENAME="${BMR_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.rootfs.wic"
+POKY_BUILD_PATH="${POKY_DIR_NAME}/${BMROS_BUILD_DIR_NAME}"
+
+BMROS_META_LAYERS="yocto-meta-layers"
+
+BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH="tmp/deploy/images/${MACHINE_ARCH_x86_64}"
+BMROS_x86_64_IMAGE_PATH="${POKY_BUILD_PATH}/${BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH}"
+BMROS_x86_64_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.${ROOTFS_EXT4_FILENAME_EXT}"
+BMROS_x86_64_WIC_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.${ROOTFS_WIC_FILENAME_EXT}"
 
 BB_LAYER_OPEN_EMBEDDED="meta-openembedded"
 BB_LAYER_OPEN_EMBEDDED_OE="meta-oe"
@@ -29,9 +37,9 @@ BB_LAYER_INTEL="meta-intel"
 BB_LAYER_BARE_METAL_ROUTER="meta-bare-metal-router"
 
 display_banner() {
-  echo "-------------------------------------------------------"
+  echo "----------------------------------------------------------------"
   echo " $1"
-  echo "-------------------------------------------------------"
+  echo "----------------------------------------------------------------"
   echo
 }
 
@@ -77,9 +85,38 @@ get_epoch_timestamp() {
 }
 
 update_last_build_recipe() {
-  echo $0 >> .last_build_recipe
+  local recipe_name="$1"
+  
+  # Check if recipe name is provided
+  if [ -z "$recipe_name" ]; then
+    echo "Error: No recipe name provided."
+    echo "Usage: update_last_build_recipe <recipe_name>"
+    return 1
+  fi
+
+  echo "$recipe_name" >> .last_build_recipe
+  echo "Updated last build recipe to: $recipe_name"
 }
 
+get_last_build_recipe() {
+  local file=".last_build_recipe"
 
+  # Check if the file exists
+  if [ ! -f "$file" ]; then
+    echo "Error: .last_build_recipe file not found."
+    return 1
+  fi
+
+  # Get the last entry in the file
+  local last_recipe=$(tail -n 1 "$file")
+
+  # Check if the file is empty
+  if [ -z "$last_recipe" ]; then
+    echo "Error: .last_build_recipe file is empty."
+    return 1
+  fi
+
+  echo "${last_recipe}  "
+}
 
 

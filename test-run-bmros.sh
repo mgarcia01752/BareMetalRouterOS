@@ -16,19 +16,19 @@ get_last_build_recipe() {
 
 BUILD_DIR=${PWD}
 POKY_DIR="${BUILD_DIR}/${POKY_DIR_NAME}"
-BMR_BUILD_DIR="${POKY_DIR}/${BMR_BUILD_DIR_NAME}"
+BMROS_BUILD_DIR="${POKY_DIR}/${BMROS_BUILD_DIR_NAME}"
 
 # Check if the build directory exists
-if [ ! -d "${BMR_BUILD_DIR}" ]; then
-  echo "Error: Build directory ${BMR_BUILD_DIR} not found."
+if [ ! -d "${BMROS_BUILD_DIR}" ]; then
+  echo "Error: Build directory ${BMROS_BUILD_DIR} not found."
   exit 1
 fi
 
 cd ${POKY_DIR}
 
-display_banner "Starting QEMU for Build: ${BMR_BUILD_DIR_NAME}"
+display_banner "Starting QEMU for Build: ${BMROS_BUILD_DIR_NAME}"
 
-source oe-init-build-env ${BMR_BUILD_DIR_NAME}
+source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 
 build_recipe=$(get_last_build_recipe)
 

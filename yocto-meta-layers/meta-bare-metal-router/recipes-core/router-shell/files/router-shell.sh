@@ -7,7 +7,7 @@
 source /etc/profile
 
 # Change directory to the RouterShell installation directory
-cd /etc/routershell || exit 1
+cd /usr/lib/routershell || exit 1
 
 # Execute the start.sh script to initialize RouterShell
 ./start.sh

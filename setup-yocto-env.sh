@@ -29,6 +29,5 @@ sudo apt install -y gawk wget git diffstat unzip texinfo                \
 echo "Required packages installed successfully."
 echo
 
-# https://panamint.kcir.pwr.edu.pl/~jkozlowi/golemos/step-by-step-guide-extended/python-packages.html
 display_banner "Installing Required Python Packages"
 pip install pipoe
