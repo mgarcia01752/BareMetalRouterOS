@@ -173,5 +173,4 @@ EOF
 
 echo "DL_DIR = \"${BMROS_GIT_DIR}/downloads\"" >> "${POKY_DIR}/${BMROS_BUILD_DIR_NAME}/conf/local.conf"
 
-
 display_banner "Bare Metal Router OS Distrubution Installation Complete"
