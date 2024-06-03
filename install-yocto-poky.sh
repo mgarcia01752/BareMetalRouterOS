@@ -93,8 +93,7 @@ NEW_LINE2='DISTRO_NAME = "BMROS (Bare Metal Router OS Distro)"'
 NEW_LINE3='DISTRO_VERSION = "0.1.0"'
 
 # Use sed to perform the replacement
-sed -i -e "s|^${OLD_LINE1}$|${NEW_LINE1}|" \
-       -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
+sed -i -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
        -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${POKY_CONF}"
 
 echo "Created: BMROS (Bare Metal Router OS Distro)"
