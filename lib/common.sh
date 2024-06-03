@@ -3,7 +3,7 @@
 STATUS_OK=0
 STATUS_NOK=1
 
-BMROS_BUILD_DIR_NAME="build-bmr"
+BMROS_BUILD_DIR_NAME="build-bmros"
 BMROS_IMAGE_BB_REF="bare-metal-router"
 BMROS_IMAGE_VANILLA_BB_REF="bare-metal-router-vanilla"
 BMROS_IMAGE_DEBUG_BB_REF="bare-metal-router-debug"

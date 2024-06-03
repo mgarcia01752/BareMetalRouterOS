@@ -2,8 +2,8 @@
 
 source lib/common.sh
 
-BUILD_DIR=${PWD}
-POKY_DIR="${BUILD_DIR}/${POKY_DIR_NAME}"
+BMROS_GIT_DIR=${PWD}
+POKY_DIR="${BMROS_GIT_DIR}/${POKY_DIR_NAME}"
 INSTALL_POKY_ONLY=false
 YOCTO_POKY_GIT_DISTRO="https://git.yoctoproject.org/git/poky"
 YOCTO_META_INTEL_GIT_DISTRO="git://git.yoctoproject.org/meta-intel"
@@ -79,7 +79,9 @@ echo
 #####################################################################################
 display_banner "Rename Poky to BMROS (Bare Metal Router OS)"
 
-check_file ${META_POKY_CONF_PATH}
+POKY_CONF="${BMROS_GIT_DIR}/${META_POKY_CONF_PATH}"
+
+check_file ${POKY_CONF} 
 
 # Define the lines to search for and their replacements
 OLD_LINE1='DISTRO = "poky"'
@@ -93,10 +95,11 @@ NEW_LINE3='DISTRO_VERSION = "0.1.0"'
 # Use sed to perform the replacement
 sed -i -e "s|^${OLD_LINE1}$|${NEW_LINE1}|" \
        -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
-       -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${META_POKY_CONF_PATH}"
+       -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${POKY_CONF}"
 
+echo "Created: BMROS (Bare Metal Router OS Distro)"
+echo
 cd ${POKY_DIR}
-
 
 META_OPEN_EMBEDDED_DIR="${EXTERNAL_LAYERS_DIR}/meta-openembedded"
 
@@ -122,7 +125,7 @@ echo
 #####################################################################################
 display_banner "Installing ${BB_LAYER_BARE_METAL_ROUTER} Layer"
 
-BMROS_INSTALL_SRC_DIR=${BUILD_DIR}/yocto-meta-layers
+BMROS_INSTALL_SRC_DIR=${BMROS_GIT_DIR}/yocto-meta-layers
 if [ -d "${BMROS_INSTALL_SRC_DIR}" ]; then
   cp -r "${BMROS_INSTALL_SRC_DIR}/${BB_LAYER_BARE_METAL_ROUTER}" "${POKY_DIR}" || handle_error "Failed to copy ${BB_LAYER_BARE_METAL_ROUTER} layer."
   echo "${BB_LAYER_BARE_METAL_ROUTER} layer installed successfully."
@@ -169,7 +172,7 @@ VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 IMAGE_FSTYPES += "wic wic.bmap"
 EOF
 
-echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMROS_BUILD_DIR_NAME}/conf/local.conf"
+echo "DL_DIR = \"${BMROS_GIT_DIR}/downloads\"" >> "${POKY_DIR}/${BMROS_BUILD_DIR_NAME}/conf/local.conf"
 
 
 display_banner "Bare Metal Router OS Distrubution Installation Complete"
