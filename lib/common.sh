@@ -17,7 +17,7 @@ MACHINE_ARCH_x86_64="qemux86-64"
 YOCTO_CODE_NAME="scarthgap"
 
 POKY_DIR_NAME="poky"
-META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/poky.conf"
+META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/distro/poky.conf"
 
 POKY_BUILD_PATH="${POKY_DIR_NAME}/${BMROS_BUILD_DIR_NAME}"
 
@@ -119,4 +119,7 @@ get_last_build_recipe() {
   echo "${last_recipe}  "
 }
 
+check_file() {
+    [ -f "$1" ] || handle_error "Failed to find: $1"
+}
 

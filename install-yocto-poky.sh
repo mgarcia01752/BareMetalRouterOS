@@ -73,10 +73,30 @@ else
 
 fi
 
-cd ${POKY_DIR}
-
 echo "${BB_LAYER_INTEL} layer set up successfully."
 echo
+
+#####################################################################################
+display_banner "Rename Poky to BMROS (Bare Metal Router OS)"
+
+check_file ${META_POKY_CONF_PATH}
+
+# Define the lines to search for and their replacements
+OLD_LINE1='DISTRO = "poky"'
+OLD_LINE2='DISTRO_NAME = "Poky (Yocto Project Reference Distro)"'
+OLD_LINE3='DISTRO_VERSION = "5.0.1"'
+
+NEW_LINE1='DISTRO = "bmros"'
+NEW_LINE2='DISTRO_NAME = "BMROS (Bare Metal Router OS Distro)"'
+NEW_LINE3='DISTRO_VERSION = "0.1.0"'
+
+# Use sed to perform the replacement
+sed -i -e "s|^${OLD_LINE1}$|${NEW_LINE1}|" \
+       -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
+       -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${META_POKY_CONF_PATH}"
+
+cd ${POKY_DIR}
+
 
 META_OPEN_EMBEDDED_DIR="${EXTERNAL_LAYERS_DIR}/meta-openembedded"
 
@@ -91,6 +111,8 @@ else
   cp -r ${BB_LAYER_OPEN_EMBEDDED}  ${POKY_DIR}
 
 fi
+
+#####################################################################################
 
 cd ${POKY_DIR}
 echo "${BB_LAYER_OPEN_EMBEDDED} layer set up successfully."
@@ -111,10 +133,10 @@ else
 
 fi
 
-#####################################################################################
-display_banner "Setting Up Yocto Build Environment"
+display_banner "Setting Up Yocto BMROS Build Environment"
 
 cd ${POKY_DIR}
+
 source oe-init-build-env ${BMROS_BUILD_DIR_NAME} || handle_error "Failed to create build directory: ${BMROS_BUILD_DIR_NAME}"
 echo "Yocto build environment set up successfully."
 echo
@@ -149,22 +171,5 @@ EOF
 
 echo "DL_DIR = \"${BUILD_DIR}/downloads\"" >> "${POKY_DIR}/${BMROS_BUILD_DIR_NAME}/conf/local.conf"
 
-#####################################################################################
-display_banner "Rename Poky to BMROS (Bare Metal Router OS)"
 
-# Define the lines to search for and their replacements
-OLD_LINE1='DISTRO = "poky"'
-OLD_LINE2='DISTRO_NAME = "Poky (Yocto Project Reference Distro)"'
-OLD_LINE3='DISTRO_VERSION = "5.0.1"'
-
-NEW_LINE1='DISTRO = "bmros"'
-NEW_LINE2='DISTRO_NAME = "BMROS (Bare Metal Router OS Distro)"'
-NEW_LINE3='DISTRO_VERSION = "0.1.0"'
-
-# Use sed to perform the replacement
-sed -i -e "s|^${OLD_LINE1}$|${NEW_LINE1}|" \
-       -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
-       -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${META_POKY_CONF_PATH}"
-
-#####################################################################################
 display_banner "Bare Metal Router OS Distrubution Installation Complete"
