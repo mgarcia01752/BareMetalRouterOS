@@ -2,7 +2,7 @@
 
 source lib/common.sh
 
-IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF}
+IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF_PROD}
 BASE_DIR=${PWD}
 
 usage() {
@@ -11,9 +11,9 @@ usage() {
     echo "Options:"
     echo
     echo "  -c, --${POKY_CORE_IMG_MIN}"    
-    echo "  -b, --${BMROS_IMAGE_BB_REF}           (Production)"
-    echo "  -d, --${BMROS_IMAGE_DEBUG_BB_REF}     (Debug)"      
-    echo "  -v, --${BMROS_IMAGE_VANILLA_BB_REF}   (Non-Debug)"
+    echo -e "  -b, --${BMROS_IMAGE_BB_REF_PROD}\t\t(Production)"
+    echo -e "  -d, --${BMROS_IMAGE_BB_REF_DEBUG}\t\t(Debug)"      
+    echo -e "  -v, --${BMROS_IMAGE_BB_REF_VANILLA}\t(Non-Debug)"
     echo      
     echo "  -u, --update-poky-meta-bare-metal-router-layer"
     echo "  -r, --remove-update-poky-meta-bare-metal-router-layer"
@@ -29,17 +29,17 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -b|--bare-metal-router)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_PROD}"
             shift
             ;;
 
         -v|--bare-metal-router-vanilla)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_VANILLA_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_VANILLA}"
             shift
             ;;
 
         -d|--bare-metal-router-dev)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_DEBUG_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_DEBUG}"
             shift
             ;;            
 
@@ -91,7 +91,7 @@ source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Build: $IMAGE_TO_BUILD"
-    bitbake -k $IMAGE_TO_BUILD
+    bitbake -k $IMAGE_TO_BUILD || handle_error "Build ${IMAGE_TO_BUILD} Failed"
     update_last_build_recipe ${IMAGE_TO_BUILD}
 fi
 

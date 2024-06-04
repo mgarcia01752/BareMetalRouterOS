@@ -6,6 +6,8 @@ set -e
 
 LAST_IMAGE_MADE=$(get_last_build_recipe)
 
+LAST_IMAGE_MADE="${LAST_IMAGE_MADE//$' '/}"
+
 display_banner "Creating Image from receipe: ${LAST_IMAGE_MADE}"
 
 WIC_IMAGE="${BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH}/${LAST_IMAGE_MADE}-${MACHINE_ARCH_x86_64}.${ROOTFS_WIC_FILENAME_EXT}"
@@ -59,6 +61,8 @@ done
 if [ -z "${DEVICE}" ]; then
     usage
 fi
+
+check_file "${POKY_BUILD_PATH}/${WIC_IMAGE}"
 
 if [ "${DEVICE}" == "/dev/sda" ]; then
     echo "Error: ${DEVICE} is the main device. Aborting."

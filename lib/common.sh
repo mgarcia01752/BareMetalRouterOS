@@ -4,9 +4,9 @@ STATUS_OK=0
 STATUS_NOK=1
 
 BMROS_BUILD_DIR_NAME="build-bmros"
-BMROS_IMAGE_BB_REF="bare-metal-router"
-BMROS_IMAGE_VANILLA_BB_REF="bare-metal-router-vanilla"
-BMROS_IMAGE_DEBUG_BB_REF="bare-metal-router-debug"
+BMROS_IMAGE_BB_REF_PROD="bare-metal-router"
+BMROS_IMAGE_BB_REF_VANILLA="bare-metal-router-vanilla"
+BMROS_IMAGE_BB_REF_DEBUG="bare-metal-router-debug"
 POKY_CORE_IMG_MIN="core-image-minimal"
 
 ROOTFS_WIC_FILENAME_EXT="rootfs.wic"
@@ -17,16 +17,15 @@ MACHINE_ARCH_x86_64="qemux86-64"
 YOCTO_CODE_NAME="scarthgap"
 
 POKY_DIR_NAME="poky"
-META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/distro/poky.conf"
-
 POKY_BUILD_PATH="${POKY_DIR_NAME}/${BMROS_BUILD_DIR_NAME}"
 
-BMROS_META_LAYERS="yocto-meta-layers"
+META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/distro/poky.conf"
 
+BMROS_META_LAYERS="yocto-meta-layers"
 BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH="tmp/deploy/images/${MACHINE_ARCH_x86_64}"
 BMROS_x86_64_IMAGE_PATH="${POKY_BUILD_PATH}/${BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH}"
-BMROS_x86_64_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.${ROOTFS_EXT4_FILENAME_EXT}"
-BMROS_x86_64_WIC_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF}-${MACHINE_ARCH_x86_64}.${ROOTFS_WIC_FILENAME_EXT}"
+BMROS_x86_64_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF_PROD}-${MACHINE_ARCH_x86_64}.${ROOTFS_EXT4_FILENAME_EXT}"
+BMROS_x86_64_WIC_IMAGE_FILENAME="${BMROS_IMAGE_BB_REF_PROD}-${MACHINE_ARCH_x86_64}.${ROOTFS_WIC_FILENAME_EXT}"
 
 BB_LAYER_OPEN_EMBEDDED="meta-openembedded"
 BB_LAYER_OPEN_EMBEDDED_OE="meta-oe"
@@ -52,16 +51,19 @@ check_build_os() {
   esac
 }
 
-# Function to handle errors and exit
 handle_error() {
-  echo "Error: $1"
+  RED='\033[0;31m'
+  NC='\033[0m' # No Color
+  echo -e "${RED}Error: $1${NC}"
   exit 1
 }
 
-# Function to display warning
 handle_warning() {
-  echo "WARNING: $1"
+  YELLOW='\033[1;33m'
+  NC='\033[0m' # No Color
+  echo -e "${YELLOW}WARNING: $1${NC}"
 }
+
 
 # Function to check if a directory exists
 check_directory() {
@@ -95,7 +97,6 @@ update_last_build_recipe() {
   fi
 
   echo "$recipe_name" >> .last_build_recipe
-  echo "Updated last build recipe to: $recipe_name"
 }
 
 get_last_build_recipe() {
@@ -121,5 +122,6 @@ get_last_build_recipe() {
 
 check_file() {
     [ -f "$1" ] || handle_error "Failed to find: $1"
+    echo
 }
 
