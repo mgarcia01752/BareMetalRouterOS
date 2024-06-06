@@ -74,7 +74,7 @@ Prepare bootable media for BMROS:
 
 ### 8. [Customize Kernel](doc/kernel.md)
 
-After installing BMROS to your target device, you may need to configure the kernel to install drives such as ethernet and wireless
+After installing BMROS to your target device, you may need to configure the kernel to install drivers such as ethernet and wireless
 
 ```bash
 ./start-menuconfig.sh
