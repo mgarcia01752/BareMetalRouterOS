@@ -41,14 +41,13 @@ Use the build script to create the initial BMROS image:
 ./build-bmros.sh
 ```
 
-### 4. Test Run Bare Metal Router OS
+### 4. [Test Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
 
 Verify the functionality of the BMROS image using QEMU:
 
 ```bash
 sudo ./test-run-bmros.sh
 ```
-[Login Steps](doc/factory-start.md)
 
 ### 5. [Create Boot Media](doc/create-boot-media.md)
 
