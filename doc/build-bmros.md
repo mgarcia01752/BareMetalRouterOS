@@ -17,7 +17,7 @@ Options:
 
 ## Build Options
 
-### Production
+### [Production](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router.bb)
 
 In the production build, after the initial login, the `root` user is removed, and direct access to the Linux OS is restricted.
 
