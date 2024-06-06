@@ -59,6 +59,13 @@ When you first boot up the system, the default username is `root`, and there is 
    passwd: password changed.
    ```
 
+5. **Using bare-metal-router-vanilla/debug build**: In this build, the `root` username is retained, allowing direct access to the shell. To initiate the RouterShell, execute the following commands:
+
+```bash
+cd /usr/lib/routershell
+./start.sh
+```
+
 ### Important Security Notes
 
 - **Password Strength**: Always use a strong password to ensure the security of your router. A strong password typically includes a mix of upper and lower case letters, numbers, and special characters.
