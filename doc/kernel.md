@@ -23,31 +23,13 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
    - Navigate to: `Device Drivers -> Network device support -> Ethernet driver support`
    - From this point, you will need to select the appropriate ethernet hardware drivers for your system. To determine your hardware, you can use commands like `lspci` or `dmesg` to identify the manufacturer and model of your network devices.
 
-
-   ```shell
-   lspci | grep -i ethernet
-   dmesg | grep -i ethernet
-   ```
-
 2. **Wireless Devices Drivers**
    - Navigate to: `Device Drivers -> Network device support -> Wireless LAN`
    - Similar to Ethernet drivers, identify your wireless hardware using:
 
-
-   ```shell
-   lspci | grep -i wireless
-   dmesg | grep -i wireless
-   ```
-
 3. **USB Device Drivers**
    - Navigate to: `Device Drivers -> USB support`
    - To determine your USB hardware, use the following commands:
-
-
-   ```shell
-   lsusb
-   dmesg | grep -i usb
-   ```
 
 ### Steps for Identifying Hardware
 
@@ -57,17 +39,32 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
    - **Command**: `dmesg | grep -i ethernet`
      - **Description**: Displays the system message buffer and filters for Ethernet-related messages.
 
+   ```shell
+   lspci | grep -i ethernet
+   dmesg | grep -i ethernet
+   ```
+
 2. **Identify Wireless Hardware**
    - **Command**: `lspci | grep -i wireless`
      - **Description**: Lists all PCI devices and filters for Wireless controllers.
    - **Command**: `dmesg | grep -i wireless`
      - **Description**: Displays the system message buffer and filters for Wireless-related messages.
 
+   ```shell
+   lspci | grep -i wireless
+   dmesg | grep -i wireless
+   ```
+
 3. **Identify USB Hardware**
    - **Command**: `lsusb`
      - **Description**: Lists all USB devices connected to the system.
    - **Command**: `dmesg | grep -i usb`
      - **Description**: Displays the system message buffer and filters for USB-related messages.
+
+   ```shell
+   lsusb
+   dmesg | grep -i usb
+   ```
 
 ### Additional Tips
 
