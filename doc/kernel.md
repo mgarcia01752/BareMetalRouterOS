@@ -21,15 +21,12 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
 
 1. **Network Devices Drivers**
    - Navigate to: `Device Drivers -> Network device support -> Ethernet driver support`
-   - From this point, you will need to select the appropriate ethernet hardware drivers for your system. To determine your hardware, you can use commands like `lspci` or `dmesg` to identify the manufacturer and model of your network devices.
 
 2. **Wireless Devices Drivers**
    - Navigate to: `Device Drivers -> Network device support -> Wireless LAN`
-   - Similar to Ethernet drivers, identify your wireless hardware using:
 
 3. **USB Device Drivers**
    - Navigate to: `Device Drivers -> USB support`
-   - To determine your USB hardware, use the following commands:
 
 ### Steps for Identifying Hardware
 
