@@ -1,6 +1,6 @@
 # Modifying Bare Metal Router Recipes
 
-To customize the Bare Metal Router (BMR) recipes and create your image, follow these steps:
+To customize the Bare Metal Router OS (BMROS) recipes and create your image, follow these steps:
 
 ## Creating Image Recipe
 
