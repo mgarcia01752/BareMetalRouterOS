@@ -17,7 +17,7 @@ To start configuring the kernel using `menuconfig`, do not run `start-menuconfig
 Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. Here are the basic steps for navigating to various device drivers:
 
 
-### [Login BMR](factory-start.md#step-by-step-instructions)
+### [Login BMR to Assertain Hardware](factory-start.md#step-by-step-instructions)
 
 1. **Network Devices Drivers**
    - Navigate to: `Device Drivers -> Network device support -> Ethernet driver support`
