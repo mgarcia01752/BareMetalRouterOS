@@ -4,7 +4,7 @@
 
 The Yocto Project provides a flexible set of tools and processes to help you create custom Linux-based systems for embedded products. Kernel development is a key aspect of this process, allowing you to customize the kernel to support your specific hardware requirements.
 
-## Assertaining Router Hardware & MenuConfig
+## Navigating MenuConfig
 
 To start configuring the kernel using `menuconfig`, do not run `start-menuconfig.sh` from within Visual Studio Code (VSCode). Instead, open a new terminal window using `Ctrl+Alt+T` and execute the script.
 
