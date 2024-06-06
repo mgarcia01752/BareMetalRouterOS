@@ -17,7 +17,7 @@ RDEPENDS:${PN} += "bash "
 
 S = "${WORKDIR}/git"
 
-FILES:${PN} += "${libdir}/routershell"
+FILES:${PN} += "${libdir}/routershell "
 
 do_install() {
 

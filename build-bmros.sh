@@ -15,7 +15,7 @@ usage() {
     echo -e "  -d, --${BMROS_IMAGE_BB_REF_DEBUG}\t\t(Debug)"      
     echo -e "  -v, --${BMROS_IMAGE_BB_REF_VANILLA}\t(Non-Debug)"
     echo      
-    echo "  -u, --update-poky-meta-bare-metal-router-layer"
+    echo "  -u, --update-poky-meta-bare-metal-router-layer-only"
     echo "  -r, --remove-update-poky-meta-bare-metal-router-layer"
     echo
     exit 1
@@ -48,14 +48,32 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 
-        -u|--update-bare-metal-layer)
+        -u|--update-bare-metal-layer-only)
             `./update-layers.sh`
             shift
             ;;
 
         -r|--remove-update-poky-meta-bare-metal-router-layer)
-            `./clean-poky.sh`
+            
+            echo
+            echo "Are you sure you want to remove directories?"
+            echo " * poky/meta-bare-metal-router" 
+            echo " * poky/build-bmros/tmp"
+            echo
+            echo "(y/n)?"
+            read confirm
+
+            if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+                rm -rf poky/meta-bare-metal-router
+                rm -rf poky/build-bmros/tmp
+
+            else
+                echo "Removal of 'poky/meta-bare-metal-router' directory canceled."
+                exit 1
+            fi
+            
             `./update-layers.sh`
+            
             shift
             ;;
 
