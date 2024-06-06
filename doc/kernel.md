@@ -4,18 +4,6 @@
 
 The Yocto Project provides a flexible set of tools and processes to help you create custom Linux-based systems for embedded products. Kernel development is a key aspect of this process, allowing you to customize the kernel to support your specific hardware requirements.
 
-## Start MenuConfig
-
-To start configuring the kernel using `menuconfig`, do not run `start-menuconfig.sh` from within Visual Studio Code (VSCode). Instead, open a new terminal window using `Ctrl+Alt+T` and execute the script.
-
-```shell
-./start-menuconfig.sh
-```
-
-### General MenuConfig Screen Navigation
-
-Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. Here are the basic steps for navigating to various device drivers:
-
 ## [Login to BMROS to assertain hardware](factory-start.md#step-by-step-instructions)
 
 1. **Network Devices Drivers**
@@ -67,6 +55,19 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
      - **Description**: Lists all USB devices connected to the system.
    - **Command**: `dmesg | grep -i usb`
      - **Description**: Displays the system message buffer and filters for USB-related messages.
+
+## Start MenuConfig
+
+To start configuring the kernel using `menuconfig`, do not run `start-menuconfig.sh` from within Visual Studio Code (VSCode). Instead, open a new terminal window using `Ctrl+Alt+T` and execute the script.
+
+```shell
+./start-menuconfig.sh
+```
+
+### General MenuConfig Screen Navigation
+
+Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. Here are the basic steps for navigating to various device drivers:
+
 
 ### Additional Tips
 
