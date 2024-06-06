@@ -38,7 +38,7 @@ To download and install Yocto Poky (Scarthgap) for BMROS:
 Use the build script to create the initial BMROS image:
 
 ```bash
-./build-bmros.sh
+sudo ./build-bmros.sh
 ```
 
 ### 4. [Test Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
@@ -54,7 +54,7 @@ sudo ./test-run-bmros.sh
 Prepare bootable media for BMROS:
 
 ```bash
-./create-bmros-media.sh -d /dev/sdX
+./create-bmros-media.sh -d /dev/[ sdX | mmcblkX ]
 ```
 
 ### 6. [Customize Kernel](doc/kernel.md)
