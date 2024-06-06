@@ -17,8 +17,6 @@ cd poky
 source oe-init-build-env
 devtool add router-shell https://github.com/mgarcia01752/RouterShell.git --srcbranch=main
 
-
-
 ## bitbake-layers show-recipes
 
 Use `bitbake-layers` to display available BMR recipes:

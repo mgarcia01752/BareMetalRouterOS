@@ -1,9 +1,36 @@
-# Factory Start
+Sure, here is the improved markdown with embedded links:
 
-## Default Login
+# Factory or Initial Start
+
+## Default Start Login
 
 When you first boot up the system, the default username is `root`, and there is no password set. However, as a security measure, once you create a new username, the `root` account is automatically removed. Follow the steps below to create a new user account and secure your router.
 
+## Connection Options
+
+1. **Console (Serial)**
+   - **Serial Connection Settings**: To connect via the console, use a serial connection configured with the following settings:
+     - **Baud Rate**: 9600
+     - **Data Bits**: 8
+     - **Parity**: None
+     - **Stop Bits**: 1
+   - **Physical Connection**: Use a serial cable to connect your computer's serial port to the router's console port. You might need a USB-to-serial adapter if your computer lacks a serial port.
+   - **Terminal Emulation Software**: Use terminal emulation software such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), [Tera Term](https://ttssh2.osdn.jp/index.html.en), or [minicom](https://help.ubuntu.com/community/Minicom). Configure the software with the serial connection settings mentioned above.
+
+2. **Video Output**
+   - **Direct Connection**: Connect a monitor to the router's video output port (VGA, HDMI, or similar) and a keyboard to a USB port on the router.
+   - **Boot Process**: Power on the router. The BIOS/bootloader messages will be displayed on the monitor.
+   - **Login Screen**: Follow the on-screen instructions to log in using the default `root` account and proceed with the normal login procedure as described below.
+
+3. **Network**
+   - **Initial Setup**: If using the default build, the network interfaces may not be immediately available. You might need to load a vanilla build to identify the network interface chipset and configure the appropriate drivers via [Kernel Menuconfig](kernel.md).
+   - **Kernel Menuconfig**: Access the kernel configuration menu by running `make menuconfig` in the terminal. Navigate to the network drivers section and select the appropriate drivers for your network interfaces. Rebuild the kernel with these settings.
+   - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.10/24`.
+   - **Access via Telnet**: Use telnet to connect to the router:
+     ```shell
+     telnet 192.168.0.10
+     ```
+   - **DHCP and Static IP Configuration**: If needed, you can configure DHCP or static IP settings for your network interfaces by editing the network configuration files, typically located in `/etc/network/interfaces` or similar.
 
 ### Step-by-Step Instructions
 
@@ -13,7 +40,7 @@ When you first boot up the system, the default username is `root`, and there is 
    Router login: root
    ```
 
-2. **Create a New User**: You will be prompted to create a new username. Enter your desired username. For example, `dev01`.
+2. **Create a New User**: You will be prompted to create a new username. Enter your desired username, for example, `dev01`.
 
    ```shell
    Enter the new username: dev01
