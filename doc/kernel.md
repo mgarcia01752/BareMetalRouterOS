@@ -38,7 +38,7 @@ The Yocto Project provides a flexible set of tools and processes to help you cre
    dmesg | grep -i usb
    ```
 
-### Detailed Steps for Identifying Hardware
+### Steps for Identifying Hardware
 
 1. **Identify Ethernet Hardware**
    - **Command**: `lspci | grep -i ethernet`
