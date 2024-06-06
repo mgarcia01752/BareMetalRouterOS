@@ -50,7 +50,7 @@ sudo ./test-run-bmros.sh
 ```
 [Login Steps](doc/factory-start.md)
 
-### 5. Create Boot Media
+### 5. [Create Boot Media](doc/create-boot-media.md)
 
 Prepare bootable media for BMROS:
 
