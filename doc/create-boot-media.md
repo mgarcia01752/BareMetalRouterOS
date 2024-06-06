@@ -67,10 +67,10 @@ To boot BMROS from a USB drive, you need to configure your system's BIOS or UEFI
    - Use the provided script `create-bmros-media.sh` to copy BMROS to your selected media. Make sure the script has executable permissions.
 
    ```bash
-   ./create-bmros-media.sh /dev/sdX
+   ./create-bmros-media.sh -d /dev/[sdX | mmcblkX]
    ```
 
-   Replace `/dev/sdX` with the appropriate device identifier for your target drive.
+   Replace `/dev/sdX` or `/dev/mmcblkX` with the appropriate device identifier for your target drive.
 
 ### Troubleshooting Tips
 

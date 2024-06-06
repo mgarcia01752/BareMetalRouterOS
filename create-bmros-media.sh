@@ -14,7 +14,7 @@ WIC_IMAGE="${BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH}/${LAST_IMAGE_MADE}-${MACHINE_AR
 
 usage() {
     echo "Usage: $0 -d <device>"
-    echo "  -d <device>     : Target device (e.g., /dev/sdX)"
+    echo "  -d <device>     : Target device (e.g., /dev/[sdX | mmcblkX])"
     exit 1
 }
 
