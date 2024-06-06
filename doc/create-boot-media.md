@@ -15,8 +15,8 @@ BMROS can be installed onto various types of media storage. Here are the common 
    - Faster and more reliable than HDDs.
    - Ideal for permanent installations where speed is a priority.
    - Provide better performance and longevity.
-   - `/dev/sda`: Typically the first USB drive connected.
-   - `/dev/sdb`, `/dev/sdc`, etc.: Subsequent USB drives connected will increment the letter (b, c, d, etc.).
+   - `/dev/sda`: Commonly used for the primary SSD.
+   - `/dev/sdb`, `/dev/sdc`, etc.: Additional SSDs connected to the system.
 
 3. **SD Cards**:
    - Often used in embedded systems and single-board computers (e.g., Raspberry Pi).
@@ -24,7 +24,7 @@ BMROS can be installed onto various types of media storage. Here are the common 
    - Limited in capacity compared to SSDs and HDDs but sufficient for many embedded applications.
    - `/dev/mmcblk0`: The main SD card slot.
    - `/dev/mmcblk1`, `/dev/mmcblk2`, etc.: Additional SD cards or card readers.
-   
+
 ## Configuring BIOS/UEFI for USB Drive Bootup
 
 To boot BMROS from a USB drive, you need to configure your system's BIOS or UEFI settings. Here's how to do it:
