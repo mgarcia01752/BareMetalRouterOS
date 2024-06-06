@@ -36,9 +36,9 @@ When you first boot up the system, the default username is `root`, and there is 
 
 1. **Login as `root`**: On initial boot, you will be prompted to login. Enter `root` as the username. Since no password is set initially, you will proceed to the next step directly.
    
-   `
+   ```
    Router login: root
-   `
+   ```
 
 2. **Create a New User**: You will be prompted to create a new username. Enter your desired username, for example, `dev01`.
 
