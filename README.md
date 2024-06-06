@@ -48,6 +48,7 @@ Verify the functionality of the BMROS image using QEMU:
 ```bash
 sudo ./test-run-bmros.sh
 ```
+[Login Steps](doc/factory-start.md)
 
 ### 5. Create Boot Media
 
