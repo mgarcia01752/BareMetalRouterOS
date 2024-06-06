@@ -25,7 +25,7 @@ In the production build, after the initial login, the `root` user is removed, an
 ./build-bmros.sh -b
 ```
 
-### Vanilla
+### [Vanilla](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-vanilla.bb)
 
 In the vanilla build, after the initial login, the `root` user has unrestricted access to the Linux OS. 
 ***WARNING:*** The `root` account has no password.
@@ -34,7 +34,7 @@ In the vanilla build, after the initial login, the `root` user has unrestricted 
 ./build-bmros.sh -v
 ```
 
-### Debug
+### [Debug](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-debug.bb)
 
 In the debug build, after the initial login, the `root` user has unrestricted access to the Linux OS. 
 ***WARNING:*** The `root` account has no password.
