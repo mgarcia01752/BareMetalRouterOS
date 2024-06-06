@@ -4,7 +4,7 @@
 
 The Yocto Project provides a flexible set of tools and processes to help you create custom Linux-based systems for embedded products. Kernel development is a key aspect of this process, allowing you to customize the kernel to support your specific hardware requirements.
 
-## [Assertain Router Hardware]
+## Assertain Router Hardware
 
 ### [Login BMR](factory-start.md#step-by-step-instructions)
 
