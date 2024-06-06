@@ -4,7 +4,9 @@
 
 The Yocto Project provides a flexible set of tools and processes to help you create custom Linux-based systems for embedded products. Kernel development is a key aspect of this process, allowing you to customize the kernel to support your specific hardware requirements.
 
-## [Login to BMROS to Assertain Hardware](factory-start.md#step-by-step-instructions)
+## [Assertain Router Hardware]
+
+### [Login BMR](factory-start.md#step-by-step-instructions)
 
 1. **Network Devices Drivers**
    - Navigate to: `Device Drivers -> Network device support -> Ethernet driver support`
