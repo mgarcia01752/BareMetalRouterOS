@@ -1,5 +1,3 @@
-Sure, here is the improved markdown with embedded links:
-
 # Factory or Initial Start
 
 ## Default Start Login
@@ -32,7 +30,7 @@ When you first boot up the system, the default username is `root`, and there is 
      ```
    - **DHCP and Static IP Configuration**: If needed, you can configure DHCP or static IP settings for your network interfaces by editing the network configuration files, typically located in `/etc/network/interfaces` or similar.
 
-### Step-by-Step Instructions
+## Step-by-Step Instructions
 
 1. **Login as `root`**: On initial boot, you will be prompted to login. Enter `root` as the username. Since no password is set initially, you will proceed to the next step directly.
    
