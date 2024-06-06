@@ -60,8 +60,7 @@ while [[ $# -gt 0 ]]; do
             echo " * poky/meta-bare-metal-router" 
             echo " * poky/build-bmros/tmp"
             echo
-            echo "(y/n)?"
-            read confirm
+            read -p "(y/n): " confirm
 
             if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
                 rm -rf poky/meta-bare-metal-router
