@@ -2,7 +2,7 @@
 
 source lib/common.sh
 
-IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF}
+IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF_PROD}
 BASE_DIR=${PWD}
 
 usage() {
@@ -11,11 +11,11 @@ usage() {
     echo "Options:"
     echo
     echo "  -c, --${POKY_CORE_IMG_MIN}"    
-    echo "  -b, --${BMROS_IMAGE_BB_REF}           (Production)"
-    echo "  -d, --${BMROS_IMAGE_DEBUG_BB_REF}     (Debug)"      
-    echo "  -v, --${BMROS_IMAGE_VANILLA_BB_REF}   (Non-Debug)"
+    echo -e "  -b, --${BMROS_IMAGE_BB_REF_PROD}\t\t(Production)"
+    echo -e "  -d, --${BMROS_IMAGE_BB_REF_DEBUG}\t\t(Debug)"      
+    echo -e "  -v, --${BMROS_IMAGE_BB_REF_VANILLA}\t(Non-Debug)"
     echo      
-    echo "  -u, --update-poky-meta-bare-metal-router-layer"
+    echo "  -u, --update-poky-meta-bare-metal-router-layer-only"
     echo "  -r, --remove-update-poky-meta-bare-metal-router-layer"
     echo
     exit 1
@@ -29,17 +29,17 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -b|--bare-metal-router)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_PROD}"
             shift
             ;;
 
         -v|--bare-metal-router-vanilla)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_VANILLA_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_VANILLA}"
             shift
             ;;
 
         -d|--bare-metal-router-dev)
-            IMAGE_TO_BUILD="${BMROS_IMAGE_DEBUG_BB_REF}"
+            IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_DEBUG}"
             shift
             ;;            
 
@@ -48,14 +48,31 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 
-        -u|--update-bare-metal-layer)
+        -u|--update-bare-metal-layer-only)
             `./update-layers.sh`
             shift
             ;;
 
         -r|--remove-update-poky-meta-bare-metal-router-layer)
-            `./clean-poky.sh`
+            
+            echo
+            echo "Are you sure you want to remove directories?"
+            echo " * poky/meta-bare-metal-router" 
+            echo " * poky/build-bmros/tmp"
+            echo
+            read -p "(y/n): " confirm
+
+            if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+                rm -rf poky/meta-bare-metal-router
+                rm -rf poky/build-bmros/tmp
+
+            else
+                echo "Removal of 'poky/meta-bare-metal-router' directory canceled."
+                exit 1
+            fi
+            
             `./update-layers.sh`
+            
             shift
             ;;
 
@@ -91,7 +108,7 @@ source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Build: $IMAGE_TO_BUILD"
-    bitbake -k $IMAGE_TO_BUILD
+    bitbake -k $IMAGE_TO_BUILD || handle_error "Build ${IMAGE_TO_BUILD} Failed"
     update_last_build_recipe ${IMAGE_TO_BUILD}
 fi
 

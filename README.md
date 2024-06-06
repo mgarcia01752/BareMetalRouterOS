@@ -17,7 +17,22 @@ The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 arch
 
 ## Getting Started
 
-### 1. Setup Yocto Build Environment
+### 1. Install Git
+
+To install Git, execute the following command:
+
+```bash
+sudo apt install -y git
+```
+### 2. Clone BMROS Repository
+
+To clone the BMROS repository, run the following command:
+
+```bash
+git clone https://github.com/mgarcia01752/BareMetalRouterOS.git
+```
+
+### 3. Setup Yocto Build Environment
 
 Before building BMROS, ensure you have the Ubuntu Yocto build environment set up:
 
@@ -25,7 +40,7 @@ Before building BMROS, ensure you have the Ubuntu Yocto build environment set up
 ./setup-yocto-env.sh
 ```
 
-### 2. Download and Install Yocto Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
+### 4. Download and Install Yocto Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
 
 To download and install Yocto Poky (Scarthgap) for BMROS:
 
@@ -33,15 +48,15 @@ To download and install Yocto Poky (Scarthgap) for BMROS:
 ./install-yocto-poky.sh
 ```
 
-### 3. Building Bare Metal Router OS
+### 5. [Building Bare Metal Router OS](doc/build-bmros.md)
 
-Use the build script to create the initial BMROS image:
+Use the build script to create the initial Production BMROS image:
 
 ```bash
-./build-bmros.sh
+sudo ./build-bmros.sh
 ```
 
-### 4. Test Run Bare Metal Router OS
+### 6. [Test Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
 
 Verify the functionality of the BMROS image using QEMU:
 
@@ -49,17 +64,17 @@ Verify the functionality of the BMROS image using QEMU:
 sudo ./test-run-bmros.sh
 ```
 
-### 5. Create Boot Media
+### 7. [Create Boot Media](doc/create-boot-media.md)
 
 Prepare bootable media for BMROS:
 
 ```bash
-./create-bmros-media.sh -d /dev/sdX
+./create-bmros-media.sh -d /dev/[ sdX | mmcblkX ]
 ```
 
-### 6. Customize Kernel
+### 8. [Customize Kernel](doc/kernel.md)
 
-After installing BMROS to your target device, you may need to configure the kernel to install drives such as ethernet and wireless
+After installing BMROS to your target device, you may need to configure the kernel to install drivers such as ethernet and wireless
 
 ```bash
 ./start-menuconfig.sh

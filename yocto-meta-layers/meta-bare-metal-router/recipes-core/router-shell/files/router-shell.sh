@@ -10,4 +10,4 @@ source /etc/profile
 cd /usr/lib/routershell || exit 1
 
 # Execute the start.sh script to initialize RouterShell
-./start.sh
+./start.sh || exit 1

@@ -12,7 +12,7 @@ To add packages to your Bare Metal Router (BMR) image, you can utilize the `loca
 1. Open your `local.conf` file located in your Yocto Project build directory.
 2. Add package names to the `IMAGE_INSTALL_append` variable. For example:
    ```conf
-   IMAGE_INSTALL_append = " package1 package2 package3"
+   IMAGE_INSTALL:append = " package1 package2 package3"
    ```
    Replace `package1`, `package2`, and `package3` with the desired package names.
 
@@ -33,7 +33,7 @@ To extend `core-image-minimum` and include Bare Metal Router (BMR) specific reci
 
 2. Add your customizations to this file, such as additional packages or configurations.
    ```bb
-   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+   FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
    SRC_URI += "file://my-custom-script.sh"
    ```
 

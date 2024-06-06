@@ -1,4 +1,4 @@
-# Bare Metal Router Wiki
+# Bare Metal Router OS Wiki
 
 ## Table of Contents
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Welcome to the Bare Metal Router (BMR) wiki! This wiki serves as a guide to configuring and customizing the BMR project using the Yocto Project framework.
+Welcome to the Bare Metal Router OS (BMROS) wiki! This wiki serves as a guide to configuring and customizing the BMR project using the Yocto Project framework.
 
 ## Getting Started
 
@@ -29,7 +29,7 @@ If you're new to the Bare Metal Router project, here are some essential guides t
 
 ## Contributions
 
-Contributions to the Bare Metal Router project are welcome! If you have bug fixes, new features, or improvements to the documentation, feel free to contribute via pull requests on the [BMR GitHub Repository](https://github.com/yocto/bare-metal-router).
+Contributions to the Bare Metal Router project are welcome! If you have bug fixes, new features, or improvements to the documentation, feel free to contribute via pull requests on the [BMROS GitHub Repository](https://github.com/yocto/bare-metal-router).
 
 ## License
 

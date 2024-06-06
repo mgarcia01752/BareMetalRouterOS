@@ -1,6 +1,6 @@
 # Modifying Bare Metal Router Recipes
 
-To customize the Bare Metal Router (BMR) recipes and create your image, follow these steps:
+To customize the Bare Metal Router OS (BMROS) recipes and create your image, follow these steps:
 
 ## Creating Image Recipe
 
@@ -16,8 +16,6 @@ To customize the Bare Metal Router (BMR) recipes and create your image, follow t
 cd poky
 source oe-init-build-env
 devtool add router-shell https://github.com/mgarcia01752/RouterShell.git --srcbranch=main
-
-
 
 ## bitbake-layers show-recipes
 
