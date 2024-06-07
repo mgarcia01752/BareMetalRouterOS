@@ -2,7 +2,7 @@
 
 This script provides an easy way to configure various components in your Yocto build using menuconfig.
 
-## Kernel
+## [Linux Kernel](../doc/kernel.md)
 
 The Linux kernel is the core component of the operating system, responsible for managing hardware resources, providing essential system services, and enabling communication between hardware and software. Configuring the kernel allows you to enable or disable specific features, device drivers, filesystems, and other options tailored to your target device's requirements.
 
