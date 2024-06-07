@@ -2,7 +2,7 @@
 
 This script provides an easy way to configure various components in your Yocto build using menuconfig.
 
-## [Linux Kernel](../doc/kernel.md)
+## [Linux Kernel](./kernel.md)
 
 The Linux kernel is the core component of the operating system, responsible for managing hardware resources, providing essential system services, and enabling communication between hardware and software. Configuring the kernel allows you to enable or disable specific features, device drivers, filesystems, and other options tailored to your target device's requirements.
 
@@ -17,7 +17,7 @@ To configure the Linux kernel options:
 ./menuconfig.sh --kernel
 ```
 
-## BusyBox
+## [BusyBox](busybox.md)
 
 BusyBox is a utility that combines many standard Unix utilities into a single executable, providing a lightweight and efficient way to perform common system tasks. It includes implementations of core utilities such as `sh`, `ls`, `grep`, `tar`, and many others. Configuring BusyBox allows you to select which utilities to include or exclude from the build, as well as customize their behavior and options.
 
@@ -32,7 +32,7 @@ To configure BusyBox:
 ./menuconfig.sh --busybox
 ```
 
-## UBoot
+## [UBoot](uboot.md)
 
 U-Boot (Unified Extensible Firmware Interface) is a widely used bootloader for embedded systems, responsible for initializing hardware, loading the Linux kernel into memory, and preparing the system for booting. Configuring U-Boot allows you to specify boot parameters, enable or disable features such as network support or USB booting, and customize settings specific to your target hardware.
 

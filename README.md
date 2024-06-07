@@ -72,7 +72,7 @@ Prepare bootable media for BMROS:
 ./create-bmros-media.sh -d /dev/[ sdX | mmcblkX ]
 ```
 
-### 8. [Customize Via MenuConfig](doc/menuconfig.md)
+### 8. [Customize Via MenuConfig](doc/menuconfig/menuconfig.md)
 
 After installing BMROS to your target device, you may need to configure the kernel, busybox, or u-boot.
 
