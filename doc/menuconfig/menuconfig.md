@@ -1,4 +1,4 @@
-# Menu Configuration
+# Menuconfig
 
 This script provides an easy way to configure various components in your Yocto build using menuconfig.
 

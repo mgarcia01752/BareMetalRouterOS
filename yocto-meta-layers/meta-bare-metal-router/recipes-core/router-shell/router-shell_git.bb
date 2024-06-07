@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v
 SRC_URI += "file://router-shell.sh"
 
 DEPENDS += "python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc "
-DEPENDS += "iproute2 lshw iw bash iptables net-tools sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool bridge-utils "
+DEPENDS += "iproute2 lshw iw bash iptables sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool bridge-utils "
 DEPENDS += "dnsmasq "
 
 RDEPENDS:${PN} += "bash "
