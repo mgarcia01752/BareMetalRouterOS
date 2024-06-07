@@ -72,12 +72,12 @@ Prepare bootable media for BMROS:
 ./create-bmros-media.sh -d /dev/[ sdX | mmcblkX ]
 ```
 
-### 8. [Customize Kernel](doc/kernel.md)
+### 8. [Customize Via MenuConfig](doc/menuconfig.md)
 
-After installing BMROS to your target device, you may need to configure the kernel to install drivers such as ethernet and wireless
+After installing BMROS to your target device, you may need to configure the kernel, busybox, or u-boot.
 
 ```bash
-./menuconfig.sh --kernel
+./menuconfig.sh [--kernel | --busybox | --u-boot ]
 ```
 
 ## Documentation
