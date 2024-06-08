@@ -2,7 +2,7 @@
 
 Installation process for Yocto Poky and the creation of the Bare Metal Router OS (BMROS) distribution.
 
-## Installation Script
+## [Installation Script](../install-yocto-poky.sh)
 
 
 ### Usage:
