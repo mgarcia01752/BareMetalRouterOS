@@ -40,7 +40,7 @@ Before building BMROS, ensure you have the Ubuntu Yocto build environment set up
 ./setup-yocto-env.sh
 ```
 
-### 4. Download and Install Yocto Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
+### 4. [Download and Install Yocto Poky](doc/install-yocto-poky.md) (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
 
 To download and install Yocto Poky (Scarthgap) for BMROS:
 

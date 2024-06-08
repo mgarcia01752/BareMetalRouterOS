@@ -26,10 +26,11 @@ fi
 
 cd ${POKY_DIR}
 
-display_banner "Starting QEMU for Build: ${BMROS_BUILD_DIR_NAME}"
-
 source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 
 build_recipe=$(get_last_build_recipe)
+
+display_banner "Starting QEMU for Build: ${build_recipe}"
+sleep 5
 
 ${POKY_DIR}/scripts/runqemu nographic "tmp/deploy/images/qemux86-64/${build_recipe}-qemux86-64.rootfs.qemuboot.conf"

@@ -5,12 +5,17 @@ source lib/common.sh
 IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF_PROD}
 BASE_DIR=${PWD}
 
+update_last_build_recipe() {
+    echo -e "${1} " >> "${BASE_DIR}/.last_build_recipe"
+}
+
+
 usage() {
     echo
     echo "Usage: $0 [options]"
     echo "Options:"
     echo
-    echo "  -c, --${POKY_CORE_IMG_MIN}"    
+    echo -e "  -c, --${POKY_CORE_IMG_MIN}"    
     echo -e "  -b, --${BMROS_IMAGE_BB_REF_PROD}\t\t(Production - default)"
     echo -e "  -d, --${BMROS_IMAGE_BB_REF_DEBUG}\t\t(Debug)"      
     echo -e "  -v, --${BMROS_IMAGE_BB_REF_VANILLA}\t(Non-Debug)"
@@ -21,13 +26,10 @@ usage() {
     exit 1
 }
 
-update_last_build_recipe() {
-  echo -e $1 >> "${BASE_DIR}/.last_build_recipe"
-}
-
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
+
         -b|--bare-metal-router)
             IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_PROD}"
             shift
@@ -114,7 +116,7 @@ source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Build: $IMAGE_TO_BUILD"
     bitbake -k $IMAGE_TO_BUILD || handle_error "Build ${IMAGE_TO_BUILD} Failed"
-    update_last_build_recipe ${IMAGE_TO_BUILD}
+    update_last_build_recipe "${IMAGE_TO_BUILD}"
 fi
 
 if check_directory "${BASE_DIR}/downloads"; then
@@ -124,4 +126,4 @@ fi
 
 elapsed_time=$(( $(get_epoch_timestamp) - start_time ))
 
-display_banner "BUILD COMPLETE - Build Elapse Time: $elapsed_time seconds"
+display_banner "BUILD (${IMAGE_TO_BUILD}) COMPLETE - Build Elapse Time: $elapsed_time seconds"
