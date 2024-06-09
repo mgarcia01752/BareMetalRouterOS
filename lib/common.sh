@@ -100,25 +100,28 @@ update_last_build_recipe() {
 }
 
 get_last_build_recipe() {
-  local file=".last_build_recipe"
+    local file=".last_build_recipe"
+    
+    # Check if the file exists
+    if [ ! -f "$file" ]; then
+        echo "Error: ${file} file not found." >&2
+        return 1
+    fi
+    
+    # Get the last entry in the file
+    local last_recipe
+    last_recipe=$(tail -n 1 "$file")
 
-  # Check if the file exists
-  if [ ! -f "$file" ]; then
-    echo "Error: .last_build_recipe file not found."
-    return 1
-  fi
+    # Check if the file is empty
+    if [ -z "$last_recipe" ]; then
+        echo "Error: ${file} file is empty." >&2
+        return 1
+    fi
 
-  # Get the last entry in the file
-  local last_recipe=$(tail -n 1 "$file")
-
-  # Check if the file is empty
-  if [ -z "$last_recipe" ]; then
-    echo "Error: .last_build_recipe file is empty."
-    return 1
-  fi
-
-  echo "${last_recipe}  "
+    # Return the last recipe
+    echo "${last_recipe}"
 }
+
 
 check_file() {
     [ -f "$1" ] || handle_error "Failed to find: $1"

@@ -2,10 +2,7 @@
 
 source lib/common.sh
 
-set -e
-
 LAST_IMAGE_MADE=$(get_last_build_recipe)
-
 LAST_IMAGE_MADE="${LAST_IMAGE_MADE//$' '/}"
 
 display_banner "Creating Image from receipe: ${LAST_IMAGE_MADE}"

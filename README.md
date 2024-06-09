@@ -40,7 +40,7 @@ Before building BMROS, ensure you have the Ubuntu Yocto build environment set up
 ./setup-yocto-env.sh
 ```
 
-### 4. Download and Install Yocto Poky (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
+### 4. [Download and Install Yocto Poky](doc/install-yocto-poky.md) (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
 
 To download and install Yocto Poky (Scarthgap) for BMROS:
 
@@ -56,12 +56,12 @@ Use the build script to create the initial Production BMROS image:
 sudo ./build-bmros.sh
 ```
 
-### 6. [Test Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
+### 6. [Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
 
 Verify the functionality of the BMROS image using QEMU:
 
 ```bash
-sudo ./test-run-bmros.sh
+sudo ./run-bmros.sh
 ```
 
 ### 7. [Create Boot Media](doc/create-boot-media.md)
@@ -72,12 +72,12 @@ Prepare bootable media for BMROS:
 ./create-bmros-media.sh -d /dev/[ sdX | mmcblkX ]
 ```
 
-### 8. [Customize Kernel](doc/kernel.md)
+### 8. [Customize Via MenuConfig](doc/menuconfig/menuconfig.md)
 
-After installing BMROS to your target device, you may need to configure the kernel to install drivers such as ethernet and wireless
+After installing BMROS to your target device, you may need to configure the kernel, busybox, or u-boot.
 
 ```bash
-./start-menuconfig.sh
+./menuconfig.sh [--kernel | --busybox | --u-boot ]
 ```
 
 ## Documentation

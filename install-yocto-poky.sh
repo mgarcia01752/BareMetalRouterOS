@@ -7,11 +7,13 @@ POKY_DIR="${BMROS_GIT_DIR}/${POKY_DIR_NAME}"
 INSTALL_POKY_ONLY=false
 YOCTO_POKY_GIT_DISTRO="https://git.yoctoproject.org/git/poky"
 YOCTO_META_INTEL_GIT_DISTRO="git://git.yoctoproject.org/meta-intel"
+SYSTEM_INIT="SystemV"
 
 display_usage() {
     echo "Usage: $0 [options]"
     echo "Options:"
-    echo "  -p, --install-poky    Install Poky only"
+    echo "  -p, --install-poky       Install Poky only"
+    echo "  -s, --install-systemd    Install Systemd overwrite SystemV"
     exit 1
 }
 
@@ -22,6 +24,10 @@ while [[ $# -gt 0 ]]; do
         INSTALL_POKY_ONLY=true
         shift
         ;;
+        -p|--install-poky)
+        INSTALL_POKY_ONLY=true
+        shift
+        ;;        
         -h|--help)
         display_usage
         ;;
@@ -164,10 +170,10 @@ echo "Adding ${BB_LAYER_BARE_METAL_ROUTER}"
 echo "Updating ${BMROS_BUILD_DIR_NAME}/conf/local.conf"
 cat <<EOF >> "${POKY_DIR}/${BMROS_BUILD_DIR_NAME}/conf/local.conf"
 PARALLEL_MAKE = "-j 8"
-DISTRO_FEATURES:append = " systemd usrmerge "
-DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
-VIRTUAL-RUNTIME_init_manager = "systemd"
-VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
+# DISTRO_FEATURES:append = " systemd usrmerge "
+# DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+# VIRTUAL-RUNTIME_init_manager = "systemd"
+# VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 IMAGE_FSTYPES += "wic wic.bmap"
 EOF
 

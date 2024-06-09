@@ -5,13 +5,18 @@ source lib/common.sh
 IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF_PROD}
 BASE_DIR=${PWD}
 
+update_last_build_recipe() {
+    echo -e "${1} " >> "${BASE_DIR}/.last_build_recipe"
+}
+
+
 usage() {
     echo
     echo "Usage: $0 [options]"
     echo "Options:"
     echo
-    echo "  -c, --${POKY_CORE_IMG_MIN}"    
-    echo -e "  -b, --${BMROS_IMAGE_BB_REF_PROD}\t\t(Production)"
+    echo -e "  -c, --${POKY_CORE_IMG_MIN}"    
+    echo -e "  -b, --${BMROS_IMAGE_BB_REF_PROD}\t\t(Production - default)"
     echo -e "  -d, --${BMROS_IMAGE_BB_REF_DEBUG}\t\t(Debug)"      
     echo -e "  -v, --${BMROS_IMAGE_BB_REF_VANILLA}\t(Non-Debug)"
     echo      
@@ -21,13 +26,10 @@ usage() {
     exit 1
 }
 
-update_last_build_recipe() {
-  echo -e $1 >> "${BASE_DIR}/.last_build_recipe"
-}
-
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
+
         -b|--bare-metal-router)
             IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_PROD}"
             shift
@@ -56,18 +58,23 @@ while [[ $# -gt 0 ]]; do
         -r|--remove-update-poky-meta-bare-metal-router-layer)
             
             echo
-            echo "Are you sure you want to remove directories?"
+            echo "Remove directories:"
             echo " * poky/meta-bare-metal-router" 
             echo " * poky/build-bmros/tmp"
             echo
-            read -p "(y/n): " confirm
+            echo "Removing there directory will remove any changed outside of the standard install"
+            read -p "Are you sure (y/n): " confirm
 
             if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
                 rm -rf poky/meta-bare-metal-router
                 rm -rf poky/build-bmros/tmp
 
             else
-                echo "Removal of 'poky/meta-bare-metal-router' directory canceled."
+                echo
+                echo "Removal of teh following directories canceled:"
+                echo " * poky/meta-bare-metal-router" 
+                echo " * poky/build-bmros/tmp"
+                echo               
                 exit 1
             fi
             
@@ -109,7 +116,7 @@ source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Build: $IMAGE_TO_BUILD"
     bitbake -k $IMAGE_TO_BUILD || handle_error "Build ${IMAGE_TO_BUILD} Failed"
-    update_last_build_recipe ${IMAGE_TO_BUILD}
+    update_last_build_recipe "${IMAGE_TO_BUILD}"
 fi
 
 if check_directory "${BASE_DIR}/downloads"; then
@@ -119,4 +126,4 @@ fi
 
 elapsed_time=$(( $(get_epoch_timestamp) - start_time ))
 
-display_banner "BUILD COMPLETE - Build Elapse Time: $elapsed_time seconds"
+display_banner "BUILD (${IMAGE_TO_BUILD}) COMPLETE - Build Elapse Time: $elapsed_time seconds"
