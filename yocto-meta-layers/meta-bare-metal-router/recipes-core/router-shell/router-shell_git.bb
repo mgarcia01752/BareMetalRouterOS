@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 PV = "0.1.5+git${SRCPV}"
-SRCREV = "78eec3802656af4dfe09e1d10d9e20511a156bd2"
+SRCREV = "3d518df688b13d5fbe6d32c24b8897273a5bc9cd"
 
 SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v0.1.5;rev=${SRCREV} "
 SRC_URI += "file://router-shell.sh"

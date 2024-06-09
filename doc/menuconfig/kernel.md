@@ -24,6 +24,9 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
 2. **USB Device Drivers**
    - Navigate to: `Device Drivers -> USB support`
 
+3. **Dummy Network Interface (Optional for QEMU)**
+   - Navigate to: `Device Drivers -> Network device support -> Network core driver support`
+
 ## [Login BMR to Assertain Hardware](factory-start.md#step-by-step-instructions)
 
 ### Steps for Identifying Hardware
