@@ -64,14 +64,14 @@ case $MENU in
         bmros_linux_recipe="${BB_LAYER_BARE_METAL_ROUTER}/recipes-kernel/linux/files"
         bitbake virtual/kernel -c menuconfig || error_exit "Failed to run bitbake virtual/kernel -c menuconfig"
         bitbake virtual/kernel -c diffconfig || error_exit "Failed to run bitbake busybox -c diffconfig"
-        kernel_config_file=$(find . -name fragment.cfg | awk '/linux-${MACHINE_ARCH_x86_64}-standard-build/')
+        kernel_config_file=$(find . -regex '.*/linux-qemux86_64-standard-build/.config')
         copy_config_files "$kernel_config_file" "$bmros_linux_recipe"
         ;;
     busybox)
         bmros_busybox_recipe="${BB_LAYER_BARE_METAL_ROUTER}/recipes-core/busybox/files"
         bitbake busybox -c menuconfig || error_exit "Failed to run bitbake busybox -c menuconfig"
         bitbake busybox -c diffconfig || error_exit "Failed to run bitbake busybox -c diffconfig"
-        busybox_config_file=$(find . -name fragment.cfg | awk '/busybox/')
+        busybox_config_file=$(find . -regex '.*/busybox-[0-9]+\(\.[0-9]+\)+/.config')
         copy_config_files "$busybox_config_file" "$bmros_busybox_recipe"
         ;;
     u-boot)

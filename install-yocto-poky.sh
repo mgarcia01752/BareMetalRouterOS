@@ -2,6 +2,11 @@
 
 source lib/common.sh
 
+if [ "$(id -u)" -eq 0 ]; then
+    echo "This script must not be run as root or with sudo." >&2
+    exit 1
+fi
+
 BMROS_GIT_DIR=${PWD}
 POKY_DIR="${BMROS_GIT_DIR}/${POKY_DIR_NAME}"
 INSTALL_POKY_ONLY=false

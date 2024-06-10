@@ -66,7 +66,7 @@ Navigating the `menuconfig` screen involves using arrow keys, Enter, and Esc. He
 
 ### Additional Tips
 
-- **Save Configuration**: After making changes, make sure to save your new kernel configuration. You can save it to the default `.config` file or specify a different filename.
+- [**Save Configuration**](../../yocto-meta-layers/meta-bare-metal-router/recipes-kernel/linux/files/.config) : After making changes, make sure to save your new kernel configuration. You can save it to the default `.config` file or specify a different filename.
 - **Build Kernel**: Once the configuration is saved, build the kernel using your build system (e.g., `bitbake` for Yocto). Make sure to deploy the new kernel to your target device.
 - **Documentation**: Refer to the [Yocto Project Kernel Development Manual](https://docs.yoctoproject.org/kernel-dev/index.html) for detailed instructions and advanced configurations.
 

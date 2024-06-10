@@ -5,8 +5,8 @@ SECTION = "kernel"
 LICENSE = "CLOSED"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += "file://fragment.cfg"
+SRC_URI += "file://.config"
 
 do_configure:append() {
-    cat ${WORKDIR}/fragment.cfg >> ${B}/.config
+    cat ${WORKDIR}/.config >> ${B}/.config
 }

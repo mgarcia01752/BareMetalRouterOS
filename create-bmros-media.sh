@@ -2,6 +2,11 @@
 
 source lib/common.sh
 
+if [ "$(id -u)" -eq 0 ]; then
+    echo "This script must not be run as root or with sudo." >&2
+    exit 1
+fi
+
 LAST_IMAGE_MADE=$(get_last_build_recipe)
 LAST_IMAGE_MADE="${LAST_IMAGE_MADE//$' '/}"
 

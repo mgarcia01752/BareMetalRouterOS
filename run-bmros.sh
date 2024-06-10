@@ -4,12 +4,6 @@ source lib/common.sh
 
 START_DIR=${PWD}
 
-# Check if running as root
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run with sudo or as root" 
-    exit 1
-fi
-
 get_last_build_recipe() {
   echo $(tail -n 1 ${START_DIR}/.last_build_recipe)
 }

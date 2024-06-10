@@ -2,13 +2,17 @@
 
 source lib/common.sh
 
+if [ "$(id -u)" -eq 0 ]; then
+    echo "This script must not be run as root or with sudo." >&2
+    exit 1
+fi
+
 IMAGE_TO_BUILD=${BMROS_IMAGE_BB_REF_PROD}
 BASE_DIR=${PWD}
 
 update_last_build_recipe() {
     echo -e "${1} " >> "${BASE_DIR}/.last_build_recipe"
 }
-
 
 usage() {
     echo
