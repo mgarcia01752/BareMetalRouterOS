@@ -38,4 +38,4 @@ Once you have configured BusyBox, `menuconfig.sh --busybox` will save a copy to 
 
 2. [**BusyBox Recipe**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/busybox_%25.bbappend)
 
-3. [**BusyBox Configuration (Default for BMROS**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/files/.config-bmros)
+3. [**BusyBox Configuration (Default for BMROS**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/files/bb-bmros-config)
