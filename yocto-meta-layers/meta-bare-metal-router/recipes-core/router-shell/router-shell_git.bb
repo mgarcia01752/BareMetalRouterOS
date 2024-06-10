@@ -4,9 +4,10 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 RS_SRC_REV = "0.1.6"
-SRCREV = "6bcd7fb6ae2e523d2b6fd69c5b355df05813514a"
+SRCREV = "23dfc1bb664a721612935c107a8ddf88673cb4df"
 
 PV = "${RS_SRC_REV}+git${SRCPV}"
+
 SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v${RS_SRC_REV};rev=${SRCREV} "
 SRC_URI += "file://router-shell.sh"
 
@@ -21,12 +22,7 @@ S = "${WORKDIR}/git"
 FILES:${PN} += "${libdir}/routershell "
 
 do_install() {
-
     install -d ${D}${libdir}/routershell
     cp -r ${S}/* ${D}${libdir}/routershell
-
     install -m 0766 ${WORKDIR}/router-shell.sh ${D}${libdir}/routershell/router-shell.sh
 }
-
-
-

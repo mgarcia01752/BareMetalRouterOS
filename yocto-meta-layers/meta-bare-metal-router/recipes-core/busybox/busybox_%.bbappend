@@ -1,13 +1,12 @@
-# SUMMARY = "Custom BusyBox Configuration"
-# LICENSE = "MIT"
-# LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+SUMMARY = "BusyBox Overwrite default defconfig"
+DESCRIPTION = "This recipe overrides the default BusyBox configuration with a custom defconfig file."
+HOMEPAGE = "http://www.busybox.net"
+SECTION = "console/utils"
+LICENSE = "CLOSED"
 
-# SRC_URI += "file://custom_busybox_config"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+SRC_URI += "file://fragment.cfg"
 
-#do_configure:prepend() {
-#    cp ${WORKDIR}/custom_busybox_config .config
-#}
-
-# inherit busybox
-
-# FILES_${PN} += "/usr/share/busybox/"
+do_configure:append() {
+    cat ${WORKDIR}/fragment.cfg >> ${B}/.config
+}
