@@ -35,7 +35,7 @@ Navigating the `menuconfig` screen involves using the arrow keys, Enter, and Esc
 Once you have configured BusyBox, `menuconfig.sh --busybox` will save a copy to `recipes-core/busybox/files/.config`
 
 1. [**menuconfig.sh**](../../menuconfig.sh)
-   - 
 
-2. [**Location of new BusyBox .config**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/files)
-   - 
+2. [**BusyBox Recipe**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/busybox_%25.bbappend)
+
+3. [**BusyBox Configuration**](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/busybox/files/.config)
