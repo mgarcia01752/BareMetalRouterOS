@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 RS_SRC_REV = "0.1.6"
-SRCREV = "23dfc1bb664a721612935c107a8ddf88673cb4df"
+SRCREV = "2391b3dcb700759e49acc6e3c35a3fd2b6cc6bb8"
 
 PV = "${RS_SRC_REV}+git${SRCPV}"
 
