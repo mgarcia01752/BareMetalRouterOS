@@ -23,11 +23,12 @@ When you first boot up the system, the default username is `root`, and there is 
 3. **Network**
    - **Initial Setup**: If using the default build, the network interfaces may not be immediately available. You might need to load a vanilla build to identify the network interface chipset and configure the appropriate drivers via [Kernel Menuconfig](kernel.md).
    - **Kernel Menuconfig**: Access the kernel configuration menu by running `make menuconfig` in the terminal. Navigate to the network drivers section and select the appropriate drivers for your network interfaces. Rebuild the kernel with these settings.
-   - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.10/24`.
+   - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.10o/24`.
    - **Access via Telnet**: Use telnet to connect to the router:
      ```shell
-     telnet 192.168.0.10
+     telnet 192.168.0.100
      ```
+   - [**startup-config.cfg**](../yocto-meta-layers/meta-bare-metal-router/recipes-core/router-shell/files/startup-config.cfg): You can costumize your initial address to connect to a headless router.
    - **DHCP and Static IP Configuration**: If needed, you can configure DHCP or static IP settings for your network interfaces by editing the network configuration files, typically located in `/etc/network/interfaces` or similar.
 
 ## Step-by-Step Instructions
