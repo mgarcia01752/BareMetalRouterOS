@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# /etc/init.d/my_python_script
+# /etc/init.d/bmros.sh
 #
 ### BEGIN INIT INFO
 # Provides:          my_python_script
@@ -22,10 +22,10 @@ PYTHON_SCRIPT="/usr/lib/routershell/scripts/factory-startup.py"
 PYTHON_BIN="/usr/bin/env python3"
 
 # Log file
-LOG_FILE="/var/log/factory-startup.log"
+LOG_FILE="/var/log/bmros-startup.log"
 
 # Process ID file
-PID_FILE="/var/run/routershell-startup.pid"
+PID_FILE="/var/run/bmros.pid"
 
 start() {
     echo "Starting $SCRIPT_NAME..."

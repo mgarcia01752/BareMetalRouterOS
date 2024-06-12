@@ -1,18 +1,28 @@
-SUMMARY = "BMROS Factory Start-Up"
-DESCRIPTION = "bare-metal-router factory start-up settings"
+SUMMARY = "BMROS init.d Startup"
+DESCRIPTION = "bare-metal-router factory and start-up settings"
 LICENSE = "CLOSED"
 
 SRC_URI = "file://my_script.py \
-           file://my_python_script"
+           file://bmros-init.sh"
+
+FLAG_FILE_DIR = "/var/flags"
+FLAG_FILE_NAME = "bmros.FACTORY_START"
+FFN = "${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
+
+FILES:${PN} += "${FFN} "
 
 S = "${WORKDIR}"
 
 do_install() {
-    install -d ${D}${bindir}
-    install -m 0755 ${WORKDIR}/my_script.py ${D}${bindir}/my_script.py
+
+    install -m 0600 -d ${D}${FLAG_FILE_DIR}
+    touch ${D}${FFN}
 
     install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${WORKDIR}/my_python_script ${D}${sysconfdir}/init.d/my_python_script
+    install -m 0755 ${WORKDIR}/bmros-init.sh ${D}${sysconfdir}/init.d/bmros.sh
+
+    install -d ${D}${bindir}
+    install -m 0755 ${WORKDIR}/my_script.py ${D}${libdir}/routershell/scripts/my_script.py
 
     install -d ${D}${localstatedir}/log
     install -d ${D}${localstatedir}/run

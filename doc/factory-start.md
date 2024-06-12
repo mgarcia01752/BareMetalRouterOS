@@ -1,5 +1,21 @@
 # Factory or Initial Start
 
+## Initial Start-up or Factory Reset
+
+### Factory Reset
+
+1. Check for FACTORY_START flag in `/var/flags/bmros.FACTORY_START`
+2. SysV `init.d/bmros.sh start`
+3. Run `/usr/lib/routershell/start.sh --factory-reset`
+4. RouterShell will load `/usr/lib/routershell/config/factory-startup.cfg`
+
+### BMROS Restart
+
+1. SysV `init.d/bmros.sh start`
+2. Run `/usr/lib/routershell/start.sh`
+3. RouterShell will load `/usr/lib/routershell/config/startup-startup.cfg`
+
+
 ## Default Start Login
 
 When you first boot up the system, the default username is `root`, and there is no password set. However, as a security measure, once you create a new username, the `root` account is automatically removed. Follow the steps below to create a new user account and secure your router.

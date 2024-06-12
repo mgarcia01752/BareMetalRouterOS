@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FILE_PATH="/var/flags/routershell.FACTORY_START"
+FILE_PATH="/var/flags/bmros.FACTORY_START"
 
 # Check if the file exists
 if [ -e "$FILE_PATH" ]; then
@@ -15,3 +15,5 @@ if [ -e "$FILE_PATH" ]; then
 else
   echo "The file $FILE_PATH does not exist."
 fi
+
+exit 0
