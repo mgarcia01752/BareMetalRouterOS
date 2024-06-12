@@ -2,7 +2,7 @@
 
 ## Initial Start-up or Factory Reset
 
-### Factory Reset
+### BMROS Factory Start
 
 1. Check for FACTORY_START flag in `/var/flags/bmros.FACTORY_START`
 2. SysV `init.d/bmros.sh start`
