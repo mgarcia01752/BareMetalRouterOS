@@ -3,17 +3,17 @@
 # /etc/init.d/bmros.sh
 #
 ### BEGIN INIT INFO
-# Provides:          my_python_script
+# Provides:          bmros
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Start the Python script at boot time
-# Description:       Start my Python script at boot time using a SysV init script
+# Description:       Start the Python script at boot time using a SysV init script
 ### END INIT INFO
 
 # Script name
-SCRIPT_NAME="routershell-startup"
+SCRIPT_NAME="bmros"
 
 # Path to the Python script
 PYTHON_SCRIPT="/usr/lib/routershell/scripts/factory-startup.py"
@@ -27,8 +27,20 @@ LOG_FILE="/var/log/bmros-startup.log"
 # Process ID file
 PID_FILE="/var/run/bmros.pid"
 
+# Factory Flag
+FLAG_FILE_DIR="/var/flags"
+FLAG_FILE_NAME="bmros.FACTORY_START"
+
+export FACTORY_START_FLAG="${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
+
 start() {
     echo "Starting $SCRIPT_NAME..."
+
+    # checking for factory start flag exists
+    if [ -f "$FACTORY_START_FLAG" ]; then
+        echo "Initial or Factory Reset, starting $SCRIPT_NAME..."
+    fi    
+
     if [ -f $PID_FILE ]; then
         echo "$SCRIPT_NAME is already running."
     else

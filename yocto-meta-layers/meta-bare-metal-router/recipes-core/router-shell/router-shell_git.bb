@@ -9,8 +9,7 @@ SRCREV = "d1cd40480b18fc313b54ea1b07aa2e17d6c00a49"
 PV = "${RS_SRC_REV}+git${SRCPV}"
 
 SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v${RS_SRC_REV};rev=${SRCREV} "
-SRC_URI += "file://router-shell.sh "
-SRC_URI += "file://startup-config.cfg "
+
 
 DEPENDS += "python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc "
 DEPENDS += "bash iproute2 lshw iw iptables sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool "
@@ -25,6 +24,4 @@ FILES:${PN} += "${libdir}/routershell "
 do_install() {
     install -d ${D}${libdir}/routershell
     cp -r ${S}/* ${D}${libdir}/routershell
-    install -m 0766 ${WORKDIR}/router-shell.sh ${D}${libdir}/routershell/router-shell.sh
-    install -m 0600 ${WORKDIR}/startup-config.cfg  ${D}${libdir}/routershell/config/startup-config.cfg 
 }
