@@ -39,7 +39,7 @@ When you first boot up the system, the default username is `root`, and there is 
 3. **Network**
    - **Initial Setup**: If using the default build, the network interfaces may not be immediately available. You might need to load a vanilla build to identify the network interface chipset and configure the appropriate drivers via [Kernel Menuconfig](kernel.md).
    - **Kernel Menuconfig**: Access the kernel configuration menu by running `make menuconfig` in the terminal. Navigate to the network drivers section and select the appropriate drivers for your network interfaces. Rebuild the kernel with these settings.
-   - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.10o/24`.
+   - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.100/24`.
    - **Access via Telnet**: Use telnet to connect to the router:
      ```shell
      telnet 192.168.0.100
