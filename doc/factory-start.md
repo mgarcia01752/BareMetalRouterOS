@@ -8,6 +8,7 @@
 2. SysV `init.d/bmros.sh start`
 3. Run `/usr/lib/routershell/start.sh --factory-reset`
 4. RouterShell will load `/usr/lib/routershell/config/factory-startup.cfg`
+5. Remove FACTORY_START flag
 
 ### BMROS Restart
 
