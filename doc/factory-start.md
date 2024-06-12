@@ -2,10 +2,12 @@
 
 ## Initial Start-up or Factory Reset
 
+BMROS does not make any permanent changes to the OS. Most changes are volatile and will be removed after a reboot or power-cycle. This requires loading the configuration each time the system starts.
+
 ### BMROS Factory Start
 
-1. Check for FACTORY_START flag in `/var/flags/bmros.FACTORY_START`
-2. SysV `init.d/bmros.sh start`
+1. SysV `init.d/bmros.sh start`
+2. Check for FACTORY_START flag in `/var/flags/bmros.FACTORY_START`
 3. Run `/usr/lib/routershell/start.sh --factory-reset`
 4. RouterShell will load `/usr/lib/routershell/config/factory-startup.cfg`
 5. Remove FACTORY_START flag
@@ -15,7 +17,6 @@
 1. SysV `init.d/bmros.sh start`
 2. Run `/usr/lib/routershell/start.sh`
 3. RouterShell will load `/usr/lib/routershell/config/startup-startup.cfg`
-
 
 ## Default Start Login
 
@@ -45,7 +46,7 @@ When you first boot up the system, the default username is `root`, and there is 
      ```shell
      telnet 192.168.0.100
      ```
-   - [**startup-config.cfg**](../yocto-meta-layers/meta-bare-metal-router/recipes-core/router-shell/files/startup-config.cfg): You can costumize your initial address to connect to a headless router.
+   - [**startup-config.cfg**](../yocto-meta-layers/meta-bare-metal-router/recipes-core/router-shell/files/startup-config.cfg): You can customize your initial address to connect to a headless router.
    - **DHCP and Static IP Configuration**: If needed, you can configure DHCP or static IP settings for your network interfaces by editing the network configuration files, typically located in `/etc/network/interfaces` or similar.
 
 ## Step-by-Step Instructions
