@@ -43,16 +43,18 @@ When you first boot up the system, the default username is `root`, and there is 
    - **Kernel Menuconfig**: Access the kernel configuration menu by running `make menuconfig` in the terminal. Navigate to the network drivers section and select the appropriate drivers for your network interfaces. Rebuild the kernel with these settings.
    - **Ethernet Ports**: Once configured, connect to any onboard Ethernet port. By default, all Ethernet ports are bonded and assigned the IP address `192.168.0.100/24`.
    - **Access via Telnet**: Use telnet to connect to the router:
+  
      ```shell
      telnet 192.168.0.100
      ```
+
    - [**startup-config.cfg**](../yocto-meta-layers/meta-bare-metal-router/recipes-core/router-shell/files/startup-config.cfg): You can customize your initial address to connect to a headless router.
 
 ## Step-by-Step Instructions
 
 1. **Login as `root`**: On initial boot, you will be prompted to login. Enter `root` as the username. Since no password is set initially, you will proceed to the next step directly.
-   
-   ```
+
+   ```shell
    Router login: root
    ```
 
@@ -79,10 +81,10 @@ When you first boot up the system, the default username is `root`, and there is 
 
 5. **Using bare-metal-router-vanilla/debug build**: In this build, the `root` username is retained, allowing direct access to the shell. To initiate the RouterShell, execute the following commands:
 
-```bash
-cd /usr/lib/routershell
-./start.sh
-```
+   ```bash
+   cd /usr/lib/routershell
+   ./start.sh
+   ```
 
 ### Important Security Notes
 
