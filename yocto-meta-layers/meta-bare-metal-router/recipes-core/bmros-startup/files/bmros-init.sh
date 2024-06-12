@@ -22,10 +22,10 @@ PYTHON_SCRIPT="/usr/lib/routershell/scripts/factory-startup.py"
 PYTHON_BIN="/usr/bin/env python3"
 
 # Log file
-LOG_FILE="/var/log/bmros-startup.log"
+# LOG_FILE="/var/log/bmros-startup.log"
 
 # Process ID file
-PID_FILE="/var/run/bmros.pid"
+PID_FILE="/var/run/${SCRIPT_NAME}.pid"
 
 # Factory Flag
 FLAG_FILE_DIR="/var/flags"
@@ -37,7 +37,7 @@ start() {
     echo "Starting $SCRIPT_NAME..."
 
     # checking for factory start flag exists
-    if [ -f "$FACTORY_START_FLAG" ]; then
+    if [ -f "${FACTORY_START_FLAG}" ]; then
         echo "Initial or Factory Reset, starting $SCRIPT_NAME..."
     fi    
 

@@ -3,7 +3,7 @@ DESCRIPTION = "Bare Metal RouterOS Production Flag"
 LICENSE = "CLOSED"
 
 FLAG_FILE_DIR = "/var/flags"
-FLAG_FILE_NAME = "routershell.PRODUCTION"
+FLAG_FILE_NAME = "bmros.PRODUCTION"
 FFN = "${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
 
 FILES:${PN} += "${FFN} "
