@@ -47,7 +47,6 @@ When you first boot up the system, the default username is `root`, and there is 
      telnet 192.168.0.100
      ```
    - [**startup-config.cfg**](../yocto-meta-layers/meta-bare-metal-router/recipes-core/router-shell/files/startup-config.cfg): You can customize your initial address to connect to a headless router.
-   - **DHCP and Static IP Configuration**: If needed, you can configure DHCP or static IP settings for your network interfaces by editing the network configuration files, typically located in `/etc/network/interfaces` or similar.
 
 ## Step-by-Step Instructions
 
