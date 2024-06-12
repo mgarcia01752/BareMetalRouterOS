@@ -1,4 +1,4 @@
-# Factory or Initial Start
+# Factory or Restart of BMROS
 
 ## Initial Start-up or Factory Reset
 
