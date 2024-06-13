@@ -4,7 +4,8 @@ LICENSE = "CLOSED"
 
 SRC_URI = "file://bmros-init.sh \
            file://router-shell.sh \
-           file://startup-config.cfg"
+           file://startup-config.cfg \
+           file://factory-startup.cfg "
 
 FLAG_FILE_DIR = "/var/flags"
 FACTORY_START_FILE_NAME = "bmros.FACTORY_START"
@@ -12,14 +13,10 @@ FSFN = "${FLAG_FILE_DIR}/${FACTORY_START_FILE_NAME}"
 
 S = "${WORKDIR}"
 
-INITSCRIPT_NAME = "bmros.sh"
-INITSCRIPT_PARAMS = "defaults"
-
-inherit update-rc.d
-
 FILES:${PN} += "${sysconfdir}/init.d/${INITSCRIPT_NAME} ${FSFN} \
                 ${libdir}/routershell/router-shell.sh \
                 ${libdir}/routershell/config/startup-config.cfg \
+                ${libdir}/routershell/config/factory-startup.cfg \
                 ${libdir}/routershell \
                 ${libdir}/routershell/config"
 
@@ -37,8 +34,16 @@ do_install() {
     install -d ${D}${libdir}/routershell
     install -m 0754 ${WORKDIR}/router-shell.sh ${D}${libdir}/routershell/router-shell.sh
     
+    # RouterShell Default Start and Factory Reset Configurations
     install -d ${D}${libdir}/routershell/config
-    install -m 0654 ${WORKDIR}/startup-config.cfg ${D}${libdir}/routershell/config/startup-config.cfg 
+    install -m 0654 ${WORKDIR}/startup-config.cfg ${D}${libdir}/routershell/config/startup-config.cfg
+    install -m 0654 ${WORKDIR}/startup-config.cfg ${D}${libdir}/routershell/config/factory-startup.cfg
 
 }
 
+DEPENDS += "bmros-profile "
+
+INITSCRIPT_NAME = "bmros.sh"
+INITSCRIPT_PARAMS = "defaults"
+
+inherit update-rc.d

@@ -22,7 +22,7 @@ PYTHON_SCRIPT="/usr/lib/routershell/scripts/factory-startup.py"
 PYTHON_BIN="/usr/bin/env python3"
 
 # Log file
-# LOG_FILE="/var/log/bmros-startup.log"
+LOG_FILE="/var/log/bmros-startup.log"
 
 # Process ID file
 PID_FILE="/var/run/${SCRIPT_NAME}.pid"
@@ -30,8 +30,7 @@ PID_FILE="/var/run/${SCRIPT_NAME}.pid"
 # Factory Flag
 FLAG_FILE_DIR="/var/flags"
 FLAG_FILE_NAME="bmros.FACTORY_START"
-
-export FACTORY_START_FLAG="${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
+FACTORY_START_FLAG="${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
 
 start() {
     echo "Starting $SCRIPT_NAME..."
@@ -44,6 +43,9 @@ start() {
     if [ -f $PID_FILE ]; then
         echo "$SCRIPT_NAME is already running."
     else
+        
+        /usr/lib/routershell/router-shell.sh || exit 1
+
         nohup $PYTHON_BIN $PYTHON_SCRIPT >> $LOG_FILE 2>&1 &
         echo $! > $PID_FILE
         echo "$SCRIPT_NAME started with PID $(cat $PID_FILE)."

@@ -9,10 +9,12 @@ source /etc/profile
 # Change directory to the RouterShell installation directory
 cd /usr/lib/routershell || exit 1
 
-if [ -f "$FACTORY_START_FLAG" ]; then
+echo "RouterShell Start..........."
+
+if [ -f "$FACTORY_START_FLAG_PATH" ]; then
     echo "Factory Reset of RouterShell"
     ./start.sh --factory-reset || exit 1
-    rm $FACTORY_START_FLAG
+    rm $FACTORY_START_FLAG_PATH
 fi  
 
 # Execute the start.sh script to initialize RouterShell
