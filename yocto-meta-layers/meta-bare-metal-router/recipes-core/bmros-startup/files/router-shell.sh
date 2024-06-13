@@ -13,9 +13,12 @@ echo "RouterShell Start..........."
 
 if [ -f "$FACTORY_START_FLAG_PATH" ]; then
     echo "Factory Reset of RouterShell"
-    ./start.sh --factory-reset || exit 1
+    ./start.sh --factory-reset || { echo "start.sh --factory-reset -> failed, exiting"; exit 1; }
     rm $FACTORY_START_FLAG_PATH
+    exit 0
 fi  
 
 # Execute the start.sh script to initialize RouterShell
-./start.sh || exit 1
+./start.sh || { echo "start.sh -> failed, exiting"; exit 1; }
+
+exit 0

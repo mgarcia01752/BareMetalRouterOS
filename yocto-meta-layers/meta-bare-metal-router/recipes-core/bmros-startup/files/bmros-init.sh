@@ -44,7 +44,7 @@ start() {
         echo "$SCRIPT_NAME is already running."
     else
         
-        /usr/lib/routershell/router-shell.sh || exit 1
+        . /usr/lib/routershell/router-shell.sh || exit 1
 
         nohup $PYTHON_BIN $PYTHON_SCRIPT >> $LOG_FILE 2>&1 &
         echo $! > $PID_FILE
