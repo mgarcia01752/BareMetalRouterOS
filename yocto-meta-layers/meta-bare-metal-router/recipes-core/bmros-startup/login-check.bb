@@ -7,9 +7,7 @@ ROOTFS_POSTPROCESS_COMMAND += "update_passwd_start_script;"
 
 # Function to update /etc/passwd to set the root user's shell to router-shell.sh
 update_passwd_start_script () {
-    echo "Running passwd-update script"
     if [ -f ${IMAGE_ROOTFS}/etc/passwd ]; then
-        echo "/etc/passwd found, modifying root shell"
         sed -i '/^root:/ s#/bin/sh#/usr/lib/routershell/scripts/first-login-check.sh#' ${IMAGE_ROOTFS}/etc/passwd
     else
         echo "/etc/passwd not found in ${IMAGE_ROOTFS}"

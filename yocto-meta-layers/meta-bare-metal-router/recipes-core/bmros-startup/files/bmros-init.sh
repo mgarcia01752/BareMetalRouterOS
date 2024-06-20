@@ -44,7 +44,7 @@ start() {
         echo "$SCRIPT_NAME is already running."
     
     else
-        printdbg "Entering RouterShell Wrapper Script"
+        echo "Entering RouterShell Wrapper Script"
         /usr/lib/routershell/router-shell.sh || exit 1
 
         nohup $PYTHON_BIN $PYTHON_SCRIPT >> $LOG_FILE 2>&1 &

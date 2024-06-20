@@ -6,7 +6,7 @@
 Usage: ./build-bmros.sh [options]
 Options:
 
-  -c, --core-image-minimal
+  -c, --core-image-minimal              (Yocto core-minimal)
   -b, --bare-metal-router               (Production)
   -d, --bare-metal-router-debug         (Debug)
   -v, --bare-metal-router-vanilla       (Non-Debug)
