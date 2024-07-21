@@ -35,18 +35,19 @@ FACTORY_START_FLAG="${FLAG_FILE_DIR}/${FLAG_FILE_NAME}"
 start() {
     echo "Starting $SCRIPT_NAME..."
 
-    # checking for factory start flag exists
+    # Check if factory start flag exists
     if [ -f "${FACTORY_START_FLAG}" ]; then
         echo "Initial or Factory Reset, starting $SCRIPT_NAME..."
     fi    
 
+    # Check if the script is already running
     if [ -f $PID_FILE ]; then
         echo "$SCRIPT_NAME is already running."
-    
     else
         echo "Entering RouterShell Wrapper Script"
         /usr/lib/routershell/router-shell.sh || exit 1
 
+        # Start the Python script in the background
         nohup $PYTHON_BIN $PYTHON_SCRIPT >> $LOG_FILE 2>&1 &
         echo $! > $PID_FILE
         echo "$SCRIPT_NAME started with PID $(cat $PID_FILE)."

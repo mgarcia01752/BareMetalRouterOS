@@ -55,7 +55,7 @@ while [[ $# -gt 0 ]]; do
             ;;
 
         -u|--update-bare-metal-layer-only)
-            `./update-layers.sh`
+            ./update-layers.sh
             shift
             ;;
 
@@ -82,7 +82,7 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
             
-            `./update-layers.sh`
+            ./update-layers.sh
             
             shift
             ;;

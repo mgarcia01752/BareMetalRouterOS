@@ -24,5 +24,4 @@ printerr () {
     fi
 }
 
-
 alias cli='/usr/lib/routershell/router-shell.sh'
