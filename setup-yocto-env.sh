@@ -31,3 +31,6 @@ echo
 
 display_banner "Installing Required Python Packages"
 pip install pipoe
+
+display_banner "Virtual Box Conversion Tools"
+sudo apt install -y qemu-utils genisoimage || handle_warning "Failed to install packages."

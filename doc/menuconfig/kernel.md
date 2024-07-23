@@ -9,7 +9,7 @@ The Yocto Project provides a flexible set of tools and processes to help you cre
 To start configuring the kernel using `menuconfig`, do not run `start-menuconfig.sh` from within Visual Studio Code (VSCode). Instead, open a new terminal window using `Ctrl+Alt+T` and execute the script.
 
 ```shell
-./start-menuconfig.sh
+./menuconfig.sh --kernel
 ```
 
 ### General MenuConfig Screen Navigation

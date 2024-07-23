@@ -3,8 +3,8 @@ DESCRIPTION = "RouterShell is an open-source IOS-like CLI distribution in Python
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-RS_SRC_REV = "0.1.10"
-SRCREV = "ebb3a94d27373c92eb5b1655b3b0d0d8106cc7a6"
+RS_SRC_REV = "0.1.11"
+SRCREV = "72469cae043e8a0c823cdbf519fa0d4c3e701831"
 
 PV = "${RS_SRC_REV}+git${SRCPV}"
 
