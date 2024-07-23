@@ -17,7 +17,7 @@ Options:
 
 ## Build Options
 
-### [Production](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router.bb)
+### [Production](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router.bb)
 
 In the production build, after the initial login, the `root` user is removed, and direct access to the Linux OS is restricted.
 
@@ -25,7 +25,7 @@ In the production build, after the initial login, the `root` user is removed, an
 ./build-bmros.sh -b
 ```
 
-### [Vanilla](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-vanilla.bb)
+### [Vanilla](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-vanilla.bb)
 
 In the vanilla build, after the initial login, the `root` user has unrestricted access to the Linux OS. 
 ***WARNING:*** The `root` account has no password.
@@ -34,7 +34,7 @@ In the vanilla build, after the initial login, the `root` user has unrestricted 
 ./build-bmros.sh -v
 ```
 
-### [Debug](../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-debug.bb)
+### [Debug](../../yocto-meta-layers/meta-bare-metal-router/recipes-core/images/bare-metal-router-debug.bb)
 
 In the debug build, after the initial login, the `root` user has unrestricted access to the Linux OS. 
 ***WARNING:*** The `root` account has no password.
@@ -62,6 +62,7 @@ This option will:
 - Copy the Yocto meta layers to `poky/meta-bare-metal-router`.
 
 ***Caution***: This option will:
+
 - Cause you to rebuild the image build/tmp directory, which can take some time depending on your build system.
 - You will need to rerun [Kernel menuconfig](kernel.md).
 
