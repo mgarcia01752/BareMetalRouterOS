@@ -23,6 +23,7 @@ To configure the Linux kernel options:
 BusyBox is a utility that combines many standard Unix utilities into a single executable, providing a lightweight and efficient way to perform common system tasks. It includes implementations of core utilities such as `sh`, `ls`, `grep`, `tar`, and many others. Configuring BusyBox allows you to select which utilities to include or exclude from the build, as well as customize their behavior and options.
 
 BusyBox configuration options include:
+
 - Selecting which applets to include in the BusyBox binary.
 - Configuring applet behavior and options (e.g., command-line options, output formatting).
 - Enabling features such as init system support, shell options, and networking utilities.
@@ -38,6 +39,7 @@ To configure BusyBox:
 U-Boot (Unified Extensible Firmware Interface) is a widely used bootloader for embedded systems, responsible for initializing hardware, loading the Linux kernel into memory, and preparing the system for booting. Configuring U-Boot allows you to specify boot parameters, enable or disable features such as network support or USB booting, and customize settings specific to your target hardware.
 
 U-Boot configuration options include:
+
 - Setting boot parameters (e.g., kernel command line arguments, boot device).
 - Enabling/disabling support for specific hardware features (e.g., USB, Ethernet).
 - Configuring environment variables and boot scripts.

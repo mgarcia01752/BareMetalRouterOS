@@ -4,8 +4,7 @@ Installation process for Yocto Poky and the creation of the Bare Metal Router OS
 
 ## [Installation Script](../install-yocto-poky.sh)
 
-
-### Usage:
+### Usage
 
 ```bash
 Usage: ./install-yocto-poky.sh [options]
@@ -15,7 +14,7 @@ Options:
 
 ```
 
-### Process:
+### Process
 
 1. **Fetching Yocto Poky Directories**: 
    - Clones the Yocto Poky repository if not already present.
@@ -37,7 +36,7 @@ Options:
 6. **Bare Metal Router OS Distribution Installation Complete**:
    - Displays a completion message indicating the successful installation of the BMROS distribution.
 
-### Options:
+### Options
 
 - **Install Poky Only (-p, --install-poky)**: Use this option to install Poky only. It's helpful for scenarios where you need to reinstall Poky or revert to a known good version without modifying other components.
 

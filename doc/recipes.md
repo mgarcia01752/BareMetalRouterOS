@@ -4,7 +4,8 @@ To customize the Bare Metal Router OS (BMROS) recipes and create your image, fol
 
 ## Creating Image Recipe
 
-### References:
+### References
+
 - [YOCTO Image Recipes](https://docs.yoctoproject.org/dev/dev-manual/customizing-images.html)
 - [How To Create a Recipe](https://www.youtube.com/watch?v=Apfwyf_yEzI)
 - [How To Create a Recipe for a Python Application](https://stackoverflow.com/questions/50436413/write-a-recipe-in-yocto-for-a-python-application)
