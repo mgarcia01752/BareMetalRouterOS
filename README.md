@@ -24,6 +24,7 @@ To install Git, execute the following command:
 ```bash
 sudo apt install -y git
 ```
+
 ### 2. Clone BMROS Repository
 
 To clone the BMROS repository, run the following command:
@@ -48,7 +49,7 @@ To download and install Yocto Poky (Scarthgap) for BMROS:
 ./install-yocto-poky.sh
 ```
 
-### 5. [Building Bare Metal Router OS](doc/build-bmros.md)
+### 5. [Building Bare Metal Router OS](doc/scripts/build-bmros.md)
 
 Use the build script to create the initial Production BMROS image:
 
@@ -56,7 +57,7 @@ Use the build script to create the initial Production BMROS image:
 sudo ./build-bmros.sh
 ```
 
-### 6. [Run Bare Metal Router OS](doc/factory-start.md#step-by-step-instructions)
+### 6. [Run Bare Metal Router OS](doc/scripts/factory-start.md#step-by-step-instructions)
 
 Verify the functionality of the BMROS image using QEMU:
 
@@ -64,7 +65,7 @@ Verify the functionality of the BMROS image using QEMU:
 sudo ./run-bmros.sh
 ```
 
-### 7. [Create Boot Media](doc/create-boot-media.md)
+### 7. [Create Boot Media](doc/scripts/create-boot-media.md)
 
 Prepare bootable media for BMROS:
 
