@@ -64,7 +64,7 @@ This option will:
 ***Caution***: This option will:
 
 - Cause you to rebuild the image build/tmp directory, which can take some time depending on your build system.
-- You will need to rerun [Kernel menuconfig](kernel.md).
+- You will need to rerun [Kernel menuconfig](../menuconfig/kernel.md).
 
 ```bash
 ./build-bmros.sh -r [-b | -v | -d] 
