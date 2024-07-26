@@ -5,8 +5,4 @@ SECTION = "console/utils"
 LICENSE = "CLOSED"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += "file://.config"
-
-do_configure:append() {
-    cat ${WORKDIR}/.config >> ${B}/.config
-}
+SRC_URI += "file://frag.cfg"

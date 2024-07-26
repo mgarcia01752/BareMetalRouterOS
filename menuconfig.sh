@@ -55,7 +55,7 @@ source oe-init-build-env "$BMROS_BUILD_DIR_NAME" || error_exit "Failed to source
 copy_config_files() {
     local config_file=$1
     local target_dir=$2
-    display_banner "Copying $MENU config to $target_dir"
+    display_banner "Copying $MENU config: $config_file to $target_dir"
     cp "$config_file" "../../$BMROS_META_LAYERS/$target_dir" || error_exit "Failed to copy $MENU config"
 }
 
@@ -68,11 +68,11 @@ case $MENU in
         copy_config_files "$kernel_config_file" "$bmros_linux_recipe"
         ;;
     busybox)
-        bmros_busybox_recipe="${BB_LAYER_BARE_METAL_ROUTER}/recipes-core/busybox/files"
+        bmros_poky_busybox_recipe="${BB_LAYER_BARE_METAL_ROUTER}/recipes-core/busybox/files"
         bitbake busybox -c menuconfig || error_exit "Failed to run bitbake busybox -c menuconfig"
-        #bitbake busybox -c diffconfig || error_exit "Failed to run bitbake busybox -c diffconfig"
-        busybox_config_file=$(find . -regex '.*/busybox-[0-9]+\(\.[0-9]+\)+/.config')
-        copy_config_files "$busybox_config_file" "$bmros_busybox_recipe"
+        bitbake busybox -c diffconfig || error_exit "Failed to run bitbake busybox -c diffconfig"
+        busybox_fragment_file=$(find . -regex '.*/busybox-[0-9]+\(\.[0-9]+\)+/fragment.cfg')
+        copy_config_files "$busybox_fragment_file" "$bmros_poky_busybox_recipe"
         ;;
     u-boot)
         bmros_uboot_recipe="${BB_LAYER_BARE_METAL_ROUTER}/recipes-bsp/u-boot/files"
