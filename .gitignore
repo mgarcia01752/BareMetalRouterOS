@@ -2,6 +2,9 @@
 .gitignore
 .last_build_recipe
 
+#Development artifacts
+scratch-bmros.
+
 # Ignore Yocto build artifacts
 build*/
 tmp*/

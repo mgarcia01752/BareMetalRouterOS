@@ -3,12 +3,12 @@ DESCRIPTION = "RouterShell is an open-source IOS-like CLI distribution in Python
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-RS_SRC_REV = "0.1.12"
-SRCREV = "42ab01b5bf5ac0e1459cb37f0655b146b2438dea"
+RS_SRC_REV = "0.1.13"
+SRCREV = "d5a1632fa4487c755cfe601cb8ddab45c918ba3d"
 
 PV = "${RS_SRC_REV}+git${SRCPV}"
 
-SRC_URI = "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v${RS_SRC_REV};rev=${SRCREV} "
+SRC_URI =   "git://github.com/mgarcia01752/RouterShell.git;protocol=https;branch=v${RS_SRC_REV};rev=${SRCREV} "
 
 DEPENDS += "python3 python3-pygments python3-prompt-toolkit python3-tabulate python3-prettytable python3-beautifulsoup4 python3-jc "
 DEPENDS += "bash iproute2 lshw iw iptables sudo util-linux openssl usbutils usbinit pciutils hostapd ethtool "
