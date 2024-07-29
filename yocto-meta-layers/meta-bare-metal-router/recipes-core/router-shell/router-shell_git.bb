@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 RS_SRC_REV = "0.1.13"
-SRCREV = "d5a1632fa4487c755cfe601cb8ddab45c918ba3d"
+SRCREV = "eb34346df98ae2d04f7becf215783959fe5f43fa"
 
 PV = "${RS_SRC_REV}+git${SRCPV}"
 
@@ -24,3 +24,5 @@ do_install() {
     install -d ${D}${libdir}/routershell
     cp -r ${S}/* ${D}${libdir}/routershell
 }
+
+
