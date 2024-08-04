@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # Variables
-INTERFACE="enx8cae4cdb5f8e"
-IP_ADDRESS="192.168.0.10/24"
-BMROS_IP="192.168.0.100"
+INTERFACE="enx3c8cf8f943a2"
+IP_ADDRESS="192.168.0.2/24"
+BMROS_IP="192.168.0.1"
 
 INTERFACE1="eno1"
-IP_ADDRESS1="192.168.1.2/24"
-BMROS_IP1="192.168.1.1"
+IP_ADDRESS1="192.168.4.2/24"
+BMROS_IP1="192.168.4.1"
 
 # Set up the network interface
 sudo ip link set dev "$INTERFACE" up
