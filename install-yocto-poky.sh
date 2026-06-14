@@ -9,6 +9,7 @@ fi
 
 BMROS_GIT_DIR=${PWD}
 POKY_DIR="${BMROS_GIT_DIR}/${POKY_DIR_NAME}"
+BMROS_VERSION_FILE="${BMROS_GIT_DIR}/VERSION"
 INSTALL_POKY_ONLY=false
 YOCTO_POKY_GIT_DISTRO="https://git.yoctoproject.org/git/poky"
 YOCTO_META_INTEL_GIT_DISTRO="git://git.yoctoproject.org/meta-intel"
@@ -45,6 +46,8 @@ done
 
 #####################################################################################
 display_banner "Install BMROS (BARE METAL ROUTER OS)"
+check_file "${BMROS_VERSION_FILE}"
+BMROS_DISTRO_VERSION="$(cat "${BMROS_VERSION_FILE}")"
 
 #####################################################################################
 display_banner "Fetching Yocto Poky Directories"
@@ -101,7 +104,7 @@ OLD_LINE3='DISTRO_VERSION = "5.0.1"'
 
 NEW_LINE1='DISTRO = "bmros"'
 NEW_LINE2='DISTRO_NAME = "BMROS (Bare Metal Router OS Distro)"'
-NEW_LINE3='DISTRO_VERSION = "0.1.0"'
+NEW_LINE3="DISTRO_VERSION = \"${BMROS_DISTRO_VERSION}\""
 
 # Use sed to perform the replacement
 sed -i -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \

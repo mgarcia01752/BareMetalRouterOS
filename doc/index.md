@@ -5,6 +5,7 @@
 - [Configure Layers](layers.md)
 - [Configure Recipes](recipes.md)
 - [Configure Image Binaries](image_target.md)
+- [BMROS Tools](tools.md)
 
 ## Overview
 

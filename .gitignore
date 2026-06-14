@@ -35,6 +35,10 @@ Thumbs.db
 *.swp
 *.out
 
+# Ignore Python cache artifacts
+**/__pycache__/
+**/*.py[cod]
+
 # Ignore package manager directories
 node_modules/
 bower_components/
