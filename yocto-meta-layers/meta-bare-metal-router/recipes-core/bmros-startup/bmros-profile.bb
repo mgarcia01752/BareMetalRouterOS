@@ -9,14 +9,13 @@ CONFIG_DEST = "${sysconfdir}/profile.d"
 SRC_URI += "file://bmros-profile.sh"
 
 # Where to install the files
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_install() {
     install -d ${D}${CONFIG_DEST}
-    install -m 0644 ${WORKDIR}/bmros-profile.sh ${D}${CONFIG_DEST}
+    install -m 0644 ${UNPACKDIR}/bmros-profile.sh ${D}${CONFIG_DEST}
 }
 
 FILES:${PN} += "${CONFIG_DEST}/*"
 
 inherit allarch
-

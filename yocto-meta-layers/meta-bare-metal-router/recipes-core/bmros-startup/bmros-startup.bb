@@ -18,8 +18,8 @@ FSFN = "${FLAG_FILE_DIR}/${FACTORY_START_FILE_NAME}"
 INITSCRIPT_NAME = "bmros.sh"
 INITSCRIPT_PARAMS = "defaults 99"
 
-# Set the working directory
-S = "${WORKDIR}"
+# Set the source directory
+S = "${UNPACKDIR}"
 
 # Define files to be included in the package
 FILES:${PN} += "${sysconfdir}/init.d/${INITSCRIPT_NAME} \
@@ -37,16 +37,16 @@ do_install() {
     
     # Install SysV init.d files
     install -d ${D}${sysconfdir}/init.d
-    install -m 0754 ${WORKDIR}/bmros-init.sh ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+    install -m 0754 ${UNPACKDIR}/bmros-init.sh ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
 
     # Install BMROS specific RouterShell start/install/configuration files
     install -d ${D}${libdir}/routershell
-    install -m 0754 ${WORKDIR}/router-shell.sh ${D}${libdir}/routershell/router-shell.sh
+    install -m 0754 ${UNPACKDIR}/router-shell.sh ${D}${libdir}/routershell/router-shell.sh
     
     # Install RouterShell Default Start and Factory Reset Configurations
     install -d ${D}${libdir}/routershell/config
-    install -m 0644 ${WORKDIR}/startup-config.cfg ${D}${libdir}/routershell/config/startup-config.cfg
-    install -m 0644 ${WORKDIR}/factory-startup.cfg ${D}${libdir}/routershell/config/factory-startup.cfg
+    install -m 0644 ${UNPACKDIR}/startup-config.cfg ${D}${libdir}/routershell/config/startup-config.cfg
+    install -m 0644 ${UNPACKDIR}/factory-startup.cfg ${D}${libdir}/routershell/config/factory-startup.cfg
 }
 
 # Declare dependencies

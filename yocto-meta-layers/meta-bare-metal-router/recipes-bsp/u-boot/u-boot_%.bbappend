@@ -7,5 +7,5 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI += "file://.config"
 
 do_configure:append() {
-    cp ${WORKDIR}/.config ${S}/configs/
+    cp ${UNPACKDIR}/.config ${S}/configs/
 }

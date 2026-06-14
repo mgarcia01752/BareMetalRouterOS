@@ -16,7 +16,7 @@ DEPENDS += "dnsmasq "
 
 RDEPENDS:${PN} += "bash "
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 FILES:${PN} += "${libdir}/routershell "
 
@@ -24,5 +24,4 @@ do_install() {
     install -d ${D}${libdir}/routershell
     cp -r ${S}/* ${D}${libdir}/routershell
 }
-
 

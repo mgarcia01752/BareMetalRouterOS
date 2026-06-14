@@ -8,9 +8,9 @@ SRC_URI += "file://bmr-start-motd"
 
 do_install:append() {
     rm -f ${D}${sysconfdir}/motd
-    install -m 0600 ${WORKDIR}/bmr-start-motd ${D}${sysconfdir}/motd
+    install -m 0600 ${UNPACKDIR}/bmr-start-motd ${D}${sysconfdir}/motd
 }
 
-FILES_${PN} += "${sysconfdir}/motd"
+FILES:${PN} += "${sysconfdir}/motd"
 
 hostname = "Router"
