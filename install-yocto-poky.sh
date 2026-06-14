@@ -11,15 +11,16 @@ BMROS_GIT_DIR=${PWD}
 POKY_DIR="${BMROS_GIT_DIR}/${POKY_DIR_NAME}"
 BMROS_VERSION_FILE="${BMROS_GIT_DIR}/VERSION"
 INSTALL_POKY_ONLY=false
-YOCTO_POKY_GIT_DISTRO="https://git.yoctoproject.org/git/poky"
-YOCTO_META_INTEL_GIT_DISTRO="git://git.yoctoproject.org/meta-intel"
-SYSTEM_INIT="SystemV"
+YOCTO_BITBAKE_GIT_DISTRO="https://git.openembedded.org/bitbake"
+YOCTO_OPENEMBEDDED_CORE_GIT_DISTRO="https://git.openembedded.org/openembedded-core"
+YOCTO_META_YOCTO_GIT_DISTRO="https://git.yoctoproject.org/meta-yocto"
+YOCTO_META_OPENEMBEDDED_GIT_DISTRO="https://git.openembedded.org/meta-openembedded"
+LAYERS_DIR="${POKY_DIR}/layers"
 
 display_usage() {
     echo "Usage: $0 [options]"
     echo "Options:"
     echo "  -p, --install-poky       Install Poky only"
-    echo "  -s, --install-systemd    Install Systemd overwrite SystemV"
     exit 1
 }
 
@@ -30,10 +31,6 @@ while [[ $# -gt 0 ]]; do
         INSTALL_POKY_ONLY=true
         shift
         ;;
-        -p|--install-poky)
-        INSTALL_POKY_ONLY=true
-        shift
-        ;;        
         -h|--help)
         display_usage
         ;;
@@ -44,6 +41,25 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+clone_or_check_repo() {
+  local repo_url="$1"
+  local repo_ref="$2"
+  local repo_dir="$3"
+  local repo_name="$4"
+
+  if check_directory "${repo_dir}"; then
+    echo "${repo_name} directory already exists."
+    current_branch="$(git -C "${repo_dir}" rev-parse --abbrev-ref HEAD)"
+    current_tag="$(git -C "${repo_dir}" describe --tags --exact-match HEAD 2>/dev/null || true)"
+    if [[ "${current_branch}" != "${repo_ref}" && "${current_tag}" != "${repo_ref}" ]]; then
+      handle_error "Existing ${repo_name} checkout is on branch '${current_branch}' tag '${current_tag}', expected '${repo_ref}'. Remove ${repo_dir} and rerun this script."
+    fi
+  else
+    echo "Cloning ${repo_name} (${repo_ref})..."
+    git clone --single-branch --branch "${repo_ref}" "${repo_url}" "${repo_dir}" || handle_error "Failed to clone ${repo_name}."
+  fi
+}
+
 #####################################################################################
 display_banner "Install BMROS (BARE METAL ROUTER OS)"
 check_file "${BMROS_VERSION_FILE}"
@@ -52,43 +68,18 @@ BMROS_DISTRO_VERSION="$(cat "${BMROS_VERSION_FILE}")"
 #####################################################################################
 display_banner "Fetching Yocto Poky Directories"
 
-if check_directory "${POKY_DIR}"; then
-  echo "Poky directory already exists."
-
-else
-  echo "Cloning Yocto Poky repository (${YOCTO_CODE_NAME})..."
-  git clone --single-branch --branch ${YOCTO_CODE_NAME} ${YOCTO_POKY_GIT_DISTRO} "${POKY_DIR}" || handle_error "Failed to clone Poky repository."
-  cd "${POKY_DIR}"
-  git pull || handle_error "Failed to pull updates from Poky repository."
-
-fi
+mkdir -p "${LAYERS_DIR}" || handle_error "Failed to create layers directory."
+clone_or_check_repo "${YOCTO_BITBAKE_GIT_DISTRO}" "${YOCTO_RELEASE_REF}" "${LAYERS_DIR}/bitbake" "BitBake"
+clone_or_check_repo "${YOCTO_OPENEMBEDDED_CORE_GIT_DISTRO}" "${YOCTO_RELEASE_REF}" "${LAYERS_DIR}/openembedded-core" "OpenEmbedded-Core"
+clone_or_check_repo "${YOCTO_META_YOCTO_GIT_DISTRO}" "${YOCTO_RELEASE_REF}" "${LAYERS_DIR}/meta-yocto" "meta-yocto"
 
 echo "Yocto Poky directory set up successfully."
 echo
 
-if [ "$INSTALL_POKY_ONLY" = true ]; then
-    echo "Installed Poky only. Exiting."
+if [ "${INSTALL_POKY_ONLY}" = true ]; then
+    echo "Installed Poky source layers only. Exiting."
     exit 0
 fi
-
-# Check if external layers directory already exists
-EXTERNAL_LAYERS_DIR="${POKY_DIR}/sources"
-META_INTEL_DIR="${EXTERNAL_LAYERS_DIR}/${BB_LAYER_INTEL}"
-
-if check_directory "${META_INTEL_DIR}"; then
-  echo "External layers directory already exists."
-
-else
-  display_banner "Cloning ${BB_LAYER_INTEL} layer"
-  mkdir -p "${EXTERNAL_LAYERS_DIR}" || handle_error "Failed to create external layers directory."
-  cd "${EXTERNAL_LAYERS_DIR}"
-  git clone --single-branch --branch ${YOCTO_CODE_NAME} ${YOCTO_META_INTEL_GIT_DISTRO} "${META_INTEL_DIR}" || handle_error "Failed to clone meta-intel layer."
-  cp -r ${META_INTEL_DIR}  ${POKY_DIR}
-
-fi
-
-echo "${BB_LAYER_INTEL} layer set up successfully."
-echo
 
 #####################################################################################
 display_banner "Rename Poky to BMROS (Bare Metal Router OS)"
@@ -97,36 +88,21 @@ POKY_CONF="${BMROS_GIT_DIR}/${META_POKY_CONF_PATH}"
 
 check_file ${POKY_CONF} 
 
-# Define the lines to search for and their replacements
-OLD_LINE1='DISTRO = "poky"'
-OLD_LINE2='DISTRO_NAME = "Poky (Yocto Project Reference Distro)"'
-OLD_LINE3='DISTRO_VERSION = "5.0.1"'
-
 NEW_LINE1='DISTRO = "bmros"'
 NEW_LINE2='DISTRO_NAME = "BMROS (Bare Metal Router OS Distro)"'
 NEW_LINE3="DISTRO_VERSION = \"${BMROS_DISTRO_VERSION}\""
 
 # Use sed to perform the replacement
-sed -i -e "s|^${OLD_LINE2}$|${NEW_LINE2}|" \
-       -e "s|^${OLD_LINE3}$|${NEW_LINE3}|" "${POKY_CONF}"
+sed -i -e "s|^DISTRO = .*|${NEW_LINE1}|" \
+       -e "s|^DISTRO_NAME = .*|${NEW_LINE2}|" \
+       -e "s|^DISTRO_VERSION = .*|${NEW_LINE3}|" "${POKY_CONF}"
 
 echo "Created: BMROS (Bare Metal Router OS Distro)"
 echo
 cd ${POKY_DIR}
 
-META_OPEN_EMBEDDED_DIR="${EXTERNAL_LAYERS_DIR}/meta-openembedded"
-
-if check_directory "${META_OPEN_EMBEDDED_DIR}"; then
-  echo "External layers directory (${META_OPEN_EMBEDDED_DIR}) already exists."
-
-else
-  display_banner "Cloning ${BB_LAYER_OPEN_EMBEDDED}"
-  mkdir -p "${EXTERNAL_LAYERS_DIR}" || handle_error "Failed to create external layers directory."
-  cd "${EXTERNAL_LAYERS_DIR}"
-  git clone git://git.openembedded.org/${BB_LAYER_OPEN_EMBEDDED} -b ${YOCTO_CODE_NAME}  || handle_error "Failed to clone ${BB_LAYER_OPEN_EMBEDDED} layer."
-  cp -r ${BB_LAYER_OPEN_EMBEDDED}  ${POKY_DIR}
-
-fi
+META_OPEN_EMBEDDED_DIR="${LAYERS_DIR}/meta-openembedded"
+clone_or_check_repo "${YOCTO_META_OPENEMBEDDED_GIT_DISTRO}" "${YOCTO_CODE_NAME}" "${META_OPEN_EMBEDDED_DIR}" "${BB_LAYER_OPEN_EMBEDDED}"
 
 #####################################################################################
 
@@ -140,7 +116,8 @@ display_banner "Installing ${BB_LAYER_BARE_METAL_ROUTER} Layer"
 
 BMROS_INSTALL_SRC_DIR=${BMROS_GIT_DIR}/yocto-meta-layers
 if [ -d "${BMROS_INSTALL_SRC_DIR}" ]; then
-  cp -r "${BMROS_INSTALL_SRC_DIR}/${BB_LAYER_BARE_METAL_ROUTER}" "${POKY_DIR}" || handle_error "Failed to copy ${BB_LAYER_BARE_METAL_ROUTER} layer."
+  rm -rf "${LAYERS_DIR}/${BB_LAYER_BARE_METAL_ROUTER}"
+  cp -r "${BMROS_INSTALL_SRC_DIR}/${BB_LAYER_BARE_METAL_ROUTER}" "${LAYERS_DIR}" || handle_error "Failed to copy ${BB_LAYER_BARE_METAL_ROUTER} layer."
   echo "${BB_LAYER_BARE_METAL_ROUTER} layer installed successfully."
 
 else
@@ -153,26 +130,26 @@ display_banner "Setting Up Yocto BMROS Build Environment"
 
 cd ${POKY_DIR}
 
-source oe-init-build-env ${BMROS_BUILD_DIR_NAME} || handle_error "Failed to create build directory: ${BMROS_BUILD_DIR_NAME}"
+source "layers/openembedded-core/oe-init-build-env" ${BMROS_BUILD_DIR_NAME} || handle_error "Failed to create build directory: ${BMROS_BUILD_DIR_NAME}"
 echo "Yocto build environment set up successfully."
 echo
 
 #####################################################################################
 display_banner "Adding Required Layers"
 
-bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_OE}
+bitbake-layers add-layer ../layers/meta-yocto/meta-poky
+echo "Adding meta-poky"
+
+bitbake-layers add-layer ../layers/${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_OE}
 echo "Adding ${BB_LAYER_OPEN_EMBEDDED_OE}"
 
-bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_PYTHON}
+bitbake-layers add-layer ../layers/${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_PYTHON}
 echo "Adding ${BB_LAYER_OPEN_EMBEDDED_PYTHON}"
 
-bitbake-layers add-layer ../${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_NETWORKING}
+bitbake-layers add-layer ../layers/${BB_LAYER_OPEN_EMBEDDED}/${BB_LAYER_OPEN_EMBEDDED_NETWORKING}
 echo "Adding ${BB_LAYER_OPEN_EMBEDDED_NETWORKING}"
 
-bitbake-layers add-layer ../${BB_LAYER_INTEL}
-echo "Adding ${BB_LAYER_INTEL}"
-
-bitbake-layers add-layer ../${BB_LAYER_BARE_METAL_ROUTER}
+bitbake-layers add-layer ../layers/${BB_LAYER_BARE_METAL_ROUTER}
 echo "Adding ${BB_LAYER_BARE_METAL_ROUTER}"
 
 echo "Updating ${BMROS_BUILD_DIR_NAME}/conf/local.conf"

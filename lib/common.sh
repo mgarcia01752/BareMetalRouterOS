@@ -14,12 +14,15 @@ ROOTFS_EXT4_FILENAME_EXT="rootfs.ext4"
 
 MACHINE_ARCH_x86_64="qemux86-64"
 
-YOCTO_CODE_NAME="scarthgap"
+YOCTO_CODE_NAME="wrynose"
+YOCTO_RELEASE_REF="yocto-6.0"
 
 POKY_DIR_NAME="poky"
 POKY_BUILD_PATH="${POKY_DIR_NAME}/${BMROS_BUILD_DIR_NAME}"
 
-META_POKY_CONF_PATH="${POKY_DIR_NAME}/meta-poky/conf/distro/poky.conf"
+OPENEMBEDDED_CORE_DIR="${POKY_DIR_NAME}/layers/openembedded-core"
+OE_INIT_BUILD_ENV_PATH="${OPENEMBEDDED_CORE_DIR}/oe-init-build-env"
+META_POKY_CONF_PATH="${POKY_DIR_NAME}/layers/meta-yocto/meta-poky/conf/distro/poky.conf"
 
 BMROS_META_LAYERS="yocto-meta-layers"
 BMROS_x86_64_TMP_DEPLOY_IMAGE_PATH="tmp/deploy/images/${MACHINE_ARCH_x86_64}"
@@ -32,7 +35,6 @@ BB_LAYER_OPEN_EMBEDDED_OE="meta-oe"
 BB_LAYER_OPEN_EMBEDDED_PYTHON="meta-python"
 BB_LAYER_OPEN_EMBEDDED_NETWORKING="meta-networking"
 
-BB_LAYER_INTEL="meta-intel"
 BB_LAYER_BARE_METAL_ROUTER="meta-bare-metal-router"
 
 display_banner() {
@@ -44,10 +46,10 @@ display_banner() {
 
 check_build_os() {
   case "$(lsb_release -si) $(lsb_release -sr)" in
-    "Ubuntu 20.04" | "Ubuntu 22.04")
+    "Ubuntu 24.04")
       return ${STATUS_OK} ;;
     *)
-      return${STATUS_NOK};;
+      return ${STATUS_NOK};;
   esac
 }
 
@@ -127,4 +129,3 @@ check_file() {
     [ -f "$1" ] || handle_error "Failed to find: $1"
     echo
 }
-

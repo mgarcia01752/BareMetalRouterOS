@@ -14,9 +14,11 @@ To customize the Bare Metal Router OS (BMROS) recipes and create your image, fol
 
 ## Create a receipe using devtool
 
+```bash
 cd poky
-source oe-init-build-env
+source layers/openembedded-core/oe-init-build-env build-bmros
 devtool add router-shell https://github.com/mgarcia01752/RouterShell.git --srcbranch=main
+```
 
 ## bitbake-layers show-recipes
 
@@ -24,13 +26,13 @@ Use `bitbake-layers` to display available BMR recipes:
 
 ```bash
 cd poky
-source oe-init-build-env build-bmr
+source layers/openembedded-core/oe-init-build-env build-bmros
 bitbake-layers show-recipes "bare-metal-router*"
 ```
 
 - **`cd poky`**: Navigate to your Yocto Project's main directory.
   
-- **`source oe-init-build-env build-bmr`**: Initialize the build environment for BMR (if not already done).
+- **`source layers/openembedded-core/oe-init-build-env build-bmros`**: Initialize the build environment for BMROS (if not already done).
   
 - **`bitbake-layers show-recipes "bare-metal-router*"`**: Displays all available recipes related to Bare Metal Router, allowing you to identify and work with specific recipes.
 

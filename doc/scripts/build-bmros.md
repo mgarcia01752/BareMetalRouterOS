@@ -47,7 +47,7 @@ In the debug build, after the initial login, the `root` user has unrestricted ac
 
 ### Updating BMROS Layers
 
-This option will copy the Yocto meta layers to `poky/meta-bare-metal-router`.
+This option will copy the BMROS Yocto layer to `poky/layers/meta-bare-metal-router`.
 
 ```bash
 ./build-bmros.sh -u [-b | -v | -d] 
@@ -58,8 +58,8 @@ This option will copy the Yocto meta layers to `poky/meta-bare-metal-router`.
 This option will:
 
 - Remove `poky/build-bmros/tmp`.
-- Remove `poky/meta-bare-metal-router`.
-- Copy the Yocto meta layers to `poky/meta-bare-metal-router`.
+- Remove `poky/layers/meta-bare-metal-router`.
+- Copy the BMROS Yocto layer to `poky/layers/meta-bare-metal-router`.
 
 ***Caution***: This option will:
 

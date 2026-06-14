@@ -20,7 +20,7 @@ fi
 
 cd ${POKY_DIR}
 
-source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
+source "layers/openembedded-core/oe-init-build-env" ${BMROS_BUILD_DIR_NAME}
 
 build_recipe=$(get_last_build_recipe)
 

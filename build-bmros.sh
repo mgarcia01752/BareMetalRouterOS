@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 
-        -d|--bare-metal-router-dev)
+        -d|--bare-metal-router-debug|--bare-metal-router-dev)
             IMAGE_TO_BUILD="${BMROS_IMAGE_BB_REF_DEBUG}"
             shift
             ;;            
@@ -54,7 +54,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 
-        -u|--update-bare-metal-layer-only)
+        -u|--update-poky-meta-bare-metal-router-layer-only|--update-bare-metal-layer-only)
             ./update-layers.sh
             shift
             ;;
@@ -63,20 +63,20 @@ while [[ $# -gt 0 ]]; do
             
             echo
             echo "Remove directories:"
-            echo " * poky/meta-bare-metal-router" 
+            echo " * poky/layers/meta-bare-metal-router" 
             echo " * poky/build-bmros/tmp"
             echo
             echo "Removing there directory will remove any changed outside of the standard install"
             read -p "Are you sure (y/n): " confirm
 
             if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
-                rm -rf poky/meta-bare-metal-router
+                rm -rf poky/layers/meta-bare-metal-router
                 rm -rf poky/build-bmros/tmp
 
             else
                 echo
                 echo "Removal of teh following directories canceled:"
-                echo " * poky/meta-bare-metal-router" 
+                echo " * poky/layers/meta-bare-metal-router" 
                 echo " * poky/build-bmros/tmp"
                 echo               
                 exit 1
@@ -115,7 +115,7 @@ check_directory "$POKY_DIR" || {
 
 cd "$POKY_DIR" 
 
-source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
+source "layers/openembedded-core/oe-init-build-env" ${BMROS_BUILD_DIR_NAME}
 
 if [[ -n "$IMAGE_TO_BUILD" ]]; then
     display_banner "Start Build: $IMAGE_TO_BUILD"

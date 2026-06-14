@@ -24,7 +24,7 @@ This will ensure that the specified packages are included when building the BMR 
 
 The `core-image-minimum` recipe serves as a base for minimal images. You can append it to include additional features for your BMR image.
 
-- [core-image-minimal.bbappend](../poky/meta-bare-metal-router/recipes-core/images/core-image-minimal.bbappend)
+- [core-image-minimal.bbappend](../poky/layers/meta-bare-metal-router/recipes-core/images/core-image-minimal.bbappend)
 
 ## Extending `core-image-minimum` to Include Bare Metal Router Recipes
 

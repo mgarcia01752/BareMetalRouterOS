@@ -81,7 +81,7 @@ format_device "${DEVICE}"
 
 cd ${POKY_DIR_NAME}
 
-source oe-init-build-env ${BMROS_BUILD_DIR_NAME}
+source "layers/openembedded-core/oe-init-build-env" ${BMROS_BUILD_DIR_NAME}
 
 check_image ${WIC_IMAGE}
 

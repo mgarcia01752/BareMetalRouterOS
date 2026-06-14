@@ -8,7 +8,7 @@
 
 ### Simple Fixes
 
-This will remove the build-bmros directory, copy the meta-bare-metal-router directories to /poky and rebuild
+This will remove the build-bmros temporary directory, copy the tracked BMROS layer to `poky/layers/meta-bare-metal-router`, and rebuild.
 
 ```shell
 ./build-bmros -r|--remove-update-poky-meta-bare-metal-router-layer

@@ -50,7 +50,7 @@ cd "$POKY_DIR_NAME" || error_exit "Failed to change directory to $POKY_DIR_NAME"
 
 display_banner "Starting $MENU MenuConfig"
 
-source oe-init-build-env "$BMROS_BUILD_DIR_NAME" || error_exit "Failed to source oe-init-build-env"
+source "layers/openembedded-core/oe-init-build-env" "$BMROS_BUILD_DIR_NAME" || error_exit "Failed to source oe-init-build-env"
 
 copy_config_files() {
     local config_file=$1

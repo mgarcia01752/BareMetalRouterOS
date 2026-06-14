@@ -23,14 +23,15 @@ Keep it short, accurate, and updated when workflows change.
 
 ## Yocto Baseline
 
-- Yocto codename is `scarthgap`, set in `lib/common.sh` as `YOCTO_CODE_NAME`.
+- Yocto codename is `wrynose`, set in `lib/common.sh` as `YOCTO_CODE_NAME`.
+- Yocto core source layers use the `yocto-6.0` release ref, set in `lib/common.sh` as `YOCTO_RELEASE_REF`.
 - BMROS release version is tracked in `VERSION`.
 - The normal build directory is `poky/build-bmros`.
 - The default production image recipe is `bare-metal-router`.
 - Other image targets include `bare-metal-router-vanilla`, `bare-metal-router-debug`, and `core-image-minimal`.
-- `install-yocto-poky.sh` clones Poky and external layers, copies `yocto-meta-layers/meta-bare-metal-router` into `poky/`, initializes `build-bmros`, and adds required layers.
+- `install-yocto-poky.sh` clones Yocto 6 source layers under `poky/layers/`, copies `yocto-meta-layers/meta-bare-metal-router` into `poky/layers/`, initializes `build-bmros`, and adds required layers.
 - `install-yocto-poky.sh` reads `VERSION` and uses it when rewriting Poky's `DISTRO_VERSION` to the BMROS distro version.
-- `update-layers.sh` copies tracked layer content from `yocto-meta-layers/` into `poky/`.
+- `update-layers.sh` copies tracked layer content from `yocto-meta-layers/` into `poky/layers/`.
 - Treat `yocto-meta-layers/` as source of truth; treat `poky/` as generated/vendor working state unless the user explicitly asks to inspect build output.
 
 ## RouterShell Integration

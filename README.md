@@ -12,8 +12,7 @@ The Bare Metal Router OS (BMROS) is a pure Linux router designed for x86-64 arch
 
 ## Supported Build OS
 
-- Ubuntu 20.04
-- Ubuntu 22.04
+- Ubuntu 24.04
 
 ## Getting Started
 
@@ -41,11 +40,18 @@ Before building BMROS, ensure you have the Ubuntu Yocto build environment set up
 ./setup-yocto-env.sh
 ```
 
-### 4. [Download and Install Yocto Poky](doc/install-yocto-poky.md) (Codename: [Scarthgap](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html))
+### 4. [Download and Install Yocto Poky](doc/install-yocto-poky.md) (Codename: [Wrynose](https://docs.yoctoproject.org/next/migration-guides/release-notes-6.0.html))
 
-To download and install Yocto Poky (Scarthgap) for BMROS:
+To download and install Yocto Poky (Wrynose) for BMROS:
 
 ```bash
+./install-yocto-poky.sh
+```
+
+If you have an older generated `poky/` workspace from a previous Yocto release, remove it before installing Wrynose:
+
+```bash
+rm -rf poky
 ./install-yocto-poky.sh
 ```
 
@@ -54,7 +60,7 @@ To download and install Yocto Poky (Scarthgap) for BMROS:
 Use the build script to create the initial Production BMROS image:
 
 ```bash
-sudo ./build-bmros.sh
+./build-bmros.sh
 ```
 
 ### 6. [Run Bare Metal Router OS](doc/scripts/factory-start.md#step-by-step-instructions)
@@ -62,7 +68,7 @@ sudo ./build-bmros.sh
 Verify the functionality of the BMROS image using QEMU:
 
 ```bash
-sudo ./run-bmros.sh
+./run-bmros.sh
 ```
 
 ### 7. [Create Boot Media](doc/scripts/create-boot-media.md)
@@ -84,6 +90,16 @@ After installing BMROS to your target device, you may need to configure the kern
 ## Documentation
 
 Detailed instructions and information are available in the [docs](doc/index.md) directory.
+
+## Yocto Version
+
+BMROS targets Yocto Project 6.0 Wrynose. The installer creates a local `poky/` workspace using the Yocto 6 split source layout:
+
+- `poky/layers/bitbake`
+- `poky/layers/openembedded-core`
+- `poky/layers/meta-yocto`
+- `poky/layers/meta-openembedded`
+- `poky/layers/meta-bare-metal-router`
 
 ### Contents:
 
@@ -109,7 +125,7 @@ Contributions to BMROS are welcome! Whether it's bug fixes, new features, or imp
 - **GitHub Repository**: [Bare Metal Router Repository](https://github.com/yocto/bare-metal-router)
 - **RouterShell GitHub**: [RouterShell Repository](https://github.com/mgarcia01752/RouterShell)
 - **Yocto Project**: [Official Site](https://www.yoctoproject.org/)
-- **Poky**: [Scarthgap Release](https://docs.yoctoproject.org/next/migration-guides/release-5.0.html)
+- **Poky**: [Wrynose Release](https://docs.yoctoproject.org/next/migration-guides/release-notes-6.0.html)
 
 ## License
 

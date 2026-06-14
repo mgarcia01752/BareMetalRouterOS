@@ -8,8 +8,7 @@ display_banner "Checking Supported OS"
 if ! check_build_os; then
   echo "Error: Unsupported operating system."
   echo "This script is intended to run on the following OS:"
-  echo "- Ubuntu 20.04 (LTS)"
-  echo "- Ubuntu 22.04 (LTS)"
+  echo "- Ubuntu 24.04 (LTS)"
   exit 1
 fi
 
