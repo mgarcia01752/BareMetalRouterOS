@@ -48,7 +48,7 @@ Keep it short, accurate, and updated when workflows change.
 
 - Do not create Python virtual environments in this repository unless the user explicitly asks.
 - Do not install Python packages globally from this repository during routine coding-agent work.
-- `setup-yocto-env.sh` runs `sudo apt` and `pip install`; do not run it casually on the development box.
+- `setup-yocto-env.sh` runs `sudo apt`; do not run it casually on the development box.
 - `install-yocto-poky.sh`, `build-bmros.sh`, `run-bmros.sh`, and media scripts can be expensive or host-impacting. Confirm intent before running long builds, QEMU launches, media writes, or destructive cleanup.
 - For script validation, prefer syntax checks such as `bash -n` on changed scripts.
 - Preserve destructive-command prompts and make destructive behavior opt-in.
