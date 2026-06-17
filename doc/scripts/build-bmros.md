@@ -13,6 +13,8 @@ Options:
 
   -u, --update-poky-meta-bare-metal-router-layer-only
   -r, --remove-update-poky-meta-bare-metal-router-layer
+
+  -j, --cpus <count|n-1|all>            Limit BitBake and recipe parallelism
 ```
 
 ## Build Options
@@ -42,6 +44,46 @@ In the debug build, after the initial login, the `root` user has unrestricted ac
 ```bash
 ./build-bmros.sh -d
 ```
+
+### CPU Limits
+
+Use `--cpus` or `-j` to limit both BitBake task concurrency and recipe `make -j`
+parallelism. This is useful when a build is making the workstation difficult to
+use.
+
+When this option is used, `build-bmros.sh` writes a managed block to
+`poky/build-bmros/conf/auto.conf` with:
+
+- `BB_NUMBER_THREADS`
+- `PARALLEL_MAKE`
+- `PARALLEL_MAKEINST`
+
+Leave one logical CPU free for desktop use:
+
+```bash
+./build-bmros.sh --cpus n-1
+```
+
+Build with a fixed CPU limit:
+
+```bash
+./build-bmros.sh --cpus 6
+```
+
+Combine CPU limits with image selection:
+
+```bash
+./build-bmros.sh -b --cpus n-1
+```
+
+Build the Yocto core minimal image while leaving one logical CPU free:
+
+```bash
+./build-bmros.sh -c --cpus n-1
+```
+
+The CPU limit applies to the build started by that command. If a previous
+BitBake build is already running, stop it cleanly and restart with `--cpus`.
 
 ## Build Options When Configuring Layers
 

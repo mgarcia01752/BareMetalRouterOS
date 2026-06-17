@@ -63,6 +63,19 @@ Use the build script to create the initial Production BMROS image:
 ./build-bmros.sh
 ```
 
+Yocto builds can use a lot of CPU. To leave one logical CPU available for desktop use, run:
+
+```bash
+./build-bmros.sh --cpus n-1
+```
+
+You can combine the CPU limit with any image target:
+
+```bash
+./build-bmros.sh -c --cpus n-1
+./build-bmros.sh -b --cpus n-1
+```
+
 ### 6. [Run Bare Metal Router OS](doc/scripts/factory-start.md#step-by-step-instructions)
 
 Verify the functionality of the BMROS image using QEMU:

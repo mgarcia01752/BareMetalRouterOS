@@ -31,7 +31,8 @@ Options:
    - Adds required layers for BMROS, including OpenEmbedded, Python, Networking, and BMROS-specific layers.
 
 5. **Modifying Configuration**:
-   - Modifies the `local.conf` file with necessary configurations, such as setting parallel build options and image types.
+   - Modifies the `local.conf` file with necessary configurations, such as image types and baseline build settings.
+   - Runtime CPU limits can be changed when building with `./build-bmros.sh --cpus <count|n-1|all>`.
 
 6. **Bare Metal Router OS Distribution Installation Complete**:
    - Displays a completion message indicating the successful installation of the BMROS distribution.

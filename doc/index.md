@@ -5,6 +5,7 @@
 - [Configure Layers](layers.md)
 - [Configure Recipes](recipes.md)
 - [Configure Image Binaries](image_target.md)
+- [Build BMROS](scripts/build-bmros.md)
 - [BMROS Tools](tools.md)
 
 ## Overview
@@ -16,6 +17,7 @@ Welcome to the Bare Metal Router OS (BMROS) wiki! This wiki serves as a guide to
 If you're new to the Bare Metal Router project, here are some essential guides to help you get started:
 
 - [Adding and Building meta-bare-metal-router](meta_bare_metal_router.md)
+- [Building BMROS Images](scripts/build-bmros.md)
 - [Modifying Bare Metal Router Recipes](modify_recipes.md)
 - [Creating and Customizing Image Binaries](customize_image.md)
 
